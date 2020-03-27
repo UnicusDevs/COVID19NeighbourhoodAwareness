@@ -12,7 +12,7 @@ const LogStatus = (props) => {
         <img src={props.imageURL} className={styles.image} alt="Avatar" /> 
       </div>
       <div className={styles.textContainer}>
-        <h3> Your neighbour {props.firstName} - Self isolated today! </h3>
+        <h3> Your neighbour {props.firstName} self isolated today! </h3>
         <div>
           <ul className={styles.subContentContainer}> 
             <ol> {props.date} </ol>
