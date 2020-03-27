@@ -1,0 +1,55 @@
+@import './../main.scss';
+
+.logStatus {
+  display: flex;
+  flex-direction: row;
+}
+
+.imageContainer {
+  width: 75px;
+  height: 72px;
+}
+
+.image {
+  border-radius: 50%;
+  width: 100%;  
+}
+
+.textContainer {
+  margin-left: 1rem;
+}
+
+
+.textContainer h3 {
+  margin: 0;
+}
+
+
+.subContentContainer { 
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0;
+}
+
+.subContentContainer ol {
+  padding: 0;
+  margin-left: 1rem; 
+}
+
+.subContentContainer ol:first-child {
+  margin-left: 0; 
+}
+
+
+.subContentContainer ol:nth-child(2) {
+  color: $color-yellow;
+}
+
+.subContentContainer ol:nth-child(3) {
+  color: $color-yellow;
+}
+
+.line {
+  border-width: 0.1px;
+}
