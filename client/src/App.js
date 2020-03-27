@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import ReactDOM from 'react-dom';
+import AppRouter from './routes/AppRouter.js';
+import { Provider } from 'react-redux';
 import './App.css';
+
+// Store 
+import configureStore from './redux/store';
+const store = configureStore();
 
 class App extends Component {
   state = {
     data: null
   };
+
+  
 
   componentDidMount() {
     // Call our fetch function below once the component mounts
@@ -26,16 +34,14 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        // Render the newly fetched data inside of this.state.data 
-        <p className="App-intro">{this.state.data}</p>
-      </div>
+      <Provider store={store}>
+        <AppRouter />
+      </Provider>
     );
   }
 }
 
 export default App;
+
+
+
