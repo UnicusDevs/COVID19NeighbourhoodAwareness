@@ -1,40 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const Joi = require('@hapi/joi');
-
-//Item Model 
+const {signUpValidation} = require('../../validation');
+//User Model 
 const User = require('../../models/User');
-
-//VALIDATION:
-
-const schema = Joi.object({
-    FirstName: Joi.string()
-             .min(3)
-             .required(),
-    LastName: Joi.string()
-            .min(3)
-            .required(),
-    Suburb: Joi.string()
-            .min(3)
-            .required(),
-    EmailAddress: Joi.string().min(3)
-                     .required()
-                     .email(),
-    Age: Joi.number().min(1).required(),
-    Password: Joi.string()
-                 .min(6)
-                 .required()
-});
 
 // @route   POST api/signUp
 // @desc    Create User
 router.post('/',async (req,res) =>{
-    console.log(req.body);
 
     //Validating SignUp Body:
-    const {error} = schema.validate(req.body); 
+    const {error} = signUpValidation(req.body)
     if (error) return res.status(400).send(error);
-
 
     const post = new User({
         FirstName: req.body.FirstName,
