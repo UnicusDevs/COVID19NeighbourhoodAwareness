@@ -12,6 +12,11 @@ router.post('/',async (req,res) =>{
     const {error} = signUpValidation(req.body)
     if (error) return res.status(400).send(error);
 
+    //Checking is user is already in DB:
+    const emailExist = await User.findOne({email: req.body.EmailAddress});
+    console.log(emailExist);
+    if (emailExist != null) return res.status(400).send('Email already exists');
+
     const post = new User({
         FirstName: req.body.FirstName,
         LastName: req.body.LastName,
