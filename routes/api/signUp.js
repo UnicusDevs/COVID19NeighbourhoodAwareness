@@ -1,8 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const {signUpValidation} = require('../../validation');
+const bcrypt = require('bcryptjs');
+
 //User Model 
 const User = require('../../models/User');
+
+
 
 // @route   POST api/signUp
 // @desc    Create User
@@ -16,20 +20,28 @@ router.post('/',async (req,res) =>{
     const emailExist = await User.findOne({EmailAddress: req.body.EmailAddress});
     if (emailExist != null) return res.status(400).send({error:'Email already exists'});
 
+    //Hash Passwords:
+    const salt = await bcrypt.genSalt(10);
+    const hashPassword = await bcrypt.hash(req.body.Password,salt);
+
     const post = new User({
         FirstName: req.body.FirstName,
         LastName: req.body.LastName,
         Suburb: req.body.Suburb,
-        Password: req.body.Password,
+        Password: hashPassword,
         EmailAddress: req.body.EmailAddress,
         Age: req.body.Age
     });
 
     try{
         const savedPost = await post.save();
-        res.json(savedPost);
+        res.json({ 
+                user: savedPost._id 
+            });
     }catch(err){
-        res.json({message:err});
+        res.json({
+            message:err
+        } );
     }
 })
 
