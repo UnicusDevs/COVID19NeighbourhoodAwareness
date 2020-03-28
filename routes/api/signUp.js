@@ -13,9 +13,8 @@ router.post('/',async (req,res) =>{
     if (error) return res.status(400).send(error);
 
     //Checking is user is already in DB:
-    const emailExist = await User.findOne({email: req.body.EmailAddress});
-    console.log(emailExist);
-    if (emailExist != null) return res.status(400).send('Email already exists');
+    const emailExist = await User.findOne({EmailAddress: req.body.EmailAddress});
+    if (emailExist != null) return res.status(400).send({error:'Email already exists'});
 
     const post = new User({
         FirstName: req.body.FirstName,
