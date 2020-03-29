@@ -1,3 +1,10 @@
+# How to run
+
+  1. Run `npm i` in root
+  2. In your terminal run `cd client`
+  3. In `client` run `npm i`
+  4. In root run `npm run dev` this will start both the back-end and the front-end 
+
 # COVID-19 Community Project
 
 - This project was planned, designed and developed my Mark Tominson, Mahes Varier and Max Kelly. 
