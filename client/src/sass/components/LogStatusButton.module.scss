@@ -1,0 +1,16 @@
+@import './../main.scss';
+
+.buttonContainer {
+  text-align: center;
+}
+
+.button {
+  background: #151E2E;
+  border: 1px solid $color-dark-navyBlue;
+  border-radius: 0.3rem;
+  color: $color-dark-yellow;
+  font-weight: bold;
+  margin: 1rem;
+  padding: 0.5rem;
+  width: 90%;
+}

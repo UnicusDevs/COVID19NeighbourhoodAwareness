@@ -27,6 +27,10 @@ p {
   color: $color-dark-navyBlue;
 }
 
+button {
+  cursor: pointer;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

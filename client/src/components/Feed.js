@@ -2,6 +2,7 @@ import React from 'react';
 
 // Components
 import LogStatus from './LogStatus';
+import LogStatusButton from './LogStatusButton';
 
 // Styles
 import styles from './../sass/components/Feed.module.scss';
@@ -20,6 +21,7 @@ const Feed = (props) => {
   return (
     <div>
       <div className={styles.logFeedContainer}>
+        <LogStatusButton />
         <LogStatus firstName={state.firstName} date={state.date} suburb={state.suburb} imageURL={state.imageURL} claps={state.claps} />
         <LogStatus firstName={state.firstName} date={state.date} suburb={state.suburb} imageURL={state.imageURL} claps={state.claps} />
         <LogStatus firstName={state.firstName} date={state.date} suburb={state.suburb} imageURL={state.imageURL} claps={state.claps} />
