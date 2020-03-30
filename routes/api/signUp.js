@@ -7,7 +7,6 @@ const bcrypt = require('bcryptjs');
 const User = require('../../models/User');
 
 
-
 // @route   POST api/signUp
 // @desc    Create User
 router.post('/', async (req,res) =>{

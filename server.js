@@ -21,6 +21,11 @@ const login = require('./routes/api/login');
 app.use('/login', login);
 //Region End - Routing for Sign Up
 
+//Region Start - Routing for Post
+const post = require('./routes/api/post');
+app.use('/post', post);
+//Region End - Routing for Post
+
 
 //Connecting to MongoDB
 mongoose.connect(process.env.DB_CONNECTION, 
