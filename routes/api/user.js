@@ -7,7 +7,7 @@ const User = require('../../models/User');
 // @route   GET api/Items
 // @desc    GET all items
 router.get('/',(req,res) => {
-    Item.find()
+    User.find()
         .sort({date: -1})
         .then(items => res.json(items))
 })
