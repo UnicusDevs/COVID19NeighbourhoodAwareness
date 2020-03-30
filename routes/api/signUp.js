@@ -10,20 +10,21 @@ const User = require('../../models/User');
 
 // @route   POST api/signUp
 // @desc    Create User
-router.post('/',async (req,res) =>{
+router.post('/', async (req,res) =>{
 
     //Validating SignUp Body:
     const {error} = signUpValidation(req.body)
     if (error) return res.status(400).send(error);
 
+
     //Checking is user is already in DB:
-    const emailExist = await User.findOne({EmailAddress: req.body.EmailAddress});
-    if (emailExist != null) return res.status(400).send({error:'Email already exists'});
+    const email = req.body.EmailAddress;
+    const emailExist = await User.findOne({ EmailAddress: email });
 
     //Hash Passwords:
     const salt = await bcrypt.genSalt(10);
     const hashPassword = await bcrypt.hash(req.body.Password,salt);
-
+    
     const post = new User({
         FirstName: req.body.FirstName,
         LastName: req.body.LastName,
@@ -32,11 +33,11 @@ router.post('/',async (req,res) =>{
         EmailAddress: req.body.EmailAddress,
         Age: req.body.Age
     });
-
-    try{
+  
+    try {
         const savedPost = await post.save();
         res.json({ 
-                user: savedPost._id 
+                user: post._id 
             });
     }catch(err){
         res.json({
