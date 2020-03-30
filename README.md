@@ -23,6 +23,12 @@
 
   ![Design Image One](./assets/design/design_image_1.png)
 
+  ![Design Image Two](./assets/design/design_image_1.png)
+
+  ![Design Image Three](./assets/design/design_image_1.png)
+
+  
+
 ## Project management
 
   - The project management tool we used for this project was Github projects. We automated this a lot with the issues and cards. As you can see below.
