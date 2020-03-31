@@ -4,6 +4,9 @@ const router = express.Router();
 //Post Model 
 const Post = require('../../models/Post');
 
+// Controller 
+const {getAllPosts} = require('./../../controllers/post_controller');
+
 // @route   POST api/post
 // @desc    Create post
 router.post('/create', async (req, res) => {
@@ -23,6 +26,8 @@ router.post('/create', async (req, res) => {
       message: err
     })
   }
-})
+});
+
+router.get('/', getAllPosts);
 
 module.exports = router;
