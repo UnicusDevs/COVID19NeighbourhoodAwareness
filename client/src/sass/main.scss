@@ -1,5 +1,6 @@
 $color-dark-yellow: #FFC911;
 $color-dark-navyBlue: #183042;
+$color-bright-green: #00D6A8;
 
 body {
   margin: 1rem;
@@ -8,6 +9,26 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+  color: $color-dark-navyBlue;
+}
+
+h2 {
+  color: $color-dark-navyBlue;
+}
+
+h3 {
+  color: $color-dark-navyBlue;
+}
+
+p {
+  color: $color-dark-navyBlue;
+}
+
+button {
+  cursor: pointer;
 }
 
 code {
