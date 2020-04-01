@@ -14,6 +14,4 @@ router.get('/', getAllPosts);
 router.post('/create', createNewPost);
 router.get('/suburb', getPostBasedOnSuburb)
 
-
-
 module.exports = router;

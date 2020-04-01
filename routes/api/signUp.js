@@ -6,7 +6,6 @@ const bcrypt = require('bcryptjs');
 //User Model 
 const User = require('../../models/User');
 
-
 // @route   POST api/signUp
 // @desc    Create User
 router.post('/', async (req,res) =>{
@@ -17,8 +16,8 @@ router.post('/', async (req,res) =>{
 
 
     //Checking is user is already in DB:
-    const email = req.body.EmailAddress;
-    const emailExist = await User.findOne({ EmailAddress: email });
+    const emailExist = await User.findOne({ EmailAddress: req.body.EmailAddress });
+    if (emailExist != null) return res.status(400).send({ error: 'Email already exists' });
 
     //Hash Passwords:
     const salt = await bcrypt.genSalt(10);
@@ -36,13 +35,13 @@ router.post('/', async (req,res) =>{
     try {
         const savedPost = await post.save();
         res.json({ 
-                user: post._id 
+                user: savedPost._id 
             });
-    }catch(err){
+    } catch(err){
         res.json({
             message:err
-        } );
+        });
     }
-})
+});
 
 module.exports = router;

@@ -5,12 +5,11 @@ const User = require('./../models/User');
 async function getAllPosts(req, res) {
   Post.find()
     .then(posts => res.json(posts))
-}
+};
 
 // Below function creates a new post
 async function createNewPost(req, res) {
   const user = await User.findOne({_id: req.body.User})
-  console.log(user)
   
   const newPost = new Post({
     User: user, 
@@ -35,8 +34,7 @@ async function createNewPost(req, res) {
 async function getPostBasedOnSuburb(req, res) { 
 
   const user = await User.findOne({ email: req.body.User })
-
   Post.find({"Suburb": user.Suburb}).then(post => res.json(post))
-}
+};
 
 module.exports = { getAllPosts, createNewPost, getPostBasedOnSuburb };
