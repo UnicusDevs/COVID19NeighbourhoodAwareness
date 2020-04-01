@@ -12,6 +12,9 @@ const PostSchema = new Schema({
   DidSelfIsolate: {
     type: Boolean
   },
+  Suburb: {
+    type: String
+  },
   Claps: {
     type: Number
   }
