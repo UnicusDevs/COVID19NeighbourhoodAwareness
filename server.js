@@ -37,7 +37,7 @@ mongoose.connect(process.env.DB_CONNECTION,
                 { useNewUrlParser: true },
                 ()=>console.log("Connected to DB"))
 
-// create a GET route
-app.get('/express_backend', (req, res) => {
-  res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
-});
+// // create a GET route
+// app.get('/express_backend', (req, res) => {
+//   res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
+// });
