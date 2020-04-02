@@ -13,7 +13,6 @@ const About = (props) => {
 						</p>
 					</div>
 					<div className={styles.right}>
-						<p className={styles.callout}>Did you self-isolate or practise strict social distancing today? Click below to tell your neighbours!</p>
 						<Feed />
 					</div>
 				</div>
