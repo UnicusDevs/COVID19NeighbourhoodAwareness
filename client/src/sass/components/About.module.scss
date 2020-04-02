@@ -1,0 +1,31 @@
+@import './../main.scss';
+
+.about {
+	margin-top: 16rem;
+}
+
+.row {
+	display: flex;
+	justify-content: space-between;
+}
+
+.left {
+	width: 45%;
+	margin-right: 40px;
+}
+	.title {
+		margin-bottom: 1.6rem;
+		font-weight: 500;
+	}
+	p {
+		line-height: 3.6rem;
+		font-weight: 500;
+	}
+
+.right {
+	width: 55%;
+}
+	.callout {
+		color: $color-text-red;
+		font-weight: 500;
+	}

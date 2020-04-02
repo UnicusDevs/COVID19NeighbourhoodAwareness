@@ -7,10 +7,11 @@
 .button {
   background: #151E2E;
   border: 1px solid $color-dark-navyBlue;
-  border-radius: 0.3rem;
+  border-radius: 5px;
   color: $color-dark-yellow;
+  font-size: 1.4rem;
   font-weight: bold;
-  margin: 1rem;
-  padding: 0.5rem;
+  margin: 1.6rem;
+  padding: 0.8rem;
   width: 90%;
 }
