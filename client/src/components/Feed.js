@@ -19,9 +19,16 @@ const Feed = (props) => {
   };
 
   return (
-    <div>
+    <div className={styles.feed}>
       <div className={styles.logFeedContainer}>
         <LogStatusButton />
+        <LogStatus firstName={state.firstName} date={state.date} suburb={state.suburb} imageURL={state.imageURL} claps={state.claps} />
+        <LogStatus firstName={state.firstName} date={state.date} suburb={state.suburb} imageURL={state.imageURL} claps={state.claps} />
+        <LogStatus firstName={state.firstName} date={state.date} suburb={state.suburb} imageURL={state.imageURL} claps={state.claps} />
+        <LogStatus firstName={state.firstName} date={state.date} suburb={state.suburb} imageURL={state.imageURL} claps={state.claps} />
+        <LogStatus firstName={state.firstName} date={state.date} suburb={state.suburb} imageURL={state.imageURL} claps={state.claps} />
+        <LogStatus firstName={state.firstName} date={state.date} suburb={state.suburb} imageURL={state.imageURL} claps={state.claps} />
+        <LogStatus firstName={state.firstName} date={state.date} suburb={state.suburb} imageURL={state.imageURL} claps={state.claps} />
         <LogStatus firstName={state.firstName} date={state.date} suburb={state.suburb} imageURL={state.imageURL} claps={state.claps} />
         <LogStatus firstName={state.firstName} date={state.date} suburb={state.suburb} imageURL={state.imageURL} claps={state.claps} />
         <LogStatus firstName={state.firstName} date={state.date} suburb={state.suburb} imageURL={state.imageURL} claps={state.claps} />

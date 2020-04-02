@@ -1,8 +1,7 @@
 @import './../main.scss';
 
 .logFeedContainer {
-  border: 1px solid black;
-  width: 20%;
-  box-shadow: 0px 25px 50px rgba(0, 0, 0, 0.33);
+  background-color: $color-white;
   border-radius: 25px;
+  box-shadow: $shadow-2xl;
 }

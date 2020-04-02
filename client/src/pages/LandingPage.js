@@ -1,13 +1,13 @@
 import React from 'react';
-
-import Feed from './../components/Feed';
+import Header from './../components/Header';
+import About from './../components/About';
 
 const LandingPage = (props) => {
   return (
-    <div>
-      <h1> Landing Page </h1>
-      <Feed />
-    </div>
+      <div>
+        <Header />
+        <About />
+      </div>
   )
 };
 
