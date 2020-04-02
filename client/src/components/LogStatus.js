@@ -21,7 +21,6 @@ const LogStatus = (props) => {
             <ol> 👏 + {props.claps} </ol>
           </ul>
         </div> 
-        <hr className={styles.line} />
       </div>
     </div>
   );
