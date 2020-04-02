@@ -1,15 +1,16 @@
 const express = require('express');
 const router = express.Router();
 
-//Item Model 
+// User Model 
 const User = require('../../models/User');
+
+// Controller
+const { getCurrentUser, getAllUsers } = require("../../controllers/user_controller");
 
 // @route   GET api/Items
 // @desc    GET all items
-router.get('/',(req,res) => {
-    Item.find()
-        .sort({date: -1})
-        .then(items => res.json(items))
-})
+router.get('/', getAllUsers);
+
+router.get('/:user_id', getCurrentUser)
 
 module.exports = router;

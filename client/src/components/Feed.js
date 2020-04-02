@@ -2,10 +2,14 @@ import React from 'react';
 
 // Components
 import LogStatus from './LogStatus';
+import LogStatusButton from './LogStatusButton';
+
+// Styles
+import styles from './../sass/components/Feed.module.scss';
 
 const Feed = (props) => {
 
-  // To be put into redux store
+  // To be put into redux store once database is hooked up
   const state = {
     firstName: "Max",
     date: "18th March 2020",
@@ -15,8 +19,20 @@ const Feed = (props) => {
   };
 
   return (
-    <div>
-      <LogStatus firstName={state.firstName} date={state.date} suburb={state.suburb} imageURL={state.imageURL} claps={state.claps} />
+    <div className={styles.feed}>
+      <div className={styles.logFeedContainer}>
+        <LogStatusButton />
+        <LogStatus firstName={state.firstName} date={state.date} suburb={state.suburb} imageURL={state.imageURL} claps={state.claps} />
+        <LogStatus firstName={state.firstName} date={state.date} suburb={state.suburb} imageURL={state.imageURL} claps={state.claps} />
+        <LogStatus firstName={state.firstName} date={state.date} suburb={state.suburb} imageURL={state.imageURL} claps={state.claps} />
+        <LogStatus firstName={state.firstName} date={state.date} suburb={state.suburb} imageURL={state.imageURL} claps={state.claps} />
+        <LogStatus firstName={state.firstName} date={state.date} suburb={state.suburb} imageURL={state.imageURL} claps={state.claps} />
+        <LogStatus firstName={state.firstName} date={state.date} suburb={state.suburb} imageURL={state.imageURL} claps={state.claps} />
+        <LogStatus firstName={state.firstName} date={state.date} suburb={state.suburb} imageURL={state.imageURL} claps={state.claps} />
+        <LogStatus firstName={state.firstName} date={state.date} suburb={state.suburb} imageURL={state.imageURL} claps={state.claps} />
+        <LogStatus firstName={state.firstName} date={state.date} suburb={state.suburb} imageURL={state.imageURL} claps={state.claps} />
+        <LogStatus firstName={state.firstName} date={state.date} suburb={state.suburb} imageURL={state.imageURL} claps={state.claps} />
+      </div>
     </div>
   );
 }
