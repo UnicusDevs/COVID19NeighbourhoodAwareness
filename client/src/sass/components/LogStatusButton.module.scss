@@ -5,12 +5,13 @@
 }
 
 .button {
-  background: #151E2E;
+  background: $color-dark-navyBlue;
   border: 1px solid $color-dark-navyBlue;
-  border-radius: 0.3rem;
+  border-radius: 5px;
   color: $color-dark-yellow;
-  font-weight: bold;
-  margin: 1rem;
-  padding: 0.5rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 1.6rem;
+  padding: 0.8rem;
   width: 90%;
 }

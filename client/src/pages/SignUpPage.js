@@ -14,7 +14,7 @@ class SignupPage extends React.Component {
     return (
       <div>
         <h1> SignupPage </h1>
-        <SignUpForm onSubmit={this.submit} />
+        <SignUpForm />
       </div>
     )
   }

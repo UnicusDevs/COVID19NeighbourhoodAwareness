@@ -10,7 +10,7 @@ const LogStatus = (props) => {
         <img src={props.imageURL} className={styles.image} alt="Avatar" /> 
       </div>
       <div className={styles.textContainer}>
-        <h3> Your neighbour {props.firstName} self isolated today! </h3>
+        <p> Your neighbour {props.firstName} self-isolated today! </p>
         <div>
           <ul className={styles.subContentContainer}> 
             <ol> {props.date} </ol>
@@ -19,7 +19,6 @@ const LogStatus = (props) => {
             <ol> <span>👏</span> + {props.claps} </ol>
           </ul>
         </div> 
-        <hr className={styles.line} />
       </div>
     </div>
   );
