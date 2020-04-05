@@ -33,7 +33,7 @@ app.use('/user', user);
 
 //Region Start - Upload Images Middleware
 
-app.use(express.static('uploads'));
+app.use('/uploads',express.static('uploads'));
 // Example: http://localhost:5000/2020-04-05T15:34:54.325ZTest-Image.png
 
 //Region End -  Upload Images Middleware
