@@ -31,6 +31,12 @@ const user = require('./routes/api/user');
 app.use('/user', user);
 //Region End - Routing for Sign Up
 
+//Region Start - Upload Images Middleware
+
+app.use(express.static('uploads'));
+// Example: http://localhost:5000/2020-04-05T15:34:54.325ZTest-Image.png
+
+//Region End -  Upload Images Middleware
 
 //Connecting to MongoDB
 mongoose.connect(process.env.DB_CONNECTION, 

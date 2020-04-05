@@ -26,6 +26,9 @@ const UserSchema = new Schema({
     Password: {
         type: String,
         required:true
+    },
+    ImageURL:{
+        type: String
     }
 });
 
