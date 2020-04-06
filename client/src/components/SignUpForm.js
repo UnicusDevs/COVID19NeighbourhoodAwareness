@@ -1,24 +1,54 @@
 import React from 'react';
 
 // React hook
-import {useForm} from 'react-hook-form';
+import { useForm } from 'react-hook-form';
+
+// Axios / cookies
+import axiosAPI from "./../api/baseURL";
 
 // Redux
-import {connect} from 'react-redux';
-import { saveFormData } from "./../redux/actions/signupFormActions.js";
-
-// API Calls
-import {sendUserToDatabase} from './../api/sendUserToDatabase';
+import { connect } from 'react-redux';
+import { saveFormData, saveFormErrorMessages } from "./../redux/actions/signupFormActions.js";
 
 
 let SignUpForm = props => {
 
+  // To Do: Add token once user has signed up.
+  // The below is a axios post to create new user then log them in. 
+  let sendUserToDatabase = (values) => {
+    axiosAPI.post("/signup", {
+      FirstName: values.firstName,
+      LastName: values.lastName,
+      Age: values.age,
+      Suburb: values.suburb,
+      EmailAddress: values.emailAddress,
+      Password: values.password,
+    }).then(response => {
+      if (response.status === 200) {
+        axiosAPI.post("/login", {
+          EmailAddress: values.emailAddress,
+          Password: values.password
+        }).then(response => {
+          window.location.assign("/");
+          return response
+        })
+      }
+    }).catch((err) => {
+      // Below saves error message to redux store.
+      props.saveFormErrorMessages(err.response.data.error)
+    })
+  };
+
   const {register, handleSubmit, watch, errors} = useForm();
 
-  // The below sends the data off to the store. 
+  // The below sends the data off to the store, and calls axios function
   const onSubmit = formData => {
+    
+    // Below saves formData to redux
     props.saveFormData(formData)
-    sendUserToDatabase(formData)
+
+    // Below calls axios function
+    sendUserToDatabase(formData);
   };
 
   return (
@@ -64,16 +94,12 @@ let SignUpForm = props => {
   );
 };
 
+// Below calls dispatch with redux store. 
 const mapDispatchToProps = (dispatch) => {
   return {
-    saveFormData: (formData) => dispatch(saveFormData(formData))
+    saveFormData: (formData) => dispatch(saveFormData(formData)),
+    saveFormErrorMessages: (errorMessage) => dispatch(saveFormErrorMessages(errorMessage))
   }
 };
 
-function mapStateToProps(state) {
-  return {
-    firstName: state.signUpFormReducer.firstName
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm);
+export default connect(null, mapDispatchToProps)(SignUpForm);
