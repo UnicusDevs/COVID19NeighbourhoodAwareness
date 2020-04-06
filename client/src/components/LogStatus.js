@@ -16,7 +16,7 @@ const LogStatus = (props) => {
             <ol> {props.date} </ol>
             <ol> • </ol>
             <ol> {props.suburb} </ol>
-            <ol> <span>👏</span> + {props.claps} </ol>
+            <ol> <span role="img">👏</span> + {props.claps} </ol>
           </ul>
         </div> 
       </div>

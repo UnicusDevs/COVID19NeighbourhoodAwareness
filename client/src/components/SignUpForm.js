@@ -10,6 +10,9 @@ import axiosAPI from "./../api/baseURL";
 import { connect } from 'react-redux';
 import { saveFormData, saveFormErrorMessages } from "./../redux/actions/signupFormActions.js";
 
+// CSS
+import styles from './../sass/components/SignupForm.module.scss';
+
 
 let SignUpForm = props => {
 
@@ -39,7 +42,7 @@ let SignUpForm = props => {
     })
   };
 
-  const {register, handleSubmit, watch, errors} = useForm({
+  const {register, handleSubmit, errors} = useForm({
     validateCriteriaMode: "all",
     mode: "onSubmit"
   });
@@ -54,97 +57,122 @@ let SignUpForm = props => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className={styles.form} >
+      <div className={styles.signUpFormContainer}>
+        <div className={styles.inputContainer}>
+          <div>
+            <label> First Name </label>
+          </div>
 
-      <div>
-        <label> First Name </label>
-        <input 
-          name="firstName" 
-          label="Hello" 
-          placeholder="Josephine" 
-          type="text" 
-          ref={register({required: true, minLength: 2})} 
-        />
+          <input 
+            name="firstName" 
+            label="Hello" 
+            placeholder="Josephine" 
+            type="text" 
+            ref={register({required: true, minLength: 2})}
+          />
 
-        {errors.firstName && errors.firstName.types.required && (<p>First Name required</p>)}
-        {errors.firstName && errors.firstName.types.minLength && (<p>Name must be greater than two letters</p>)}
-      </div>
+          {errors.firstName && errors.firstName.types.required && (<p>First Name required</p>)}
+          {errors.firstName && errors.firstName.types.minLength && (<p>Name must be greater than two letters</p>)}
+        </div>
 
-      <div>
-        <label> Last Name </label>
-        <input 
-          name="lastName" 
-          placeholder="Smith" 
-          type="text" 
-          ref={register({required: true, minLength: 2})} 
-        />
+        <div className={styles.inputContainer}>
+          <div>
+            <label> Last Name </label>
+          </div>
 
-        {errors.lastName && errors.lastName.types.required && (<p>Last Name required</p>)}
-        {errors.lastName && errors.lastName.types.minLength && (<p>last must be greater than two letters</p>)}
-      </div>
+          <input
+            name="lastName"
+            placeholder="Smith"
+            type="text"
+            ref={register({ required: true, minLength: 2 })}
+          />
 
-      <div>
-        <label> Age </label>
-        <input 
-          name="age" 
-          placeholder="24" 
-          type="number" 
-          ref={register({ required: true })} 
-        />
+          {errors.lastName && errors.lastName.types.required && (<p>Last Name required</p>)}
+          {errors.lastName && errors.lastName.types.minLength && (<p>last must be greater than two letters</p>)}
+        </div>
 
-        {errors.lastName && errors.lastName.types.required && (<p>Age required</p>)}
-      </div>
+        <div className={styles.inputContainer}>
+          <div>
+            <label> Age </label>
+          </div>
 
-      <div>
-        <label> Suburb </label>
-        <input 
-          name="suburb" 
-          placeholder="Richmond" 
-          type="text" 
-          ref={register({ required: true, minLength: 2 })} 
-        />
+          <input 
+            name="age" 
+            placeholder="24" 
+            type="number" 
+            ref={register({ required: true })} 
+          />
 
-        {errors.lastName && errors.lastName.types.required && (<p>Suburb required</p>)}
-      </div>
+          {errors.age && errors.age.types.required && (<p>Age required</p>)}
+        </div>
 
-      <div>
-        <label> Email Address </label>
-        <input 
-          name="emailAddress" 
-          placeholder="me@example.com" 
-          type="email" 
-          ref={register({ required: true, pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/  })} 
-        />
-        
-        {errors.emailAddress && errors.emailAddress.types.required && (<p>Email required</p>)}
-        {errors.emailAddress && errors.emailAddress.types.pattern && (<p>Not a valid email address</p>)}
-      </div>
+        <div className={styles.inputContainer}> 
+          <div>
+            <label> Suburb </label>
+          </div>
 
-      <div>
-        <label> Password </label>
-        <input 
-          name="password" 
-          placeholder="******" 
-          type="password" 
-          ref={register({ required: true })} 
-        />
+          <input
+            name="suburb"
+            placeholder="Richmond"
+            type="text"
+            ref={register({ required: true, minLength: 2 })}
+          />
 
-        {errors.password && errors.password.types.required && (<p>Password required</p>)}
-      </div>
+          {errors.suburb && errors.suburb.types.required && (<p>Suburb required</p>)}
+        </div>
 
-      <div>
-        <label> Confirm Password </label>
-        <input 
-          name="confirmPassword" 
-          placeholder="******" 
-          type="password"
-          ref={register({ required: true })} 
-        />
+        <div className={styles.inputContainer}>
+          <div>
+            <label> Email Address </label>
+          </div>
 
-        {errors.password && errors.password.types.required && (<p>Please confirm your password</p>)}
-      </div>
+          <input 
+            name="emailAddress" 
+            placeholder="me@example.com" 
+            type="email" 
+            ref={register({ required: true, pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/  })} 
+          />
 
-      <button type="submit"> Submit </button>
+          {errors.emailAddress && errors.emailAddress.types.required && (<p>Email required</p>)}
+          {errors.emailAddress && errors.emailAddress.types.pattern && (<p>Not a valid email address</p>)}
+        </div>
+
+        <div className={styles.inputContainer}>
+          <div>
+            <label> Password </label>
+          </div>
+
+          <input
+            name="password"
+            placeholder="******"
+            type="password"
+            ref={register({ required: true })}
+          />
+
+          {errors.password && errors.password.types.required && (<p>Password required</p>)}
+        </div>
+
+        <div className={styles.inputContainer}>   
+          <div>
+            <label> Confirm Password </label>
+          </div>
+
+          <input
+            name="confirmPassword"
+            placeholder="******"
+            type="password"
+            ref={register({ required: true })}
+          /> 
+
+          {errors.confirmPassword && errors.confirmPassword.types.required && (<p>Please confirm your password</p>)}
+        </div>
+
+        <div className={styles.buttons}>
+          <button> Cancel </button>
+          <button type="submit"> Submit </button>
+        </div>
+      </div>      
    </form>
   );
 };
