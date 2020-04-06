@@ -35,6 +35,7 @@ let SignUpForm = props => {
           EmailAddress: values.emailAddress,
           Password: values.password
         }).then(response => {
+          // Below sets the token. To view more of the token go to baseURL.js
           const token = response.data;
           cookies.set("covid19Project", token, { path: "/" })
           window.location.assign("/");

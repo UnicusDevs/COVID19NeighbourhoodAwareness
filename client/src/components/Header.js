@@ -12,7 +12,7 @@ const Header = () => (
         <div className={styles.navigation}>
           <nav>
             <Link to="/login">Log in</Link>
-            <Link to="/signup">Sign up</Link>
+            <Link to="/signupmodule">Sign up</Link>
             <Link to="/about">About</Link>
           </nav>
         </div>
