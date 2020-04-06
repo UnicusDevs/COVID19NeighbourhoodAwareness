@@ -22,6 +22,7 @@ async function signUp(req, res) {
   //Hash Passwords:
   const salt = await bcrypt.genSalt(10);
   const hashPassword = await bcrypt.hash(req.body.Password, salt);
+  
 
   const post = new User({
     FirstName: req.body.FirstName,
@@ -33,10 +34,8 @@ async function signUp(req, res) {
   });
 
   try {
-    const savedPost = await post.save();
-    res.json({
-      user: savedPost._id
-    });
+    const savedUser = await post.save();
+    res.json(savedUser)
   } catch (err) {
     res.json({
       message: err
@@ -61,4 +60,9 @@ async function login(req, res) {
   res.header('auth-token', token).send(token);
 };
 
+// async function checkIfUserExists(req, res) {
+//   const user = await User.findOne({EmailAddress: req.body.EmailAddress});
+
+//   if (!user) return res.status(400)
+// }
 module.exports = { signUp, login };
