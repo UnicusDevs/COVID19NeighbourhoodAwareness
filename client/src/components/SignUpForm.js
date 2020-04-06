@@ -1,4 +1,5 @@
 import React from 'react';
+import Cookies from 'universal-cookie';
 
 // React hook
 import { useForm } from 'react-hook-form';
@@ -14,9 +15,11 @@ import { saveFormData, saveFormErrorMessages } from "./../redux/actions/signupFo
 import styles from './../sass/components/SignupForm.module.scss';
 
 
+const cookies = new Cookies();
+
 let SignUpForm = props => {
 
-  // To Do: Add token once user has signed up.
+  // To Do: Add token on login stage
   // The below is a axios post to create new user then log them in. 
   let sendUserToDatabase = (values) => {
     axiosAPI.post("/signup", {
@@ -32,8 +35,10 @@ let SignUpForm = props => {
           EmailAddress: values.emailAddress,
           Password: values.password
         }).then(response => {
+          const token = response.data;
+          cookies.set("covid19Project", token, { path: "/" })
           window.location.assign("/");
-          return response
+          console.log(response.data)
         })
       }
     }).catch((err) => {
@@ -172,6 +177,7 @@ let SignUpForm = props => {
           <button> Cancel </button>
           <button type="submit"> Submit </button>
         </div>
+
       </div>      
    </form>
   );

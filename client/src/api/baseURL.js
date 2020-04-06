@@ -3,9 +3,10 @@ import Cookies from 'universal-cookie';
 
 // To Do: Add token into auth header
 const cookies = new Cookies();
-const token = cookies.set("covid19Project");
+const token = cookies.get("covid19Project");
 console.log(token)
 
 export default axios.create({
-  baseURL: 'http://localhost:5000/'
+  baseURL: 'http://localhost:5000/',
+  headers: { Authorization: token }
 });
