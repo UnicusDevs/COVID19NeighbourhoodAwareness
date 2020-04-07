@@ -9,7 +9,6 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 async function signUp(req, res) {
-  //console.log(req.file);
   //Validating SignUp Body:
   const { error } = signUpValidation(req.body)
   if (error) return res.status(400).send(error);
