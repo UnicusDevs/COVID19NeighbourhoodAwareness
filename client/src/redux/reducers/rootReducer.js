@@ -1,10 +1,11 @@
 import { combineReducers } from "redux";
-import { reducer as reduxFormReducer } from 'redux-form';
 import signUpFormReducer from './signUpFormReducer.js';
+import popUpReducer from './popUpReducer.js';
 
 const allReducers = {
   signUpFormReducer: signUpFormReducer,
-  form: reduxFormReducer, 
+  popUpReducer: popUpReducer
+
 };
 
 const rootReducer = combineReducers(allReducers);

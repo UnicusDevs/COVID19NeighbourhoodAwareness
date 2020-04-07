@@ -10,6 +10,7 @@ import axiosAPI from "./../api/baseURL";
 // Redux
 import { connect } from 'react-redux';
 import { saveFormData, saveFormErrorMessages } from "./../redux/actions/signupFormActions.js";
+import { togglePopUpOff } from "./../redux/actions/popUpActions";
 
 // CSS
 import styles from './../sass/components/SignupForm.module.scss';
@@ -55,12 +56,15 @@ let SignUpForm = props => {
 
   // The below sends the data off to the store, and calls axios function
   const onSubmit = formData => {
-
     // Below saves formData to redux
     props.saveFormData(formData)
     // Below calls axios function
     sendUserToDatabase(formData);
   };
+
+  const handlePopUpClose = () => {
+    props.togglePopUpOff()
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form} >
@@ -175,7 +179,7 @@ let SignUpForm = props => {
         </div>
 
         <div className={styles.buttons}>
-          <button> Cancel </button>
+          <button onClick={handlePopUpClose}> Cancel </button>
           <button type="submit"> Submit </button>
         </div>
 
@@ -188,8 +192,15 @@ let SignUpForm = props => {
 const mapDispatchToProps = (dispatch) => {
   return {
     saveFormData: (formData) => dispatch(saveFormData(formData)),
-    saveFormErrorMessages: (errorMessage) => dispatch(saveFormErrorMessages(errorMessage))
+    saveFormErrorMessages: (errorMessage) => dispatch(saveFormErrorMessages(errorMessage)),
+    togglePopUpOff: () => dispatch(togglePopUpOff()),
   }
 };
 
-export default connect(null, mapDispatchToProps)(SignUpForm);
+function mapStateToProps(state) {
+  return {
+    displayPopUp: state.popUpReducer.displayPopUp
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm);
