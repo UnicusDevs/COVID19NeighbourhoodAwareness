@@ -4,9 +4,10 @@ import React from 'react';
 import Header from './../components/Header';
 import About from './../components/About';
 import SignUpModule from './../components/SignUpModule';
+import LoginModule from './../components/LoginModule';
 
 // Redux
-import { useDispatch, connect } from "react-redux";
+import { connect } from "react-redux";
 import Store from './../redux/configureStore';
 
 const LandingPage = (props) => {
@@ -14,7 +15,7 @@ const LandingPage = (props) => {
   const store = Store.getState();
 
   const handlePopUp = () => {
-    if (store.popUpReducer.displayPopUp === true) {
+    if (store.popUpReducer.displayPopUpSignUp === true) {
       return (
         <div>
           <Header />
@@ -22,11 +23,19 @@ const LandingPage = (props) => {
           <About />
         </div>
       )
-    } else if (store.popUpReducer.displayPopUp === false) {
+    } else if (store.popUpReducer.displayPopUpLogin === true) {
       return (
         <div>
           <Header />
+          <LoginModule />
           <About />
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <Header />
+          <About /> 
         </div>
       )
     }
@@ -41,7 +50,8 @@ const LandingPage = (props) => {
 
 function mapStateToProps(state) {
   return {
-    displayPopUp: state.popUpReducer.displayPopUp
+    displayPopUpSignUp: state.popUpReducer.displayPopUpSignUp,
+    displayPopUpLogin: state.popUpReducer.displayPopUpLogin
   };
 };
 

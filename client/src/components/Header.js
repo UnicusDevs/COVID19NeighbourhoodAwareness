@@ -4,15 +4,18 @@ import styles from '../sass/components/Header.module.scss';
 
 // Redux 
 import { connect } from 'react-redux';
-import { togglePopUpOn } from "./../redux/actions/popUpActions";
-
-// Component
-import SignUpModule from './SignUpModule';
+import { togglePopUpOnSignUp, togglePopUpOnLogin, togglePopUpOffLogin, togglePopUpOffSignUp } from "./../redux/actions/popUpActions";
 
 const Header = (props) => {
 
-  const handleTogglePopUpOn = () => {
-    props.togglePopUpOn()
+  const handleTogglePopUpOnSignUp = () => {
+    props.togglePopUpOffLogin()
+    props.togglePopUpOnSignUp()
+  };
+
+  const handleTogglePopUpOnLogin = () => {
+    props.togglePopUpOffSignUp()
+    props.togglePopUpOnLogin()
   };
 
   return (
@@ -24,9 +27,8 @@ const Header = (props) => {
           </div>
           <div className={styles.navigation}>
             <nav>
-              <Link to="/login">Log in</Link>
-              <button onClick={handleTogglePopUpOn}>Sign up</button>
-              <Link to="/about">About</Link>
+              <button onClick={handleTogglePopUpOnLogin}>Log in</button>
+              <button onClick={handleTogglePopUpOnSignUp}>Sign up</button>
             </nav>
           </div>
         </div>
@@ -38,10 +40,11 @@ const Header = (props) => {
 // Below calls dispatch with redux store. 
 const mapDispatchToProps = (dispatch) => {
   return {
-    togglePopUpOn: () => dispatch(togglePopUpOn()),
+    togglePopUpOnSignUp: () => dispatch(togglePopUpOnSignUp()),
+    togglePopUpOffSignUp: () => dispatch(togglePopUpOffSignUp()),
+    togglePopUpOnLogin: () => dispatch(togglePopUpOnLogin()),
+    togglePopUpOffLogin: () => dispatch(togglePopUpOffLogin())
   }
 };
-
-
 
 export default connect(null, mapDispatchToProps)(Header);

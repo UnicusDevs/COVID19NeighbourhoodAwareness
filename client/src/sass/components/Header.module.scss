@@ -30,13 +30,7 @@ header {
           border-radius: 5px;
           padding: .4rem 2.4rem;
           cursor: pointer;
-        }
 
-        a {
-          font-size: 1.8rem;
-          text-decoration: none;
-          font-weight: 500;
-          margin: 0 .8rem;
           &:nth-child(1) {
             color: $color-dark-yellow;
             background: $color-dark-navyBlue;
@@ -44,10 +38,12 @@ header {
             padding: .4rem 2.4rem;
             border: solid 2px $color-dark-navyBlue;
           }
-          &:last-child {
-            margin-right: 0;
-            margin-left: 1.6rem;
-          } 
+          
+          &:nth-child(2) {
+            border: solid 2px $color-dark-navyBlue;
+            border-radius: 5px;
+            padding: .4rem 2.4rem;
+          }
         }
       }
     }
