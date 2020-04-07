@@ -4,8 +4,6 @@ import React from 'react';
 import styles from './../sass/components/LogStatus.module.scss';
 
 const LogStatus = (props) => {
-
-  console.log(props)
   return (
     <div className={styles.logStatus}>
       <div className={styles.imageContainer} >
@@ -18,7 +16,7 @@ const LogStatus = (props) => {
             <ol> {props.date} </ol>
             <ol> • </ol>
             <ol> {props.suburb} </ol>
-            <ol> 👏 + {props.claps} </ol>
+            <ol> <span role="img">👏</span> + {props.claps} </ol>
           </ul>
         </div> 
       </div>

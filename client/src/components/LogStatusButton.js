@@ -1,16 +1,9 @@
 import React from 'react';
 
-// Components
-import LogStatus from './LogStatus';
-
 // Styles
 import styles from './../sass/components/LogStatusButton.module.scss';
 
 const LogStatusButton = (props) => {
-
-  const state = {
-    isUserLoggedIn: false
-  }
 
   return (
     <div className={styles.buttonContainer}>

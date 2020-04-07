@@ -19,6 +19,22 @@ header {
       nav {
         display: flex;
         align-items: center;
+<<<<<<< HEAD
+=======
+
+        button {
+          font-size: 1.8rem;
+          text-decoration: none;
+          font-weight: 500;
+          margin: 0 .8rem;
+          border: solid 2px $color-dark-navyBlue;
+          background: none;
+          border-radius: 5px;
+          padding: .4rem 2.4rem;
+          cursor: pointer;
+        }
+
+>>>>>>> 9e91760d66397ac21fd791019340f3446c2b0737
         a {
           font-size: 1.8rem;
           text-decoration: none;
@@ -31,11 +47,14 @@ header {
             padding: .4rem 2.4rem;
             border: solid 2px $color-dark-navyBlue;
           }
+<<<<<<< HEAD
           &:nth-child(2) {
             border: solid 2px $color-dark-navyBlue;
             border-radius: 5px;
             padding: .4rem 2.4rem;
           }
+=======
+>>>>>>> 9e91760d66397ac21fd791019340f3446c2b0737
           &:last-child {
             margin-right: 0;
             margin-left: 1.6rem;

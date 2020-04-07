@@ -29,7 +29,7 @@ async function getAllUsers(req, res) {
   User.find()
     .sort({date: -1})
     .then(users => res.json(users))
-}
+};
 
 
 module.exports = { getCurrentUser, getAllUsers };
