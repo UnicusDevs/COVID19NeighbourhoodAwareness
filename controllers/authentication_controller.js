@@ -20,6 +20,7 @@ async function signUp(req, res) {
   //Hash Passwords:
   const salt = await bcrypt.genSalt(10);
   const hashPassword = await bcrypt.hash(req.body.Password, salt);
+  
 
   const post = new User({
     FirstName: req.body.FirstName,
@@ -34,10 +35,8 @@ async function signUp(req, res) {
 
 
   try {
-    const savedPost = await post.save();
-    res.json({
-      user: savedPost._id
-    });
+    const savedUser = await post.save();
+    res.json(savedUser)
   } catch (err) {
     res.json({
       message: err

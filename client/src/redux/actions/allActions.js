@@ -1,0 +1,9 @@
+// The below used with forms and saving them. 
+export const SAVE_FORM_DATA = "SAVE_FORM_DATA_TO_STORE";
+export const SAVE_FORM_ERROR = "SAVE_FORM_ERROR_TO_STORE";
+
+// The below handles the popUp actions
+export const TOGGLE_POPUP_ON_SIGNUP = "TOGGLE_POPUP_SIGNUP_ON_TO_STORE"
+export const TOGGLE_POPUP_OFF_SIGNUP = "TOGGLE_POPUP_SIGNUP_OFF_TO_STORE"
+export const TOGGLE_POPUP_ON_LOGIN = "TOGGLE_POPUP_LOGIN_ON_TO_STORE"
+export const TOGGLE_POPUP_OFF_LOGIN = "TOGGLE_POPUP_LOGIN_OFF_TO_STORE"
