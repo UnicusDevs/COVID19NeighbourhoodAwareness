@@ -9,11 +9,9 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 async function signUp(req, res) {
-
   //Validating SignUp Body:
   const { error } = signUpValidation(req.body)
   if (error) return res.status(400).send(error);
-
 
   //Checking is user is already in DB:
   const emailExist = await User.findOne({ EmailAddress: req.body.EmailAddress });
@@ -29,8 +27,11 @@ async function signUp(req, res) {
     Suburb: req.body.Suburb,
     Password: hashPassword,
     EmailAddress: req.body.EmailAddress,
-    Age: req.body.Age
+    Age: req.body.Age,
+    ImageURL: req.file.path
   });
+
+
 
   try {
     const savedPost = await post.save();
