@@ -1,6 +1,5 @@
 const Joi = require('@hapi/joi');
 
-
 //VALIDATION:
 const signUpValidation = data => {
     const schema = Joi.object({
