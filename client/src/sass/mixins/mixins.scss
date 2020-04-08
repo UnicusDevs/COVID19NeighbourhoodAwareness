@@ -1,0 +1,34 @@
+
+
+// MEDIA QUERY MANAGER
+/*
+0 - 600px: Phone
+600 - 900px: Tablet (portrait)
+900 - 1200px: Tablet (landscape)
+(1200 - 1800 is where our normal styles apply
+1800+: Extra-large desktop
+*/
+
+@mixin phone {
+	@media (max-width: 600px) { 
+		@content 
+	};	
+}
+
+@mixin tab-port {
+	@media (max-width: 900px) { 
+		@content 
+	};	
+}
+
+@mixin tab-land {
+	@media (max-width: 1200px) { 
+		@content 
+	};	
+}
+
+@mixin xl-desk {
+	@media (min-width: 1800px) {
+		@content
+	};
+}
