@@ -31,6 +31,27 @@ const Header = (props) => {
     fetchAPI()
   }, []);
 
+  const handleSignOut = () => {
+    const now = new Date()
+    now.setTime(now.getTime() - 1)
+    document.cookie = `covid19Project=;expires=${now.toUTCString()};path=/`;
+    props.setCurrentUser(null);
+    return window.location.reload();
+  }
+
+  // The below handles the pop up for signup. More can be found in the signup Form.
+  const handleTogglePopUpOnSignUp = () => {
+    props.togglePopUpOffLogin()
+    props.togglePopUpOnSignUp()
+  };
+
+  // The below handles the pop up for the login. More can be found in the login form.
+  const handleTogglePopUpOnLogin = () => {
+    props.togglePopUpOffSignUp()
+    props.togglePopUpOnLogin()
+  };
+
+
   const handleHeaderDisplay = (currentUser) => {
     if (!props.currentUser) {
       return (
@@ -60,7 +81,7 @@ const Header = (props) => {
               </div>
               <div className={styles.navigation}>
                 <nav>
-                  <button onClick={handleTogglePopUpOnLogin}>Sign out</button>
+                  <button onClick={handleSignOut}>Sign out</button>
                 </nav>
               </div>
             </div>
@@ -69,18 +90,6 @@ const Header = (props) => {
       )
     }
   }
-  
-  // The below handles the pop up for signup. More can be found in the signup Form.
-  const handleTogglePopUpOnSignUp = () => {
-    props.togglePopUpOffLogin()
-    props.togglePopUpOnSignUp()
-  };
-
-  // The below handles the pop up for the login. More can be found in the login form.
-  const handleTogglePopUpOnLogin = () => {
-    props.togglePopUpOffSignUp()
-    props.togglePopUpOnLogin()
-  };
 
   return (
     <div>
