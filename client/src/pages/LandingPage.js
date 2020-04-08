@@ -8,14 +8,12 @@ import LoginModule from './../components/LoginModule';
 
 // Redux
 import { connect } from "react-redux";
-import Store from './../redux/configureStore';
+
 
 const LandingPage = (props) => {
 
-  const store = Store.getState();
-
-  const handlePopUp = () => {
-    if (store.popUpReducer.displayPopUpSignUp === true) {
+  const handlePopUp = (displayPopUpLogin, displayPopUpSignUp) => {
+    if (displayPopUpSignUp === true) {
       return (
         <div>
           <Header />
@@ -23,7 +21,7 @@ const LandingPage = (props) => {
           <About />
         </div>
       )
-    } else if (store.popUpReducer.displayPopUpLogin === true) {
+    } else if (displayPopUpLogin === true) {
       return (
         <div>
           <Header />
@@ -43,11 +41,12 @@ const LandingPage = (props) => {
 
   return (
     <div>
-      {handlePopUp()} 
+      {handlePopUp(props.displayPopUpLogin, props.displayPopUpSignUp)} 
     </div>
   )
 };
 
+// Connects to redux store so don't need to import.
 function mapStateToProps(state) {
   return {
     displayPopUpSignUp: state.popUpReducer.displayPopUpSignUp,

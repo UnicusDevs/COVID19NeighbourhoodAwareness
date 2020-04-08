@@ -55,6 +55,7 @@ async function login(req, res) {
 
 // SignUp
 async function signUp(req, res) {
+
   //Validating SignUp Body:
   const { error } = signUpValidation(req.body)
   if (error) return res.status(400).send(error);
@@ -66,7 +67,6 @@ async function signUp(req, res) {
   //Hash Passwords:
   const salt = await bcrypt.genSalt(10);
   const hashPassword = await bcrypt.hash(req.body.Password, salt);
-
 
   const post = new User({
     FirstName: req.body.FirstName,
@@ -91,7 +91,7 @@ async function signUp(req, res) {
 // Get profile Data
 async function getUserProfileStuff(user, currentUser = false) {
   const { EmailAddress, FirstName, LastName, Suburb, Age  } = user;
-  
+
   return {
     _id: User._id,
     EmailAddress,
@@ -102,11 +102,27 @@ async function getUserProfileStuff(user, currentUser = false) {
   }
 };
 
+async function getUserProfile(req, res) {
+  // get user profile data
+  const { user_id } = req.params;
+  const user = await User.findById(user_id);
+  if (user) {
+    const isCurrentUser = req.user && (user_id === req.user._id);
+    const userDisplayData = await getUserProfileStuff(user, isCurrentUser);
+    res.json(userDisplayData);
+  }
+  else {
+    res.status(400).end();
+  }
+}
+
+
 // Get current user
 async function getCurrentUser(req, res) {
 
   // get currently logged-in user's data
-  const userDisplayData = await getUserProfileStuff(req.body, true);
+  const userDisplayData = await getUserProfile(req.body, true);
+  console.log(userDisplayData)
   if (userDisplayData) {
     res.json({ ...userDisplayData, success: req.success });
   }
@@ -114,6 +130,7 @@ async function getCurrentUser(req, res) {
     res.send();
   }
 };
+
 
 // Get all users
 async function getAllUsers(req, res) {
