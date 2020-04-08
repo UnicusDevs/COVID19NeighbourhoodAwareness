@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
 import { Link } from 'react-router-dom';
 import jwt from 'jsonwebtoken'
 import styles from '../sass/components/Header.module.scss';
@@ -11,11 +11,8 @@ import { setCurrentUser } from './../redux/actions/userActions';
 
 // API Calls
 import axiosAPI from './../api/baseURL';
-import { checkUser } from './../api/getUserData';
 
 const Header = (props) => {
-
-  let [dataIsLoaded, setDataIsLoaded] = useState(false);
 
   useEffect(() => {
     async function fetchAPI() {
@@ -23,7 +20,6 @@ const Header = (props) => {
         let token = jwt.decode(response.config.headers.Authorization)
         props.setCurrentUser(token);
       }).catch((err) => {
-        setDataIsLoaded(dataIsLoaded = true);
         props.setCurrentUser(null);
       })
     };
@@ -50,7 +46,6 @@ const Header = (props) => {
     props.togglePopUpOffSignUp()
     props.togglePopUpOnLogin()
   };
-
 
   const handleHeaderDisplay = (currentUser) => {
     if (!props.currentUser) {
@@ -89,7 +84,7 @@ const Header = (props) => {
         </header>
       )
     }
-  }
+  };
 
   return (
     <div>

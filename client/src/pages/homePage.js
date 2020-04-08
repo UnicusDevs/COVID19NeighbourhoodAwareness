@@ -16,7 +16,6 @@ const HomePage = (props) => {
     if (displayPopUpSignUp === true) {
       return (
         <div>
-          <Header />
           <SignUpModule />
           <About />
         </div>
@@ -24,7 +23,6 @@ const HomePage = (props) => {
     } else if (displayPopUpLogin === true) {
       return (
         <div>
-          <Header />
           <LoginModule />
           <About />
         </div>
@@ -32,7 +30,6 @@ const HomePage = (props) => {
     } else {
       return (
         <div>
-          <Header />
           <About /> 
         </div>
       )

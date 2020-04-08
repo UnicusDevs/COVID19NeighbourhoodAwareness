@@ -49,7 +49,7 @@ async function login(req, res) {
   if (!validPassword) return res.status(400).send({ error: 'Email or password is wrong' });
 
   //Create and assign token
-  const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
+  let token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET, {expiresIn: '24h'});
   res.header('auth-token', token).send(token);
 };
 

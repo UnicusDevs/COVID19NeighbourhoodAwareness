@@ -7,11 +7,3 @@ export const getUserData = (id) => {
     console.log(err);
   })
 };
-
-export let checkUser = () => {
-  return axiosAPI.get('/user/current').then((response) => {
-    return response;
-  }).catch((err) => {
-    console.log(err.response);
-  })
-};
