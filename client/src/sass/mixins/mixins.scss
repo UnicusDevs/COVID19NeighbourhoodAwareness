@@ -9,26 +9,30 @@
 1800+: Extra-large desktop
 */
 
+// Width is less than 600px?
 @mixin phone {
-	@media (max-width: 600px) { 
+	@media (max-width: 600px) { // Change to 37.5em if experience problems with Safari
 		@content 
 	};	
 }
 
+// Width is less than 900px?
 @mixin tab-port {
-	@media (max-width: 900px) { 
+	@media (max-width: 900px) { // 56.25em
 		@content 
 	};	
 }
 
+// Width is less than 1200px?
 @mixin tab-land {
-	@media (max-width: 1200px) { 
+	@media (max-width: 1200px) { // 75em
 		@content 
 	};	
 }
 
+// Width is greather than 1800px?
 @mixin xl-desk {
-	@media (min-width: 1800px) {
+	@media (min-width: 1800px) { // 112.5em
 		@content
 	};
 }

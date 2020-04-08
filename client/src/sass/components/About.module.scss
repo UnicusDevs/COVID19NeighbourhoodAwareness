@@ -7,14 +7,22 @@
 .row {
 	display: flex;
 	justify-content: space-between;
-	@media (max-width: 900px) {
-    flex-direction: column;
+	@include tab-port {
+		flex-direction: column;
   }
 }
 
 .left {
 	width: 45%;
 	margin-right: 40px;
+
+	@include tab-land {
+		width: 30%;
+		margin-right: 16px;
+	}
+	@include tab-port {
+		width: 100%;
+	}
 }
 	.title {
 		margin-bottom: 1.6rem;
@@ -27,6 +35,13 @@
 
 .right {
 	width: 55%;
+
+	@include tab-land {
+		width: 70%;
+	}
+	@include tab-port {
+		width: 100%;
+	}
 }
 	.callout {
 		color: $color-text-red;

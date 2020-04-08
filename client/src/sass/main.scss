@@ -27,8 +27,16 @@ $shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 html {
   font-size: 62.5%; // 1rem = 10px, 10px/16px = 62.5%
 
+  @include xl-desk {
+    font-size: 68.75%;
+  }
+
+  @include tab-land {
+    font-size: 56.25%;
+  }
+
   @include tab-port {
-    font-size: 55%;
+    font-size: 50%;
   }
 
   @include phone {
@@ -81,11 +89,18 @@ code {
 
 // basic site-wide container - TODO: MOBILE SIZING
 .container {
-  width: 1640px;
-  min-width: 1640px;
+  width: 90vw;
+  background: plum;
   margin: 0 auto;
-  @media (max-width: 1440px) {
-    width: 1280px;
-    min-width: 1280px;
-  }
+  
+  // min-width: 100vw;
+  // margin: 0 auto;
+  // @include tab-land {
+  //   width: 100vw;
+  //   min-width: 100vw;
+  // }
+  // @include phone {
+  //   width: 100vw;
+  //   min-width: 100vw;
+  // }
 }
