@@ -1,11 +1,9 @@
-
-
 // MEDIA QUERY MANAGER
 /*
 0 - 600px: Phone
 600 - 900px: Tablet (portrait)
 900 - 1200px: Tablet (landscape)
-(1200 - 1800 is where our normal styles apply
+(1200 - 1800px is where our normal styles apply
 1800+: Extra-large desktop
 */
 
@@ -30,7 +28,7 @@
 	};	
 }
 
-// Width is greather than 1800px?
+// Width is GREATER than 1800px?
 @mixin xl-desk {
 	@media (min-width: 1800px) { // 112.5em
 		@content

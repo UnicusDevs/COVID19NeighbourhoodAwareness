@@ -3,14 +3,34 @@
 .logStatus {
   display: flex;
   flex-direction: row;
-  margin: 2rem;
+  margin-top: 1.2rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
   padding: 1rem 1rem 2rem 1rem;
   border-bottom: $color-border-gray-400 1px solid;
+  &:last-child {
+    border-bottom: none;
+  }
+
+  @include phone {
+    margin: 1rem;
+    padding: 1rem .5rem 1rem .5rem;
+
+  }
 }
 
 .imageContainer {
-  width: 75px;
-  height: 72px;
+  width: 60px;
+  height: 60px;
+
+  @include tab-land {
+    width: 50px;
+    height: 50px;
+  }
+  @include phone {
+    width: 42px;
+    height: 42px;
+  }
 }
 
 .image {
@@ -20,12 +40,22 @@
 }
 
 .textContainer {
-  margin-left: 1rem;
-}
+  margin-left: 3rem;
 
-.textContainer p {
-  margin: 0;
-  color: $color-dark-navyBlue
+  @include phone {
+    margin-left: 1.6rem;
+  }
+
+  p {
+    margin-bottom: .8rem;
+    color: $color-dark-navyBlue;
+    font-weight: 500;
+    line-height: normal;
+  
+    @include phone {
+      font-size: 1.6rem;
+    }
+  }
 }
 
 .subContentContainer { 
@@ -33,22 +63,34 @@
   flex-direction: row;
   align-items: center;
   padding: 0;
+  
+  li {
+    padding: 0;
+    margin-left: 1rem; 
+  
+    &:first-child {
+      margin-left: 0;
+      color: $color-text-gray-600;
+      font-weight: 500;
+    }
+    &:nth-child(2) {
+      color: $color-bright-green;
+    }
+    &:nth-child(3) {
+      color: $color-bright-green;
+      font-weight: 600;
+    }
+  }
 }
 
-.subContentContainer ol {
-  padding: 0;
-  margin-left: 1rem; 
-}
-
-.subContentContainer ol:first-child {
-  margin-left: 0;
-  color: $color-text-gray-500;
-}
-
-.subContentContainer ol:nth-child(2) {
-  color: $color-bright-green;
-}
-
-.subContentContainer ol:nth-child(3) {
-  color: $color-bright-green;
+.claps {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  li {
+    font-weight: 600;
+    letter-spacing: -0.1rem;
+    margin-right: 2.4rem;
+  }
 }
