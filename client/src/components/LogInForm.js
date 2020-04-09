@@ -16,8 +16,11 @@ import { togglePopUpOffLogin } from "./../redux/actions/popUpActions";
 
 const cookies = new Cookies();
 
+
 let LoginForm = props => {
 
+  const date = new Date();
+  console.log()
   // To Do: Add token on login stage
   // The below is a axios post to create new user then log them in. 
   let sendUserToDatabase = (values) => {
@@ -27,7 +30,10 @@ let LoginForm = props => {
       }).then(response => {
         // Below sets the token. To view more of the token go to baseURL.js
         const token = response.data;
-        cookies.set("covid19Project", token, { path: "/" })
+        cookies.set("covid19Project", token, { 
+          path: "/",
+          expires: new Date(Date.now() + 5492000)
+        });
         window.location.assign("/");
       }).catch((err) => {
     })

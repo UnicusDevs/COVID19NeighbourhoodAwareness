@@ -45,11 +45,15 @@ app.use('/user', user);
 //Region End - Routing for Sign Up
 
 //Region Start - Upload Images Middleware
-
 app.use('/uploads',express.static('uploads'));
 // Example: http://localhost:5000/uploads/2020-04-05T15:34:54.325ZTest-Image.png
-
 //Region End -  Upload Images Middleware
+
+//Region Start - Routing for Homepage
+const home = require('./routes/api/home');
+app.use('/home', home);
+// Region End - Routing for Homepage
+
 
 //Connecting to MongoDB
 mongoose.connect(process.env.DB_CONNECTION, 
