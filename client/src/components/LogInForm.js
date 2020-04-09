@@ -5,14 +5,14 @@ import Cookies from 'universal-cookie';
 import { useForm } from 'react-hook-form';
 
 // Axios / cookies
-import axiosAPI from "./../api/baseURL";
+import axiosAPI from "../api/baseURL";
 
 // CSS
 import styles from './../sass/components/SignupForm.module.scss';
 
 // Redux 
 import {connect} from 'react-redux';
-import { togglePopUpOffLogin } from "./../redux/actions/popUpActions";
+import { togglePopUpOffLogin } from "../redux/actions/popUpActions";
 
 const cookies = new Cookies();
 
