@@ -13,12 +13,14 @@ const LogStatus = (props) => {
         <p> Your neighbour {props.firstName} self-isolated today! </p>
         <div>
           <ul className={styles.subContentContainer}> 
-            <ol> {props.date} </ol>
-            <ol> • </ol>
-            <ol> {props.suburb} </ol>
-            <ol> <span role="img">👏</span> + {props.claps} </ol>
+            <li> {props.date} </li>
+            <li> • </li>
+            <li> {props.suburb} </li>
           </ul>
-        </div> 
+        </div>   
+      </div>
+      <div className={styles.claps}>
+        <li> <span role="img">👏</span> + {props.claps} </li>
       </div>
     </div>
   );

@@ -9,7 +9,7 @@ const About = (props) => {
 				<div className={styles.row}>
 					<div className={styles.left}>
 						<p className={styles.title}>Stay apart. Remain united</p>
-						<p>The fight against COVID-19 depends on each of us doing the right thing. But in isolation it can be hard to see or feel the good we’re doing. PROJECT NAME is designed to change that. Through the simple daily click of a button, users can let their neighbours know they’re acting to protect the community. By visiting the page, they can easily visualise, and be inspired by, the amazing and caring efforts of those around them. The only way to beat this virus is by working together. Log your fight against COVID-19 today!
+						<p>The fight against COVID-19 depends on each of us doing the right thing. However, in isolation it can be hard to see or feel the good we’re doing. Home2Home is designed to change that. <br /> <br />Through the simple daily click of a button, you can let your neighbours know you're acting to protect the community. Home2Home will help you to visualise and be inspired by the amazing efforts of people around you. The only way to beat this virus is by working together. Log your fight against COVID-19 today!
 						</p>
 					</div>
 					<div className={styles.right}>

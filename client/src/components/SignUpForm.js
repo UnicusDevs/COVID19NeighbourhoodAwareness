@@ -10,11 +10,10 @@ import axiosAPI from "./../api/baseURL";
 // Redux
 import { connect } from 'react-redux';
 import { saveFormData, saveFormErrorMessages } from "./../redux/actions/signupFormActions.js";
-import { togglePopUpOff } from "./../redux/actions/popUpActions";
+import { togglePopUpOffSignUp } from "./../redux/actions/popUpActions";
 
 // CSS
 import styles from './../sass/components/SignupForm.module.scss';
-
 
 const cookies = new Cookies();
 
@@ -63,7 +62,7 @@ let SignUpForm = props => {
   };
 
   const handlePopUpClose = () => {
-    props.togglePopUpOff()
+    props.togglePopUpOffSignUp()
   }
 
   return (
@@ -193,13 +192,13 @@ const mapDispatchToProps = (dispatch) => {
   return {
     saveFormData: (formData) => dispatch(saveFormData(formData)),
     saveFormErrorMessages: (errorMessage) => dispatch(saveFormErrorMessages(errorMessage)),
-    togglePopUpOff: () => dispatch(togglePopUpOff()),
+    togglePopUpOffSignUp: () => dispatch(togglePopUpOffSignUp()),
   }
 };
 
 function mapStateToProps(state) {
   return {
-    displayPopUp: state.popUpReducer.displayPopUp
+    displayPopUpSignUp: state.popUpReducer.displayPopUpSignUp
   };
 }
 

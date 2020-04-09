@@ -1,20 +1,32 @@
-import { TOGGLE_POPUP_OFF, TOGGLE_POPUP_ON } from './../actions/allActions';
+import { TOGGLE_POPUP_OFF_SIGNUP, TOGGLE_POPUP_ON_SIGNUP, TOGGLE_POPUP_OFF_LOGIN, TOGGLE_POPUP_ON_LOGIN } from './../actions/allActions';
 
 const popUpDefaultState = {
-  displayPopUp: false
+  displayPopUpSignUp: false,
+  displayPopUpLogin: false
 };
 
 const popUpReducer = (state = popUpDefaultState, action) => {
   switch (action.type) {
-    case TOGGLE_POPUP_OFF:
+    case TOGGLE_POPUP_OFF_SIGNUP:
       return {
-        displayPopUp: state.displayPopUp = false
+        ...state,
+        displayPopUpSignUp: state.displayPopUpSignUp = false
       }
-    case TOGGLE_POPUP_ON:
+    case TOGGLE_POPUP_ON_SIGNUP:
       return {
-        displayPopUp: state.displayPopUp = true
+        ...state,
+        displayPopUpSignUp: state.displayPopUpSignUp = true
       }
-
+    case TOGGLE_POPUP_OFF_LOGIN: 
+      return {
+        ...state,
+        displayPopUpLogin: state.displayPopUpLogin = false
+      }
+    case TOGGLE_POPUP_ON_LOGIN:
+      return {
+        ...state,
+        displayPopUpLogin: state.displayPopUpLogin = true
+      }
     default:
       return state
   }
