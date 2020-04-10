@@ -4,6 +4,7 @@ import React from 'react';
 import styles from './../sass/components/LogStatus.module.scss';
 
 const LogStatus = (props) => {
+
   return (
     <div className={styles.logStatus}>
       <div className={styles.imageContainer} >

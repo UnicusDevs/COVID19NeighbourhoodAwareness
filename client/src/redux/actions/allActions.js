@@ -10,3 +10,6 @@ export const TOGGLE_POPUP_OFF_LOGIN = "TOGGLE_POPUP_LOGIN_OFF_TO_STORE"
 
 // The below is for User Actions
 export const SAVE_CURRENT_USER = "SET_CURRENT_USER_TO_STORE"
+
+// The below is for Post Actions
+export const SAVE_POST_DATA = "SAVE_POST_DATA_TO_STORE"

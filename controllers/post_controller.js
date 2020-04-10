@@ -11,18 +11,21 @@ async function getAllPosts(req, res) {
 async function createNewPost(req, res) {
   const user = await User.findOne({_id: req.body.User})
   
+  const userId = user._id;
+  const userSuburb = user.Suburb
+
   const newPost = new Post({
-    User: user, 
+    User: userId, 
     DidSelfIsolate: req.body.DidSelfIsolate,
-    Suburb: user.Suburb,
+    Suburb: userSuburb,
     Claps: 0
   });
 
+  console.log(newPost)
+
   try {
-    newPost.save();
-    res.json({
-      post: newPost._id
-    });
+    const savedPost = await newPost.save()
+    res.json(savedPost);
   } catch (err) {
     res.json({
       message: err
