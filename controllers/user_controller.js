@@ -124,6 +124,25 @@ async function getCurrentUser(req, res) {
   }
 };
 
+async function getUser(req, res) {
+
+  const user = await User.findOne({_id: req.params.user_id}) 
+  const {FirstName, LastName, Age  } = user;
+
+  try {
+    res.json({
+      FirstName: FirstName,
+      LastName: LastName,
+      Age: Age
+    })
+  } catch (err) {
+    res.json({
+      message: err
+    });
+  }
+
+}
+
 
 // Get all users
 async function getAllUsers(req, res) {
@@ -132,4 +151,4 @@ async function getAllUsers(req, res) {
     .then(users => res.json(users))
 };
 
-module.exports = { getCurrentUser, getAllUsers, signUp, login, upload };
+module.exports = { getCurrentUser, getAllUsers, signUp, login, upload, getUser };

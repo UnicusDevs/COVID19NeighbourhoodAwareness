@@ -1,20 +1,44 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+
+// API
+import axiosAPI from './../api/baseURL';
 
 // SASS
 import styles from './../sass/components/LogStatus.module.scss';
 
 const LogStatus = (props) => {
-  console.log(props);
+
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [age, setAge] = useState(0);
+
+  useEffect(() => {
+    async function fetchAPI() {
+      const id = props.user;
+      await axiosAPI.get(`/user/${id}`).then((response) => {
+        const {FirstName, LastName, Age } = response.data;
+        
+        setFirstName(FirstName);
+        setLastName(LastName);
+        setAge(Age);
+      }).catch((err) => {
+        console.log(err)
+      })
+    };
+
+    fetchAPI()
+  }, []);
+  
   return (
     <div className={styles.logStatus}>
       {/* <div className={styles.imageContainer} >
         <img src={props.imageURL} className={styles.image} alt="Avatar" /> 
-      </div>
+      </div> */}
       <div className={styles.textContainer}>
-        <p> Your neighbour {props.firstName} self-isolated today! </p>
+        <p> Your neighbour {firstName} self-isolated today! </p>
         <div>
           <ul className={styles.subContentContainer}> 
-            <li> {props.date} </li>
+            <li> {props.createdAt} </li>
             <li> • </li>
             <li> {props.suburb} </li>
           </ul>
@@ -22,7 +46,7 @@ const LogStatus = (props) => {
       </div>
       <div className={styles.claps}>
         <li> <span role="img">👏</span> + {props.claps} </li>
-      </div> */}
+      </div>
     </div>
   );
 };
