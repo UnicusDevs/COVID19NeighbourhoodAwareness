@@ -9,10 +9,6 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.listen(port, function(){
-  console.log("Listening on port : " + port);
-});
-
 require('dotenv/config');
 
 app.use(logger("dev"));
@@ -56,6 +52,7 @@ app.use('/uploads',express.static('uploads'));
 //Region Start - Routing for Homepage
 const home = require('./routes/api/home');
 app.use('/home', home);
+app.use('/', home);
 // Region End - Routing for Homepage
 
 
