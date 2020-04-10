@@ -3,6 +3,16 @@ const User = require('./../models/User');
 
 // Below function gets all the posts
 async function getAllPosts(req, res) {
+
+  if (req.params === undefined || null) {
+    console.log("HELLO THERE")
+  }
+  if (req.user === null || req.user === undefined) {
+    console.log("hello")
+  } else {
+    console.log("Oh no")
+  }
+
   Post.find().then(posts => res.json(posts))
 };
 

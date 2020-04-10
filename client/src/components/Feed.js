@@ -31,17 +31,19 @@ const Feed = (props) => {
     fetchAPI()
   }, []);
 
+
   const handleAllPosts = () => {
 
     const posts = allPostsArray.map((post) => {
+    
       const userId = post.User;
       const claps = post.Claps;
       const createdAt = post.createdAt;
       const suburb = post.Suburb
-
+      
       return (
         <div key={post._id}>
-          <LogStatus  user={userId} date={createdAt} suburb={suburb} claps={claps} />
+          <LogStatus  user={userId} createdAt={createdAt} suburb={suburb} claps={claps} />
         </div>
       )
     });

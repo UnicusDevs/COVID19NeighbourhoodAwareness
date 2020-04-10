@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-
+import moment from 'moment';
 // API
 import axiosAPI from './../api/baseURL';
 
@@ -11,6 +11,7 @@ const LogStatus = (props) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [age, setAge] = useState(0);
+  const [createdAt, setCreatedAt] = useState("");
 
   useEffect(() => {
     async function fetchAPI() {
@@ -21,6 +22,7 @@ const LogStatus = (props) => {
         setFirstName(FirstName);
         setLastName(LastName);
         setAge(Age);
+        
       }).catch((err) => {
         console.log(err)
       })
@@ -28,6 +30,10 @@ const LogStatus = (props) => {
 
     fetchAPI()
   }, []);
+
+  
+  console.log()
+  ;
   
   return (
     <div className={styles.logStatus}>
@@ -38,7 +44,7 @@ const LogStatus = (props) => {
         <p> Your neighbour {firstName} self-isolated today! </p>
         <div>
           <ul className={styles.subContentContainer}> 
-            <li> {props.createdAt} </li>
+            <li> {moment(new Date(props.createdAt)).calendar()} </li>
             <li> • </li>
             <li> {props.suburb} </li>
           </ul>
