@@ -1,0 +1,114 @@
+@import './mixins/mixins.scss';
+
+// fonts
+$font: "Poppins", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+
+// colours
+$color-dark-yellow: #FFC911;
+$color-dark-navyBlue: #183042;
+$color-black: #151E2E;
+$color-bright-green: #00D6A8;
+$color-white: #fff;
+$color-text-red: #ED3B3C;
+$color-text-gray-500: #a0aec0;
+$color-text-gray-600: #9C9B9B;
+$color-border-gray-400: #cbd5e0;
+$color-border-gray-500: #C4C4C4;
+
+// box-shadows
+$shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.50);
+
+// basic resets
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%; // 1rem = 10px, 10px/16px = 62.5%
+
+  @include xl-desk {
+    font-size: 68.75%;
+  }
+
+  @include tab-land {
+    font-size: 56.25%;
+  }
+
+  @include tab-port {
+    font-size: 50%;
+  }
+
+  @include phone {
+    font-size: 50%;
+  }
+}
+
+// basic styles
+body {
+  background: $color-dark-yellow;
+  font-family: $font;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+  color: $color-dark-navyBlue;
+}
+
+h2 {
+  color: $color-dark-navyBlue;
+}
+
+h3 {
+  color: $color-dark-navyBlue;
+}
+
+p {
+  color: $color-dark-navyBlue;
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+a {
+  color: $color-dark-navyBlue;
+}
+
+li {
+  font-size: 1.6rem;
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+// Basic site-wide responsive container
+.container {
+  width: 90vw;
+  margin: 0 auto;
+
+  @include xl-desk {
+    width: 80vw;
+  }
+
+  @include tab-land {
+    width: 85vw;
+  }
+  
+  @include tab-port {
+    width: 75vw;
+  }
+
+  @include phone {
+    width: 98vw;
+  }
+}

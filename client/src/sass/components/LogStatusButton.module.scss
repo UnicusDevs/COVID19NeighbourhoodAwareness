@@ -1,0 +1,24 @@
+@import './../main.scss';
+
+.buttonContainer {
+  text-align: center;
+}
+
+.button {
+  background: $color-dark-navyBlue;
+  border-radius: 5px;
+  color: $color-dark-yellow;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-right: 1.6rem;
+  margin-bottom: 2rem;
+  margin-left: 1.6rem;
+  padding: 1.2rem;
+  width: 92%;
+
+  @include phone {
+    margin-bottom: 0;
+    padding: 0.8rem;
+  }
+}

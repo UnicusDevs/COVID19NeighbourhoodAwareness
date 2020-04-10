@@ -1,0 +1,65 @@
+@import './../main.scss';
+
+.about {
+	margin-top: 16rem;
+
+	@include phone {
+		margin-top: 4rem;
+	}
+}
+
+.row {
+	display: flex;
+	justify-content: space-between;
+	
+	@include tab-port {
+		flex-direction: column;
+  }
+}
+
+.left {
+	width: 45%;
+	margin-right: 40px;
+
+	@include tab-land {
+		width: 35%;
+		margin-right: 30px;
+	}
+
+	@include tab-port {
+		width: 100%;
+		margin: 0 auto;
+		margin-bottom: 30px;
+	}
+
+	@include phone {
+		padding: 24px;
+		width: 100%;
+	}
+}
+	.title {
+		margin-bottom: 1.6rem;
+		font-weight: 600;
+	}
+	p {
+		line-height: 3.6rem;
+		font-weight: 400;
+	}
+
+.right {
+	width: 55%;
+
+	@include tab-land {
+		width: 65%;
+	}
+
+	@include tab-port {
+		width: 100%;
+		margin: 0 auto;
+		margin-bottom: 30px;
+	}
+
+	@include phone {
+		width: 100%;
+	}
+}
