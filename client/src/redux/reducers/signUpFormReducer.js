@@ -23,8 +23,6 @@ const signUpFormReducer = (state = signUpFormDefaultState, action) => {
           suburb: formData.suburb,
         }
     case SAVE_FORM_ERROR: 
-      console.log(action.payload.errorMessage)
-
       return {
         ...state,
         errorMessage: action.payload.errorMessage

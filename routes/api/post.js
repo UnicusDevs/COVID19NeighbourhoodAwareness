@@ -6,6 +6,7 @@ const Post = require('../../models/Post');
 
 // Controller 
 const {getAllPosts, createNewPost, getPostBasedOnSuburb} = require('./../../controllers/post_controller');
+const { checkToken } = require("./../../controllers/authentication_controller");
 
 // @route   POST api/post
 // @desc    Create post
