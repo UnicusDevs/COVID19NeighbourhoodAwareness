@@ -17,6 +17,7 @@ const LogStatusButton = (props) => {
     handlePost(props.currentUser).then((response) => {
       const postData = response.data;
       props.savePostDataToStore(postData);
+      window.location.reload(false);
     })
   }
 
