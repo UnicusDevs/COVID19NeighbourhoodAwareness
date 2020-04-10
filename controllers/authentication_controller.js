@@ -7,7 +7,12 @@ const jwt = require('jsonwebtoken');
 
 const secret = process.env.TOKEN_SECRET;
 
-const checkToken = function (req, res) {
+async function getUser({_id}) {
+  const user = await User.findOne(_id)
+  return user
+}
+
+const checkToken = function (req, res, next) {
 
   // Express headers are auto converted to lowercase
   let token = req.headers['x-access-token'] || req.headers['authorization'] || "";
@@ -19,7 +24,11 @@ const checkToken = function (req, res) {
       if (err) {
         res.status(401).send('Unauthorized: Invalid token')
       } else {
-        res.status(200).send("Hello")
+        getUser(decoded._id).then(user => {
+          req.success = true;
+          req.user = user;
+          next()
+        })
       }
     })
   }

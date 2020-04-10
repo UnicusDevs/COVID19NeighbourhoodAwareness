@@ -18,6 +18,7 @@ const Header = (props) => {
   useEffect(() => {
     async function fetchAPI() {
       await axiosAPI.get('/user/current').then((response) => {
+        console.log(response)
         let token = jwt.decode(response.config.headers.Authorization)
         props.setCurrentUser(token);
       }).catch((err) => {

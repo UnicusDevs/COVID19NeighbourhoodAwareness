@@ -13,8 +13,6 @@ import styles from './../sass/components/LogStatusButton.module.scss';
 
 const LogStatusButton = (props) => {
 
-  console.log(props.post)
-
   const handleStatusButtonOnClick = (currentUser) => {
     handlePost(props.currentUser).then((response) => {
       const postData = response.data;
@@ -51,8 +49,7 @@ const mapDispatchToProps = (dispatch) => {
 
 function mapStateToProps(state) {
   return {
-    currentUser: state.userReducer.currentUser,
-    post: state.postReducer.post
+    currentUser: state.userReducer.currentUser
   };
 };
 

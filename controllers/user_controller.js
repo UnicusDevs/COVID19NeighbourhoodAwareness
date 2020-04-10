@@ -102,29 +102,22 @@ async function getUserProfileStuff(user, currentUser = false) {
   }
 };
 
-async function getUserProfile(req, res) {
-  // get user profile data
-  const { user_id } = req.params;
-  const user = await User.findById(user_id);
-  if (user) {
-    const isCurrentUser = req.user && (user_id === req.user._id);
-    const userDisplayData = await getUserProfileStuff(user, isCurrentUser);
-    res.json(userDisplayData);
-  }
-  else {
-    res.status(400).end();
-  }
-}
-
 
 // Get current user
 async function getCurrentUser(req, res) {
 
-  // get currently logged-in user's data
-  const userDisplayData = await getUserProfile(req.body, true);
-  console.log(userDisplayData)
-  if (userDisplayData) {
-    res.json({ ...userDisplayData, success: req.success });
+  const {id, FirstName, LastName, Suburb, EmailAddress, Age } = req.user
+  const userData = {
+    id: id,
+    FirstName: FirstName,
+    LastName: LastName,
+    Suburb: Suburb,
+    EmailAddress: EmailAddress, 
+    Age: Age
+  };
+
+  if (userData) {
+    res.json({ ...userData, success: req.success });
   }
   else {
     res.send();
