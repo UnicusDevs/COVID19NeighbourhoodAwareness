@@ -40,12 +40,12 @@ const Feed = (props) => {
       const suburb = post.Suburb
 
       return (
-        <div>
-          <LogStatus user={userId} date={createdAt} suburb={suburb} claps={claps} />
+        <div key={post._id}>
+          <LogStatus  user={userId} date={createdAt} suburb={suburb} claps={claps} />
         </div>
       )
     });
-    
+
     return posts
   };
 
