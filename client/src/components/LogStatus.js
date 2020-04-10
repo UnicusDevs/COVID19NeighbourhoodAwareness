@@ -22,7 +22,7 @@ const LogStatus = (props) => {
         setFirstName(FirstName);
         setLastName(LastName);
         setAge(Age);
-        
+
       }).catch((err) => {
         console.log(err)
       })
@@ -30,10 +30,6 @@ const LogStatus = (props) => {
 
     fetchAPI()
   }, []);
-
-  
-  console.log()
-  ;
   
   return (
     <div className={styles.logStatus}>
