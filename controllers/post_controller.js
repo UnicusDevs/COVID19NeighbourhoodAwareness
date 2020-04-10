@@ -3,15 +3,14 @@ const User = require('./../models/User');
 
 // Below function gets all the posts
 async function getAllPosts(req, res) {
-  Post.find()
-    .then(posts => res.json(posts))
+  Post.find().then(posts => res.json(posts))
 };
 
 // Below function creates a new post
 async function createNewPost(req, res) {
+
   const user = await User.findOne({_id: req.body.User})
-  
-  const userId = user._id;
+  const userId = user.id;
   const userSuburb = user.Suburb
 
   const newPost = new Post({
@@ -20,8 +19,6 @@ async function createNewPost(req, res) {
     Suburb: userSuburb,
     Claps: 0
   });
-
-  console.log(newPost)
 
   try {
     const savedPost = await newPost.save()

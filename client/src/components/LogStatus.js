@@ -4,10 +4,10 @@ import React from 'react';
 import styles from './../sass/components/LogStatus.module.scss';
 
 const LogStatus = (props) => {
-
+  console.log(props);
   return (
     <div className={styles.logStatus}>
-      <div className={styles.imageContainer} >
+      {/* <div className={styles.imageContainer} >
         <img src={props.imageURL} className={styles.image} alt="Avatar" /> 
       </div>
       <div className={styles.textContainer}>
@@ -22,7 +22,7 @@ const LogStatus = (props) => {
       </div>
       <div className={styles.claps}>
         <li> <span role="img">👏</span> + {props.claps} </li>
-      </div>
+      </div> */}
     </div>
   );
 };
