@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 
 // API Calls
 import axiosAPI from './../api/baseURL';
-import { getAllPosts } from './../api/handlePost';
 
 // Components
 import LogStatus from './LogStatus';

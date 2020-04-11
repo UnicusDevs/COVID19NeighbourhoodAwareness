@@ -39,7 +39,6 @@ const LogStatus = (props) => {
     axiosAPI.post(`/post/addClap/${postId}`)
   }
 
-  console.log(count)
   return (
     <div className={styles.logStatus}>
       {/* <div className={styles.imageContainer} >
