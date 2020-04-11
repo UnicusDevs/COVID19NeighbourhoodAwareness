@@ -31,6 +31,13 @@ const LogStatus = (props) => {
     fetchAPI()
   }, []);
   
+  const handleClaps = (event) => {
+    console.log(props)
+    const postId = props.postId;
+    axiosAPI.post(`/post/addClap/${postId}`).then((response) => {
+      console.log(response)
+    })
+  }
   return (
     <div className={styles.logStatus}>
       {/* <div className={styles.imageContainer} >
@@ -47,7 +54,7 @@ const LogStatus = (props) => {
         </div>   
       </div>
       <div className={styles.claps}>
-        <li> <span role="img">👏</span> + {props.claps} </li>
+        <li> <span role="img" onClick={handleClaps}>👏</span> + {props.claps} </li>
       </div>
     </div>
   );
