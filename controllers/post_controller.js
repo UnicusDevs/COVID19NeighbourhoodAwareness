@@ -38,9 +38,6 @@ async function getPostBasedOnSuburb(req, res) {
 };
 
 async function increaseClap(req, res) {
-  
-  
-  
   try {
     const post = await Post.findOneAndUpdate({ _id: req.params.post_id }, { $inc: { Claps: + 1 } })
   } catch (err) {
