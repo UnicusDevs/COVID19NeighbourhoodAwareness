@@ -6,6 +6,6 @@ const cookies = new Cookies();
 const token = cookies.get("covid19Project");
 
 export default axios.create({
-  baseURL: 'http://localhost:5000/',
+  baseURL: 'http://localhost:8080/',
   headers: { Authorization: token }
 });
