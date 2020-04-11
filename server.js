@@ -7,7 +7,7 @@ const cors = require("cors");
 const bodyParser = require('body-parser');
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8080;
 
 require('dotenv/config');
 
@@ -52,6 +52,7 @@ app.use('/uploads',express.static('uploads'));
 //Region Start - Routing for Homepage
 const home = require('./routes/api/home');
 app.use('/home', home);
+app.use('/', home);
 // Region End - Routing for Homepage
 
 
@@ -64,3 +65,7 @@ mongoose.connect(process.env.DB_CONNECTION,
 // app.get('/express_backend', (req, res) => {
 //   res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
 // });
+
+if(process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+}
