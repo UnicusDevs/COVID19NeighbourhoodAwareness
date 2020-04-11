@@ -1,10 +1,10 @@
 import React from 'react';
-import LoginForm from './LoginForm';
+import LogInForm from './LogInForm';
 
 let LoginModule = props => {
   return (
     <div>
-      <LoginForm />
+      <LogInForm />
     </div>
   )
 };
