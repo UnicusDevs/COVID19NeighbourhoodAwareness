@@ -14,5 +14,5 @@ const { checkToken } = require("./../../controllers/authentication_controller");
 router.get('/', getAllPosts);
 router.post('/create', createNewPost);
 router.get('/suburb', getPostBasedOnSuburb)
-router.get('/limit/:page_count/:limit_count', getPaginatedPosts)
+router.get('/limit', getPaginatedPosts)
 module.exports = router;
