@@ -1,5 +1,5 @@
 import React from 'react';
-import LoginForm from './LogInForm';
+import LoginForm from './LoginForm';
 
 let LoginModule = props => {
   return (
