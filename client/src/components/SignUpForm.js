@@ -39,7 +39,6 @@ let SignUpForm = props => {
           const token = response.data;
           cookies.set("covid19Project", token, { path: "/" })
           window.location.assign("/");
-          console.log(response.data)
         })
       }
     }).catch((err) => {

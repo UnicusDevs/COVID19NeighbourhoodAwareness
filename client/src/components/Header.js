@@ -1,24 +1,25 @@
 import React, { useEffect } from "react"
 import { Link } from 'react-router-dom';
-import jwt from 'jsonwebtoken'
-import styles from '../sass/components/Header.module.scss';
-
 
 // Redux 
 import { connect } from 'react-redux';
 import { togglePopUpOnSignUp, togglePopUpOnLogin, togglePopUpOffLogin, togglePopUpOffSignUp } from "./../redux/actions/popUpActions";
 import { setCurrentUser } from './../redux/actions/userActions';
 
+//Styles
+import styles from '../sass/components/Header.module.scss';
+
 // API Calls
 import axiosAPI from './../api/baseURL';
+import jwt from 'jsonwebtoken'
 
 const Header = (props) => {
 
   useEffect(() => {
     async function fetchAPI() {
-      await axiosAPI.get('/user/current').then((response) => {
+      await axiosAPI.get('/user/current').then(async (response) => {
         let token = jwt.decode(response.config.headers.Authorization)
-        props.setCurrentUser(token);
+        props.setCurrentUser(response.data);
       }).catch((err) => {
         props.setCurrentUser(null);
       })
