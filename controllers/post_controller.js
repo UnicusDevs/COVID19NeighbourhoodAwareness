@@ -3,7 +3,7 @@ const User = require('./../models/User');
 
 // Below function gets all the posts
 async function getAllPosts(req, res) {
-  Post.find().then(posts => res.json(posts))
+  Post.find().sort({ createdAt: -1 }).then(posts => res.json(posts))
 };
 
 // Below function creates a new post
