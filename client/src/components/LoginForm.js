@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form';
 import axiosAPI from "../api/baseURL";
 
 // CSS
-import styles from './../sass/components/SignupForm.module.scss';
+import styles from './../sass/components/LoginForm.module.scss';
 
 // Redux 
 import {connect} from 'react-redux';
