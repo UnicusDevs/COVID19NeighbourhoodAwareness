@@ -12,6 +12,7 @@ const LogStatus = (props) => {
   const [lastName, setLastName] = useState("");
   const [age, setAge] = useState(0);
   const [createdAt, setCreatedAt] = useState("");
+  const [count, setCount] = useState(0)
 
   useEffect(() => {
     async function fetchAPI() {
@@ -22,6 +23,7 @@ const LogStatus = (props) => {
         setFirstName(FirstName);
         setLastName(LastName);
         setAge(Age);
+        setCount(props.claps)
 
       }).catch((err) => {
         console.log(err)
@@ -31,6 +33,12 @@ const LogStatus = (props) => {
     fetchAPI()
   }, []);
   
+  const handleClaps = (event) => {
+    const postId = props.postId;
+    setCount(count + 1)
+    axiosAPI.post(`/post/addClap/${postId}`)
+  }
+
   return (
     <div className={styles.logStatus}>
       {/* <div className={styles.imageContainer} >
@@ -47,7 +55,7 @@ const LogStatus = (props) => {
         </div>   
       </div>
       <div className={styles.claps}>
-        <li> <span role="img">👏</span> + {props.claps} </li>
+        <li> <span role="img" onClick={handleClaps}>👏</span> + {count} </li>
       </div>
     </div>
   );

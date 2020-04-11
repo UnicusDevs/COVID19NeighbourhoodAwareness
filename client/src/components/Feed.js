@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 
 // API Calls
 import axiosAPI from './../api/baseURL';
-import { getAllPosts } from './../api/handlePost';
 
 // Components
 import LogStatus from './LogStatus';
@@ -39,11 +38,12 @@ const Feed = (props) => {
       const userId = post.User;
       const claps = post.Claps;
       const createdAt = post.createdAt;
-      const suburb = post.Suburb
+      const suburb = post.Suburb;
+      const postId = post._id;
       
       return (
         <div key={post._id}>
-          <LogStatus  user={userId} createdAt={createdAt} suburb={suburb} claps={claps} />
+          <LogStatus  postId={postId} user={userId} createdAt={createdAt} suburb={suburb} claps={claps} />
         </div>
       )
     });
