@@ -7,38 +7,41 @@ async function getAllPosts(req, res) {
 };
 
 // Below function gets a specified number of posts
-async function getPaginatedPosts(Post) {
-  return async (req, res, next) => {
-    const page = parseInt(req.query.page)
-    const limit = parseInt(req.query.limit)
+async function getPaginatedPosts(req, res, next) {
 
-    const startIndex = (page - 1) * limit
-    const endIndex = page * limit
+  const posts = Post.find();
+  
+  const page = req.params.page_count;
+  const limit = req.params.limit_count;
 
-    const results = {}
+  const startIndex = (page - 1) * limit
+  const endIndex = page * limit
 
-    if (endIndex < await Post.countDocuments().exec()) {
-      results.next = {
-        page: page + 1,
-        limit: limit
-      }
-    }
-    
-    if (startIndex > 0) {
-      results.previous = {
-        page: page - 1,
-        limit: limit
-      }
-    }
-    try {
-      results.results = await Post.find().limit(limit).skip(startIndex).exec()
-      res.getPaginatedPosts = results
-      next()
-    } catch (err) {
-      res.status(500).json({ message: err.message })
+  const results = {}
+
+  console.log(posts)
+  if (endIndex < await posts.countDocuments().exec()) {
+    results.next = {
+      page: page + 1,
+      limit: limit
     }
   }
+  
+  if (startIndex > 0) {
+    results.previous = {
+      page: page - 1,
+      limit: limit
+    }
+  }
+  try {
+    results.results = await Post.find().limit(limit).skip(startIndex).exec()
+    res.getPaginatedPosts = results
+    next()
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
 }
+
 
 
 // Below function creates a new post
