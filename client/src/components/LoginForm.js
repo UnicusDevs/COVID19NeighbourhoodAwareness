@@ -20,7 +20,7 @@ const cookies = new Cookies();
 let LoginForm = props => {
 
   const date = new Date();
-  console.log()
+
   // To Do: Add token on login stage
   // The below is a axios post to create new user then log them in. 
   let sendUserToDatabase = (values) => {
