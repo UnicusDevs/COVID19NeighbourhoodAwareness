@@ -6,6 +6,41 @@ async function getAllPosts(req, res) {
   Post.find().then(posts => res.json(posts))
 };
 
+// Below function gets a specified number of posts
+async function getPaginatedPosts(Post) {
+  return async (req, res, next) => {
+    const page = parseInt(req.query.page)
+    const limit = parseInt(req.query.limit)
+
+    const startIndex = (page - 1) * limit
+    const endIndex = page * limit
+
+    const results = {}
+
+    if (endIndex < await Post.countDocuments().exec()) {
+      results.next = {
+        page: page + 1,
+        limit: limit
+      }
+    }
+    
+    if (startIndex > 0) {
+      results.previous = {
+        page: page - 1,
+        limit: limit
+      }
+    }
+    try {
+      results.results = await Post.find().limit(limit).skip(startIndex).exec()
+      res.getPaginatedPosts = results
+      next()
+    } catch (err) {
+      res.status(500).json({ message: err.message })
+    }
+  }
+}
+
+
 // Below function creates a new post
 async function createNewPost(req, res) {
 
@@ -37,4 +72,4 @@ async function getPostBasedOnSuburb(req, res) {
   Post.find({"Suburb": user.Suburb}).then(post => res.json(post))
 };
 
-module.exports = { getAllPosts, createNewPost, getPostBasedOnSuburb };
+module.exports = { getAllPosts, getPaginatedPosts, createNewPost, getPostBasedOnSuburb };
