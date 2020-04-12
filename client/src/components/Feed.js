@@ -17,12 +17,27 @@ import styles from './../sass/components/Feed.module.scss';
 const Feed = (props) => {
 
   const [allPostsArray, setAllPostsArray] = useState([])
+  const [slicedPostsArray, setSlicedPostsArray] = useState([])
 
   useEffect(() => {
     async function fetchAPI() {
       await axiosAPI.get('/post').then(async (response) => {
         const posts = response.data;
         setAllPostsArray(posts)
+      }).catch((err) => {
+        console.log(err)
+      })
+    };
+
+    fetchAPI()
+  }, []);
+
+  useEffect(() => {
+    async function fetchAPI() {
+      await axiosAPI.get(`/post/limit`).then(async (response) => {
+        const posts = response.data.posts;
+        const docs = response.data.docs;
+        setSlicedPostsArray(posts)
       }).catch((err) => {
         console.log(err)
       })
