@@ -37,4 +37,14 @@ async function getPostBasedOnSuburb(req, res) {
   Post.find({"Suburb": user.Suburb}).then(post => res.json(post))
 };
 
-module.exports = { getAllPosts, createNewPost, getPostBasedOnSuburb };
+async function increaseClap(req, res) {
+  try {
+    const post = await Post.findOneAndUpdate({ _id: req.params.post_id }, { $inc: { Claps: + 1 } })
+  } catch (err) {
+    res.json({
+      message: err
+    })
+  }
+}
+
+module.exports = { getAllPosts, createNewPost, getPostBasedOnSuburb, increaseClap };
