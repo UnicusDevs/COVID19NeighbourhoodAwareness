@@ -12,6 +12,6 @@ export const getAllPosts = () => {
   return axiosAPI.get('/post')
 };
 
-export const getLatestPost = ({id}, response)=> {
-  console.log(id)
+export const getLatestPost = (props, response)=> {
+  return axiosAPI.get(`/post/latest/${props}`);
 };

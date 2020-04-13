@@ -37,7 +37,7 @@ async function getPostBasedOnSuburb(req, res) {
 };
 
 async function getLatestPost(req, res) {
-  console.log(req.params);
+  const post = Post.find({User: req.params.user_id}).sort({createdAt: -1}).limit(1).then(post => res.json(post))
 }
 
 async function increaseClap(req, res) {

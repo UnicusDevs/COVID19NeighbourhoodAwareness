@@ -13,7 +13,7 @@ const { checkToken } = require("./../../controllers/authentication_controller");
 
 router.get('/', getAllPosts);
 router.get('/suburb', getPostBasedOnSuburb);
-router.get('/latest/:user_id', getLatestPost);
+router.get('/latest/:user_id', checkToken, getLatestPost);
 router.post('/create', createNewPost);
 router.post('/addClap/:post_id', increaseClap);
 

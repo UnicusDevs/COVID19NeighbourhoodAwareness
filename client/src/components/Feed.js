@@ -15,40 +15,31 @@ import styles from './../sass/components/Feed.module.scss';
 
 const Feed = (props) => {
 
-  const [allPostsArray, setAllPostsArray] = useState([])
-
-  useEffect(() => {
-    async function fetchAPI() {
-      await axiosAPI.get('/post').then(async (response) => {
-        const posts = response.data;
-        setAllPostsArray(posts)
-      }).catch((err) => {
-        console.log(err)
-      })
-    };
-
-    fetchAPI()
-  }, []);
-
-
   const handleAllPosts = () => {
-
-    const posts = allPostsArray.map((post) => {
-    
-      const userId = post.User;
-      const claps = post.Claps;
-      const createdAt = post.createdAt;
-      const suburb = post.Suburb;
-      const postId = post._id;
-      
+    if (props.allPosts === null || undefined) {
       return (
-        <div key={post._id}>
-          <LogStatus  postId={postId} user={userId} createdAt={createdAt} suburb={suburb} claps={claps} />
+        <div>
+          <h1> Loading...</h1>
         </div>
       )
-    });
+    } else if (props.allPosts) {
+      const posts = props.allPosts.map((post) => {
 
-    return posts
+        const userId = post.User;
+        const claps = post.Claps;
+        const createdAt = post.createdAt;
+        const suburb = post.Suburb;
+        const postId = post._id;
+
+        return (
+          <div key={post._id}>
+            <LogStatus postId={postId} user={userId} createdAt={createdAt} suburb={suburb} claps={claps} />
+          </div>
+        )
+      });
+
+      return posts
+    }
   };
 
   return (
@@ -56,16 +47,15 @@ const Feed = (props) => {
       <div className={styles.logFeedContainer}>
         <LogStatusButton />
         {handleAllPosts()}
-      
       </div>
     </div>
   );
 };
 
-
 function mapStateToProps(state) {
   return {
-    currentUser: state.userReducer.currentUser
+    currentUser: state.userReducer.currentUser,
+    allPosts: state.postReducer.allPosts
   }
 };
 

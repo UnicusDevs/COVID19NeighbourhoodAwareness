@@ -1,33 +1,47 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { Link } from 'react-router-dom';
 
 // Redux 
 import { connect } from 'react-redux';
 import { togglePopUpOnSignUp, togglePopUpOnLogin, togglePopUpOffLogin, togglePopUpOffSignUp } from "./../redux/actions/popUpActions";
 import { setCurrentUser } from './../redux/actions/userActions';
+import { saveLatestPostDataToStore, saveAllPostsDataToStore } from './../redux/actions/postActions';
 
 //Styles
 import styles from '../sass/components/Header.module.scss';
 
 // API Calls
+import { getLatestPost, getAllPosts } from './../api/handlePost';
 import axiosAPI from './../api/baseURL';
 import jwt from 'jsonwebtoken'
+
 
 const Header = (props) => {
 
   useEffect(() => {
-    async function fetchAPI() {
-      await axiosAPI.get('/user/current').then(async (response) => {
-        let token = jwt.decode(response.config.headers.Authorization)
-        console.log(response)
-        props.setCurrentUser(response.data);
-      }).catch((err) => {
-        props.setCurrentUser(null);
-      })
-    };
-
-    fetchAPI()
+    onLoad();
   }, []);
+
+  // The below gets the following data: 1. current user 2. currentUsers latest post 3. All posts
+  // All data is saved to the redux store.
+  async function onLoad() {
+    axiosAPI.get('/user/current').then(async (response) => {
+      let token = jwt.decode(response.config.headers.Authorization)
+      props.setCurrentUser(response.data);
+      return getLatestPost(response.data.id)
+    }).then( async (response) => {
+      const latestPostData = response.data;
+      await props.saveLatestPostDataToStore(latestPostData)
+      return getAllPosts()
+    }).then(async (response) => {
+      const allPostsData = response.data;
+      await props.saveAllPostsDataToStore(allPostsData)
+    }).catch((err) => {
+      props.saveLatestPostDataToStore(null)
+      props.setCurrentUser(null);
+      props.saveAllPostsDataToStore(null)
+    })
+  };
 
   const handleSignOut = () => {
     const now = new Date()
@@ -102,7 +116,9 @@ const mapDispatchToProps = (dispatch) => {
     togglePopUpOffSignUp: () => dispatch(togglePopUpOffSignUp()),
     togglePopUpOnLogin: () => dispatch(togglePopUpOnLogin()),
     togglePopUpOffLogin: () => dispatch(togglePopUpOffLogin()),
-    setCurrentUser: (userData) => dispatch(setCurrentUser(userData))
+    setCurrentUser: (userData) => dispatch(setCurrentUser(userData)),
+    saveLatestPostDataToStore: (latestPostData) => dispatch(saveLatestPostDataToStore(latestPostData)),
+    saveAllPostsDataToStore: (allPostsData) => dispatch(saveAllPostsDataToStore(allPostsData))
   }
 };
 

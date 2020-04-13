@@ -105,8 +105,6 @@ async function getUserProfileStuff(user, currentUser = false) {
 
 // Get current user
 async function getCurrentUser(req, res) {
-
-  console.log(req.user)
   if (req.user === undefined) {
     console.log("No user found")
   } else if (req.user) {

@@ -20,20 +20,23 @@ const LogStatusButton = (props) => {
       window.location.reload(false);
     })
   };
-  console.log(props)
 
   const handleButtonDisable =  (currentUser) => {
-    console.log(props.currentUser)
+
   };
 
   const handleStatusButtonWhenUserHasLoggedIn = (currentUser) => {
+    
     if (props.currentUser === null) {
       return (
         <button className={styles.button}> Click me to signup/login </button>
       )
     } else {
       return (
+        <div>
         <button className={styles.button} onClick={handleStatusButtonOnClick}> Click me to log your fight against COVID-19! </button>
+        <button onClick={handleButtonDisable}> test</button>
+        </div>
       )
     }
   };
@@ -56,7 +59,8 @@ const mapDispatchToProps = (dispatch) => {
 
 function mapStateToProps(state) {
   return {
-    currentUser: state.userReducer.currentUser
+    currentUser: state.userReducer.currentUser,
+    latestPost: state.postReducer.latestPost
   };
 };
 
