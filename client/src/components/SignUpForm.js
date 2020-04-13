@@ -69,12 +69,26 @@ let SignUpForm = props => {
       <div className={styles.signUpFormContainer}>
         <div className={styles.inputContainer}>
           <div>
+            <label> Profile Image </label>
+          </div>
+
+          <input
+            name="fileUpload"
+            placeholder="Josephine"
+            type="file"
+            ref={register({ required: true, minLength: 2 })}
+          />
+
+          {errors.firstName && errors.firstName.types.required && (<p>First Name required</p>)}
+          {errors.firstName && errors.firstName.types.minLength && (<p>Name must be greater than two letters</p>)}
+        </div>
+        <div className={styles.inputContainer}>
+          <div>
             <label> First Name </label>
           </div>
 
           <input 
-            name="firstName" 
-            label="Hello" 
+            name="firstName"  
             placeholder="Josephine" 
             type="text" 
             ref={register({required: true, minLength: 2})}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 // Redux 
 import { connect } from 'react-redux';
@@ -6,7 +6,7 @@ import { togglePopUpOnLogin } from "./../redux/actions/popUpActions";
 import { savePostDataToStore } from './../redux/actions/postActions';
 
 // API
-import { handlePost } from './../api/handlePost';
+import { handlePost, getLatestPost } from './../api/handlePost';
 
 // Styles
 import styles from './../sass/components/LogStatusButton.module.scss';
@@ -19,7 +19,12 @@ const LogStatusButton = (props) => {
       props.savePostDataToStore(postData);
       window.location.reload(false);
     })
-  }
+  };
+  console.log(props)
+
+  const handleButtonDisable =  (currentUser) => {
+    console.log(props.currentUser)
+  };
 
   const handleStatusButtonWhenUserHasLoggedIn = (currentUser) => {
     if (props.currentUser === null) {
@@ -33,6 +38,7 @@ const LogStatusButton = (props) => {
     }
   };
 
+  
   return (
     <div className={styles.buttonContainer}>
       {handleStatusButtonWhenUserHasLoggedIn()}

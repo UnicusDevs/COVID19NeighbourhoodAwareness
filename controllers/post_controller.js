@@ -32,10 +32,13 @@ async function createNewPost(req, res) {
 
 // The below function gets all the posts that match the user suburb.
 async function getPostBasedOnSuburb(req, res) { 
-
   const user = await User.findOne({ email: req.body.User })
   Post.find({"Suburb": user.Suburb}).then(post => res.json(post))
 };
+
+async function getLatestPost(req, res) {
+  console.log(req.params);
+}
 
 async function increaseClap(req, res) {
   try {
@@ -47,4 +50,4 @@ async function increaseClap(req, res) {
   }
 }
 
-module.exports = { getAllPosts, createNewPost, getPostBasedOnSuburb, increaseClap };
+module.exports = { getAllPosts, createNewPost, getPostBasedOnSuburb, increaseClap, getLatestPost };
