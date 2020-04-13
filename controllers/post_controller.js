@@ -8,29 +8,74 @@ async function getAllPosts(req, res) {
 
 // Below function gets a specified number of posts
 async function getPaginatedPosts(req, res) {
+  const posts = await Post.find()
   try {
-    const perPage = req.query.perPage
-      ? parseInt(req.query.perPage)
-      : 10;
+    const page = parseInt(req.query.page)
+    const limit = parseInt(req.query.limit)
 
-    const page = req.query.page
-      ? parseInt(req.query.page)
-      : 1;
+    const startIndex = (page - 1) * limit
+    const endIndex = page * limit
 
-    const posts = await Post.find()
-      .skip ((page - 1 ) * perPage) 
-      .limit(perPage)
-      res.json(
-        posts, {
-        docs: {
-          page,
-          perPage
-        }}
-      )
-    } catch (err) {
-    next(err);
-  }
+    const results = {}
+
+    // Return current page and limit
+    results.page = {
+      page: page,
+      limit: limit,
+    }  
+
+    // Check if there is a next page
+    if (endIndex < posts.length) {
+      // Set next page
+      results.next = {
+        page: page + 1,
+        limit: limit
+      }
+    }
+
+    // Check if there is a previous page
+    if (startIndex > 0) {
+      // Set previous page
+      results.previous = {
+        page: page - 1,
+        limit: limit
+      }
+    }
+
+    results.results = posts.slice(startIndex, endIndex)
+    res.json(results)
+  } catch (err) {
+      res.json({
+        message: err
+      })
+    }
 }
+
+
+// async function getPaginatedPosts(req, res) {
+//   try {
+//     const perPage = req.query.perPage
+//       ? parseInt(req.query.perPage)
+//       : 5;
+
+//     const page = req.query.page
+//       ? parseInt(req.query.page)
+//       : 1;
+
+//     const posts = await Post.find()
+//       .skip ((page - 1 ) * perPage) 
+//       .limit(perPage)
+//       res.json({
+//         posts, 
+//         meta: {
+//           page,
+//           perPage
+//         }}
+//       )
+//     } catch (err) {
+//     next(err);
+//   }
+// }
 
 
 // Below function creates a new post
