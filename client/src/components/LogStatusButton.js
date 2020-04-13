@@ -3,7 +3,7 @@ import React, {useEffect} from 'react';
 // Redux 
 import { connect } from 'react-redux';
 import { togglePopUpOnLogin } from "./../redux/actions/popUpActions";
-import { savePostDataToStore } from './../redux/actions/postActions';
+import { savePostDataToStore, addNewPostToAllPostStore } from './../redux/actions/postActions';
 
 // API
 import { handlePost, getLatestPost } from './../api/handlePost';
@@ -15,9 +15,9 @@ const LogStatusButton = (props) => {
 
   const handleStatusButtonOnClick = (currentUser) => {
     handlePost(props.currentUser).then((response) => {
-      const postData = response.data;
-      props.savePostDataToStore(postData);
-      window.location.reload(false);
+      const newPost = response.data;
+      props.savePostDataToStore(newPost);
+      props.addNewPostToAllPostStore(newPost)
     })
   };
 
@@ -34,8 +34,7 @@ const LogStatusButton = (props) => {
     } else {
       return (
         <div>
-        <button className={styles.button} onClick={handleStatusButtonOnClick}> Click me to log your fight against COVID-19! </button>
-        <button onClick={handleButtonDisable}> test</button>
+          <button className={styles.button} onClick={handleStatusButtonOnClick}> Click me to log your fight against COVID-19! </button>
         </div>
       )
     }
@@ -53,7 +52,8 @@ const LogStatusButton = (props) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     togglePopUpOnLogin: () => dispatch(togglePopUpOnLogin()),
-    savePostDataToStore: (postData) => dispatch(savePostDataToStore(postData))
+    savePostDataToStore: (postData) => dispatch(savePostDataToStore(postData)),
+    addNewPostToAllPostStore: (newPost) => dispatch(addNewPostToAllPostStore(newPost))
   };
 };
 

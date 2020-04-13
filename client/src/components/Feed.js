@@ -1,10 +1,8 @@
 import React,  {useEffect, useState} from 'react';
+import moment from 'moment';
 
 // Redux 
 import {connect} from 'react-redux';
-
-// API Calls
-import axiosAPI from './../api/baseURL';
 
 // Components
 import LogStatus from './LogStatus';
@@ -23,7 +21,16 @@ const Feed = (props) => {
         </div>
       )
     } else if (props.allPosts) {
-      const posts = props.allPosts.map((post) => {
+
+      let posts = props.allPosts;
+      
+      posts.sort(function (a, b) {
+        // Turn your strings into dates, and then subtract them
+        // to get a value that is either negative, positive, or zero.
+        return new Date(b.createdAt) - new Date(a.createdAt);
+      });
+
+      posts = props.allPosts.map((post) => {
 
         const userId = post.User;
         const claps = post.Claps;
@@ -38,6 +45,7 @@ const Feed = (props) => {
         )
       });
 
+      
       return posts
     }
   };

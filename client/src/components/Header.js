@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
 import { Link } from 'react-router-dom';
 
 // Redux 
@@ -12,7 +12,7 @@ import styles from '../sass/components/Header.module.scss';
 
 // API Calls
 import { getLatestPost, getAllPosts } from './../api/handlePost';
-import axiosAPI from './../api/baseURL';
+import { getCurrentUser } from './../api/getUserData';
 import jwt from 'jsonwebtoken'
 
 
@@ -25,20 +25,23 @@ const Header = (props) => {
   // The below gets the following data: 1. current user 2. currentUsers latest post 3. All posts
   // All data is saved to the redux store.
   async function onLoad() {
-    axiosAPI.get('/user/current').then(async (response) => {
+    await getCurrentUser().then((response) => {
       let token = jwt.decode(response.config.headers.Authorization)
       props.setCurrentUser(response.data);
       return getLatestPost(response.data.id)
-    }).then( async (response) => {
+    }).then((response) => {
       const latestPostData = response.data;
-      await props.saveLatestPostDataToStore(latestPostData)
+      props.saveLatestPostDataToStore(latestPostData)
       return getAllPosts()
-    }).then(async (response) => {
-      const allPostsData = response.data;
-      await props.saveAllPostsDataToStore(allPostsData)
     }).catch((err) => {
       props.saveLatestPostDataToStore(null)
       props.setCurrentUser(null);
+    })
+
+    getAllPosts().then(async (response) => {
+      const allPostsData = response.data;
+      await props.saveAllPostsDataToStore(allPostsData)
+    }).catch((err) => {
       props.saveAllPostsDataToStore(null)
     })
   };

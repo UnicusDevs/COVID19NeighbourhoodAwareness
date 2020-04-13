@@ -1,7 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import moment from 'moment';
+
+// Redux 
+import {connect} from 'react-redux';
+
 // API
-import axiosAPI from './../api/baseURL';
+import {addClapsToPost} from './../api/handlePost';
+import {getUserData} from './../api/getUserData';
 
 // SASS
 import styles from './../sass/components/LogStatus.module.scss';
@@ -17,7 +22,7 @@ const LogStatus = (props) => {
   useEffect(() => {
     async function fetchAPI() {
       const id = props.user;
-      await axiosAPI.get(`/user/${id}`).then((response) => {
+      await getUserData(id).then((response) => {
         const {FirstName, LastName, Age } = response.data;
         
         setFirstName(FirstName);
@@ -32,12 +37,12 @@ const LogStatus = (props) => {
 
     fetchAPI()
   }, []);
-  
+ 
   const handleClaps = (event) => {
     const postId = props.postId;
     setCount(count + 1)
-    axiosAPI.post(`/post/addClap/${postId}`)
-  }
+    return addClapsToPost(postId);
+  };
 
   return (
     <div className={styles.logStatus}>
@@ -61,4 +66,10 @@ const LogStatus = (props) => {
   );
 };
 
-export default LogStatus;
+function mapStateToProps(state) {
+  return {
+    currentUser: state.userReducer.currentUser
+  };
+};
+
+export default connect(mapStateToProps)(LogStatus);

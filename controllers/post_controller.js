@@ -42,6 +42,7 @@ async function getLatestPost(req, res) {
 
 async function increaseClap(req, res) {
   try {
+    console.log(req.params)
     const post = await Post.findOneAndUpdate({ _id: req.params.post_id }, { $inc: { Claps: + 1 } })
   } catch (err) {
     res.json({

@@ -1,7 +1,7 @@
-import { SAVE_POST_DATA, SAVE_LATEST_POST_DATA, SAVE_ALL_POSTS_DATA} from './../actions/allActions';
+import { SAVE_POST_DATA, SAVE_LATEST_POST_DATA, SAVE_ALL_POSTS_DATA, ADD_POST_TO_ALL_POSTS} from './../actions/allActions';
 
 const postDefaultState = {
-  allPosts: null,
+  allPosts: [],
   post: undefined,
   latestPost: undefined
 };
@@ -16,8 +16,12 @@ export function postReducer(state = postDefaultState, action) {
       break;
     case SAVE_LATEST_POST_DATA: 
       newState.latestPost = action.latestPostData;
+      break;
     case SAVE_ALL_POSTS_DATA: 
       newState.allPosts = action.allPostsData
+      break;
+    case ADD_POST_TO_ALL_POSTS:
+      newState.allPosts = state.allPosts.concat(action.newPost)
     default:
       break;
   }
