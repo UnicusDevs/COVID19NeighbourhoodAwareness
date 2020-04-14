@@ -36,7 +36,7 @@ const LogStatus = (props) => {
     };
 
     fetchAPI()
-  }, []);
+  }, [props.user, props.claps ]);
  
   const handleClaps = (event) => {
     const postId = props.postId;
@@ -60,7 +60,7 @@ const LogStatus = (props) => {
         </div>   
       </div>
       <div className={styles.claps}>
-        <li> <span role="img" onClick={handleClaps}>👏</span> + {count} </li>
+        <li onClick={handleClaps}><span role="img">👏</span> + {count} </li>
       </div>
     </div>
   );

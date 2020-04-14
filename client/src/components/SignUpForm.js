@@ -67,7 +67,7 @@ let SignUpForm = props => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form} >
       <div className={styles.signUpFormContainer}>
-        <div className={styles.inputContainer}>
+        {/* <div className={styles.inputContainer}>
           <div>
             <label> Profile Image </label>
           </div>
@@ -81,7 +81,7 @@ let SignUpForm = props => {
 
           {errors.firstName && errors.firstName.types.required && (<p>First Name required</p>)}
           {errors.firstName && errors.firstName.types.minLength && (<p>Name must be greater than two letters</p>)}
-        </div>
+        </div> */}
         <div className={styles.inputContainer}>
           <div>
             <label> First Name </label>

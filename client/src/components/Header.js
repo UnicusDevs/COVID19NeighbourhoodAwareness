@@ -26,13 +26,12 @@ const Header = (props) => {
   // All data is saved to the redux store.
   async function onLoad() {
     await getCurrentUser().then((response) => {
-      let token = jwt.decode(response.config.headers.Authorization)
+      jwt.decode(response.config.headers.Authorization)
       props.setCurrentUser(response.data);
       return getLatestPost(response.data.id)
     }).then((response) => {
       const latestPostData = response.data;
       props.saveLatestPostDataToStore(latestPostData)
-      return getAllPosts()
     }).catch((err) => {
       props.saveLatestPostDataToStore(null)
       props.setCurrentUser(null);

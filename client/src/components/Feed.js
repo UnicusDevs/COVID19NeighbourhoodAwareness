@@ -1,5 +1,4 @@
-import React,  {useEffect, useState} from 'react';
-import moment from 'moment';
+import React from 'react';
 
 // Redux 
 import {connect} from 'react-redux';
@@ -12,7 +11,7 @@ import LogStatusButton from './LogStatusButton';
 import styles from './../sass/components/Feed.module.scss';
 
 const Feed = (props) => {
-
+ 
   const handleAllPosts = () => {
     if (props.allPosts === null || undefined) {
       return (
@@ -45,7 +44,6 @@ const Feed = (props) => {
         )
       });
 
-      
       return posts
     }
   };
