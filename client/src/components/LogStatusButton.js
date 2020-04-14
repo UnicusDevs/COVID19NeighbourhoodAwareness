@@ -1,9 +1,10 @@
 import React from 'react';
+import moment from 'moment';
 
 // Redux 
 import { connect } from 'react-redux';
 import { togglePopUpOnLogin } from "./../redux/actions/popUpActions";
-import { savePostDataToStore } from './../redux/actions/postActions';
+import { savePostDataToStore, addNewPostToAllPostStore } from './../redux/actions/postActions';
 
 // API
 import { handlePost } from './../api/handlePost';
@@ -13,22 +14,45 @@ import styles from './../sass/components/LogStatusButton.module.scss';
 
 const LogStatusButton = (props) => {
 
-  const handleStatusButtonOnClick = (currentUser) => {
-    handlePost(props.currentUser).then((response) => {
-      const postData = response.data;
-      props.savePostDataToStore(postData);
-      window.location.reload(false);
-    })
+  const handleDisableOnStatusButton = () => {
+    
+    let result = false
+
+    if (props.latestPost === null || props.latestPost === undefined) {
+      result = false
+    } else if (props.latestPost[0]) {
+
+      let latestPostCreatedAtDate = props.latestPost[0].createdAt;    
+      let hours = moment().diff(moment(latestPostCreatedAtDate), 'hours');
+
+      if (hours <= 24) {
+        result = true
+      }
+    };
+
+    return result
   }
 
-  const handleStatusButtonWhenUserHasLoggedIn = (currentUser) => {
+  const handleStatusButtonOnClick = (currentUser) => {
+    handlePost(props.currentUser).then((response) => {
+      const newPost = response.data;
+      props.savePostDataToStore(newPost);
+      props.addNewPostToAllPostStore(newPost)
+    })
+  };
+
+  const handleStatusButtonWhenUserHasLoggedIn = (currentUser) => {  
+    
     if (props.currentUser === null) {
       return (
         <button className={styles.button}> Click me to signup/login </button>
       )
     } else {
+
       return (
-        <button className={styles.button} onClick={handleStatusButtonOnClick}> Click me to log your fight against COVID-19! </button>
+        <div>
+          <button className={styles.button} disabled={handleDisableOnStatusButton()} onClick={handleStatusButtonOnClick}> Click me to log your fight against COVID-19! </button>
+        </div>
       )
     }
   };
@@ -44,13 +68,15 @@ const LogStatusButton = (props) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     togglePopUpOnLogin: () => dispatch(togglePopUpOnLogin()),
-    savePostDataToStore: (postData) => dispatch(savePostDataToStore(postData))
+    savePostDataToStore: (postData) => dispatch(savePostDataToStore(postData)),
+    addNewPostToAllPostStore: (newPost) => dispatch(addNewPostToAllPostStore(newPost))
   };
 };
 
 function mapStateToProps(state) {
   return {
-    currentUser: state.userReducer.currentUser
+    currentUser: state.userReducer.currentUser,
+    latestPost: state.postReducer.latestPost
   };
 };
 
