@@ -1,0 +1,51 @@
+@import './../main.scss';
+
+header {
+  height: 80px;
+  width: 100%;
+
+  @include phone {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: $color-dark-yellow;
+		height: 6rem;
+		opacity: .9;
+  }
+  .innercontainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+
+    @include phone {
+      height: 80px;
+      justify-content: center;
+    }
+    .logo {
+      
+      @include phone {
+        display: none;
+      }
+    }
+    .navigation {
+      nav {
+        display: flex;
+        align-items: center;
+       p { 
+        font-size: 1.6rem;
+        color: $color-text-gray-800;
+
+       }
+       a {
+        margin-left: .8rem;
+        font-size: 1.6rem;
+        text-decoration: none;
+        color: #FA1FE4;
+       }
+      }
+    }
+  }
+};
