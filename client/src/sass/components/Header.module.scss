@@ -38,33 +38,49 @@ header {
       nav {
         display: flex;
         align-items: center;
-
-        button {
-          font-size: 1.6rem;
-          text-decoration: none;
-          font-weight: 500;
-          margin: 0 .8rem;
-          border: solid 2px $color-dark-navyBlue;
-          background: none;
-          border-radius: 5px;
-          padding: .3rem 1.8rem;
-          cursor: pointer;
-
-          &:nth-child(1) {
-            color: $color-dark-yellow;
-            background: $color-dark-navyBlue;
+          a {
+            text-decoration: none;
+            font-size: 1.6rem;
+            border: solid 1px $color-dark-navyBlue;
             border-radius: 5px;
-            padding: .3rem 1.8rem;
-            border: solid 2px $color-dark-navyBlue;
-          }
-          
-          &:nth-child(2) {
-            border: solid 2px $color-dark-navyBlue;
-            border-radius: 5px;
-            padding: .3rem 1.6rem;
-            margin-right: 0;
-          }
+            padding: .8rem 1.6rem;
+            box-shadow: $shadow-lg;
+            margin-right: 1.6rem;
+            &:active {
+              box-shadow: none;
+            }
+            &:nth-child(2) {
+              margin-right: 0;
+              background-color: $color-dark-navyBlue;
+              color: $color-dark-yellow;
+            }
         }
+        // button {
+        //   font-size: 1.6rem;
+        //   text-decoration: none;
+        //   font-weight: 500;
+        //   margin: 0 .8rem;
+        //   border: solid 2px $color-dark-navyBlue;
+        //   background: none;
+        //   border-radius: 5px;
+        //   padding: .3rem 1.8rem;
+        //   cursor: pointer;
+
+        //   &:nth-child(1) {
+        //     color: $color-dark-yellow;
+        //     background: $color-dark-navyBlue;
+        //     border-radius: 5px;
+        //     padding: .3rem 1.8rem;
+        //     border: solid 2px $color-dark-navyBlue;
+        //   }
+          
+        //   &:nth-child(2) {
+        //     border: solid 2px $color-dark-navyBlue;
+        //     border-radius: 5px;
+        //     padding: .3rem 1.6rem;
+        //     margin-right: 0;
+        //   }
+        // }
       }
     }
   }

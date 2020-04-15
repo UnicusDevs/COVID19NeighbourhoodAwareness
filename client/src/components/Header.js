@@ -59,8 +59,10 @@ const Header = (props) => {
               </div>
               <div className={styles.navigation}>
                 <nav>
-                  <button onClick={handleTogglePopUpOnLogin}>Log in</button>
-                  <button onClick={handleTogglePopUpOnSignUp}>Sign up</button>
+                  {/* <button onClick={handleTogglePopUpOnLogin}>Log in</button>
+                  <button onClick={handleTogglePopUpOnSignUp}>Sign up</button> */}
+                  <Link to={"#"}>Log in</Link>
+                  <Link to={"#"}>Sign up</Link>
                 </nav>
               </div>
             </div>
