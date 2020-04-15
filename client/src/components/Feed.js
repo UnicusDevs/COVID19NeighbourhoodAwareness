@@ -30,6 +30,7 @@ const Feed = (props) => {
   } = useInfiniteScroll()
 
 
+  // Incomplete infinite scroll hook using intersection observer api
   const observer = useRef()
   const lastPostElementRef = useCallback(node => {
     if (loading) return
@@ -43,6 +44,8 @@ const Feed = (props) => {
     if (node) observer.current.observe(node)
 
   }, [loading, hasMore, page, posts]) 
+
+
 
   useEffect(() => {
     async function fetchAPI() {
@@ -58,6 +61,8 @@ const Feed = (props) => {
     fetchAPI()
   }, []);
 
+
+  // Incomplete fetching of paginated results hook
   // useEffect(() => {
   //   async function fetchAPI() {
   //     await axiosAPI.get('/post/limit?page=1&limit=5').then(async (response) => {

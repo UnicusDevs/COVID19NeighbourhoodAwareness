@@ -51,7 +51,7 @@ async function getPaginatedPosts(req, res) {
     }
 }
 
-
+// Alternative implementation of the above
 // async function getPaginatedPosts(req, res) {
 //   try {
 //     const perPage = req.query.perPage

@@ -9,11 +9,6 @@ const useInfiniteScroll = (pageNumber) => {
   const [hasMore, setHasMore] = useState(false)
 	
 
-	// useEffect(() => {
-	// 	setPage()
-	// })
-
-
 	// every time pageNumber changes, do this
 	useEffect(() => {
 		//every time we make a request, set loading to true
