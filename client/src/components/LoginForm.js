@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form';
 import axiosAPI from "../api/baseURL";
 
 // CSS
-import styles from './../sass/components/SignupForm.module.scss';
+import styles from './../sass/components/LoginForm.module.scss';
 
 // Redux 
 import {connect} from 'react-redux';
@@ -18,8 +18,6 @@ const cookies = new Cookies();
 
 
 let LoginForm = props => {
-
-  const date = new Date();
 
   // To Do: Add token on login stage
   // The below is a axios post to create new user then log them in. 

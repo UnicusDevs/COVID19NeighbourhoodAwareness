@@ -1,7 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import moment from 'moment';
+
+// Redux 
+import {connect} from 'react-redux';
+
 // API
-import axiosAPI from './../api/baseURL';
+import {addClapsToPost} from './../api/handlePost';
+import {getUserData} from './../api/getUserData';
 
 // SASS
 import styles from './../sass/components/LogStatus.module.scss';
@@ -12,16 +17,18 @@ const LogStatus = (props) => {
   const [lastName, setLastName] = useState("");
   const [age, setAge] = useState(0);
   const [createdAt, setCreatedAt] = useState("");
+  const [count, setCount] = useState(0)
 
   useEffect(() => {
     async function fetchAPI() {
       const id = props.user;
-      await axiosAPI.get(`/user/${id}`).then((response) => {
+      await getUserData(id).then((response) => {
         const {FirstName, LastName, Age } = response.data;
         
         setFirstName(FirstName);
         setLastName(LastName);
         setAge(Age);
+        setCount(props.claps)
 
       }).catch((err) => {
         console.log(err)
@@ -29,8 +36,14 @@ const LogStatus = (props) => {
     };
 
     fetchAPI()
-  }, []);
-  
+  }, [props.user, props.claps ]);
+ 
+  const handleClaps = (event) => {
+    const postId = props.postId;
+    setCount(count + 1)
+    return addClapsToPost(postId);
+  };
+
   return (
     <div className={styles.logStatus}>
       {/* <div className={styles.imageContainer} >
@@ -47,10 +60,16 @@ const LogStatus = (props) => {
         </div>   
       </div>
       <div className={styles.claps}>
-        <li> <span role="img">👏</span> + {props.claps} </li>
+        <li onClick={handleClaps}><span role="img">👏</span> + {count} </li>
       </div>
     </div>
   );
 };
 
-export default LogStatus;
+function mapStateToProps(state) {
+  return {
+    currentUser: state.userReducer.currentUser
+  };
+};
+
+export default connect(mapStateToProps)(LogStatus);

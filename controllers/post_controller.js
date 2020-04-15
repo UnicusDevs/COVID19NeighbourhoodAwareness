@@ -3,7 +3,7 @@ const User = require('./../models/User');
 
 // Below function gets all the posts
 async function getAllPosts(req, res) {
-  Post.find().then(posts => res.json(posts))
+  Post.find().sort({ createdAt: -1 }).then(posts => res.json(posts))
 };
 
 // Below function gets a specified number of posts
@@ -110,9 +110,26 @@ async function createNewPost(req, res) {
 
 // The below function gets all the posts that match the user suburb.
 async function getPostBasedOnSuburb(req, res) { 
-
   const user = await User.findOne({ email: req.body.User })
   Post.find({"Suburb": user.Suburb}).then(post => res.json(post))
 };
 
+<<<<<<< HEAD
 module.exports = { getAllPosts, getPaginatedPosts, createNewPost, getPostBasedOnSuburb };
+=======
+async function getLatestPost(req, res) {
+  const post = Post.find({User: req.params.user_id}).sort({createdAt: -1}).limit(1).then(post => res.json(post))
+}
+
+async function increaseClap(req, res) {
+  try {
+    const post = await Post.findOneAndUpdate({ _id: req.params.post_id }, { $inc: { Claps: + 1 } })
+  } catch (err) {
+    res.json({
+      message: err
+    })
+  }
+}
+
+module.exports = { getAllPosts, createNewPost, getPostBasedOnSuburb, increaseClap, getLatestPost };
+>>>>>>> a0711c5c5ad0aff5e8a69684fa7bb3c63452d21e

@@ -105,22 +105,25 @@ async function getUserProfileStuff(user, currentUser = false) {
 
 // Get current user
 async function getCurrentUser(req, res) {
+  if (req.user === undefined) {
+    console.log("No user found")
+  } else if (req.user) {
 
-  const {id, FirstName, LastName, Suburb, EmailAddress, Age } = req.user
-  const userData = {
-    id: id,
-    FirstName: FirstName,
-    LastName: LastName,
-    Suburb: Suburb,
-    EmailAddress: EmailAddress, 
-    Age: Age
-  };
+    const { id, FirstName, LastName, Suburb, EmailAddress, Age } = req.user;
 
-  if (userData) {
+    const userData = {
+      id: id,
+      FirstName: FirstName,
+      LastName: LastName,
+      Suburb: Suburb,
+      EmailAddress: EmailAddress,
+      Age: Age
+    };
     res.json({ ...userData, success: req.success });
-  }
-  else {
-    res.send();
+  } else  {
+    res.json({
+      message: err
+    });
   }
 };
 
