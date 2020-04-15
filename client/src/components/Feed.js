@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import React,  {useEffect, useState, useRef, useCallback } from 'react';
-=======
 import React from 'react';
->>>>>>> a0711c5c5ad0aff5e8a69684fa7bb3c63452d21e
 
 // Redux 
 import {connect} from 'react-redux';

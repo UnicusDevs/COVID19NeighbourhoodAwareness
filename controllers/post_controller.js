@@ -8,52 +8,55 @@ async function getAllPosts(req, res) {
 
 // Below function gets a specified number of posts
 async function getPaginatedPosts(req, res) {
-  const posts = await Post.find()
-  console.log(posts)
-  try {
-    const page = parseInt(req.query.page)
-    
-    const limit = parseInt(req.query.limit)
-
-  const posts = Post.find();
+  // console.log(req)
+  // const posts = await Post.find()
   
-  const page = req.params.page_count;
-  const limit = req.params.limit_count;
+  const page = parseInt(req.query.page)
+  const limit = parseInt(req.query.limit)
+  
 
-  const startIndex = (page - 1) * limit
-  const endIndex = page * limit
+  
+  // const page = req.params.page_count;
+  // const limit = req.params.limit_count;
 
-    // Return current page and limit
-    results.page = {
-      page: page,
-      limit: limit,
-    }  
+  // const startIndex = (page - 1) * limit
+  // const endIndex = page * limit
 
-    // Check if there is a next page
-    if (endIndex < posts.length) {
-      // Set next page
-      results.next = {
-        page: page + 1,
-        limit: limit
-      }
-    }
+  // Return current page and limit
+  // results.page = {
+  //   page: page,
+  //   limit: limit,
+  // }  
 
-    // Check if there is a previous page
-    if (startIndex > 0) {
-      // Set previous page
-      results.previous = {
-        page: page - 1,
-        limit: limit
-      }
-    }
+  // // Check if there is a next page
+  // if (endIndex < posts.length) {
+  //   // Set next page
+  //   results.next = {
+  //     page: page + 1,
+  //     limit: limit
+  //   }
+  // }
 
-    results.results = posts.slice(startIndex, endIndex)
-    res.json(results)
+  // // Check if there is a previous page
+  // if (startIndex > 0) {
+  //   // Set previous page
+  //   results.previous = {
+  //     page: page - 1,
+  //     limit: limit
+  //   }
+  // }
+
+  // results.results = posts.slice(startIndex, endIndex)
+  try {
+    const posts = Post.find().limit(limit).then(posts => res.json(posts));
+    // res.json({
+    //   posts: posts
+    // })
   } catch (err) {
-      res.json({
-        message: err
-      })
-    }
+    res.json({  
+      message: err
+    })
+  }
 }
 
 // Alternative implementation of the above
@@ -114,9 +117,6 @@ async function getPostBasedOnSuburb(req, res) {
   Post.find({"Suburb": user.Suburb}).then(post => res.json(post))
 };
 
-<<<<<<< HEAD
-module.exports = { getAllPosts, getPaginatedPosts, createNewPost, getPostBasedOnSuburb };
-=======
 async function getLatestPost(req, res) {
   const post = Post.find({User: req.params.user_id}).sort({createdAt: -1}).limit(1).then(post => res.json(post))
 }
@@ -131,5 +131,4 @@ async function increaseClap(req, res) {
   }
 }
 
-module.exports = { getAllPosts, createNewPost, getPostBasedOnSuburb, increaseClap, getLatestPost };
->>>>>>> a0711c5c5ad0aff5e8a69684fa7bb3c63452d21e
+module.exports = { getAllPosts, getPaginatedPosts, createNewPost, getPostBasedOnSuburb, increaseClap, getLatestPost };
