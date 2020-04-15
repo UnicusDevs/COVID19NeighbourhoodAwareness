@@ -12,8 +12,15 @@ import useInfiniteScroll from './useInfiniteScroll';
 import styles from './../sass/components/Feed.module.scss';
 
 const Feed = (props) => {
+
  
-  const handleAllPosts = () => {
+  const onScroll = (event) => {
+    let element = event.target
+    if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+      console.log("HELLO THERE")
+    }
+  } 
+   const handleAllPosts = () => {
     if (props.allPosts === null || undefined) {
       return (
         <div>
@@ -50,7 +57,7 @@ const Feed = (props) => {
   };
 
   return (
-    <div className={styles.feed}>
+    <div className={styles.feed} onScroll={onScroll}>
       <div className={styles.logFeedContainer}>
         <LogStatusButton />
         {handleAllPosts()}
