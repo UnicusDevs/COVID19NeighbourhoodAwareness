@@ -10,7 +10,7 @@ const LoginPageHeader = () => {
 			<div className={styles.container}>
 				<div className={styles.innercontainer}>
 					<div className={styles.logo}>
-						<Link to={"/"}></Link>
+						<Link to={"/"}>Back</Link>
 					</div>
 					<div className={styles.navigation}>
 						<nav>
