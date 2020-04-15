@@ -67,34 +67,17 @@ let SignUpForm = props => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form} >
       <div className={styles.signUpFormContainer}>
-        {/* <div className={styles.inputContainer}>
+        <div className={styles.inputContainer}>
           <div>
-            <label> Profile Image </label>
+            <label className={styles.fileUploadLabel} for="file"> Profile Image </label>
           </div>
 
           <input
             name="fileUpload"
-            placeholder="Josephine"
             type="file"
+            id="file"
             ref={register({ required: true, minLength: 2 })}
           />
-
-          {errors.firstName && errors.firstName.types.required && (<p>First Name required</p>)}
-          {errors.firstName && errors.firstName.types.minLength && (<p>Name must be greater than two letters</p>)}
-        </div> */}
-        <div className={styles.inputContainer}>
-          <div>
-            <label> First Name </label>
-          </div>
-
-          <input
-            name="displayImageUpload"
-            label="Display Image"
-            type="file"
-          />
-
-          {/* {errors.firstName && errors.firstName.types.required && (<p>First Name required</p>)} */}
-          {/* {errors.firstName && errors.firstName.types.minLength && (<p>Name must be greater than two letters</p>)} */}
         </div>
         <div className={styles.inputContainer}>
           <div>
