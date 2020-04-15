@@ -1,9 +1,7 @@
 @import './../main.scss';
 
 .signUpPageContainer {
-  display: grid;
-  grid-template-columns: auto auto;
-  height: calc(100vh - 1px);
+
 
   .leftSideContainer {
     padding-top: 1rem;
@@ -12,44 +10,6 @@
     min-width: 100px;
     max-width: 282px;
     align-content: center;
-
-    ol {
-      margin-top: 10rem;
-      display: grid;
-      grid-template-rows: 1fr 1fr;
-      grid-template-columns: auto auto;
-      z-index: 10;
-      position: relative;
-    }
-
-    li {
-      font-size: 10rem;
-      font-weight: bold;
-    }
-
-    li:first-child {
-      margin-left: 5rem;
-    }
-
-    li:nth-child(2) {
-      grid-column: 2;
-      grid-row: 2;
-    }
-
-    li:nth-child(3) {
-      grid-column: 2;
-      grid-row: 3;
-    }
-
-    li:last-child {
-      grid-column: 1;
-      grid-row: 4;
-      margin-left: 5rem;
-    }
-
-    span {
-      color: $color-dark-yellow;
-    }
   }
 
   .rightSideContainer {
@@ -60,6 +20,5 @@
     justify-content: center;
   }
 }
-
 
 

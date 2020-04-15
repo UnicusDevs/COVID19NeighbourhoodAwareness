@@ -76,7 +76,7 @@ let LoginForm = props => {
         </div>
 
         <div className={styles.inputContainer}>
-          <div>
+          <div className={styles.passWordLabel}>
             <label> Password </label>
           </div>
 

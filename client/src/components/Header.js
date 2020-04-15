@@ -61,8 +61,8 @@ const Header = (props) => {
                 <nav>
                   {/* <button onClick={handleTogglePopUpOnLogin}>Log in</button>
                   <button onClick={handleTogglePopUpOnSignUp}>Sign up</button> */}
-                  <Link to={"#"}>Log in</Link>
-                  <Link to={"#"}>Sign up</Link>
+                  <Link to={"/login"}>Log in</Link>
+                  <Link to={"/signup"}>Sign up</Link>
                 </nav>
               </div>
             </div>

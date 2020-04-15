@@ -1,11 +1,12 @@
 @import './../main.scss';
 
-form {
+.form {
   align-content: center;
   align-items: center;
   display: flex;
   flex-direction: column;
   margin-top: 12rem;
+  border: solid 1px red;
 }
 
 .signUpFormContainer {
@@ -15,7 +16,7 @@ form {
   flex-direction: column;
   border-radius: 25px;
 
-  padding: 6rem 6.8rem 8rem 6.8rem;
+  padding: 4.8rem 4.2rem 4.8rem 4.2rem;
   background: $gradient-purple-opaque;
   box-shadow: $shadow-lg;
 
@@ -38,7 +39,7 @@ form {
 
   button {
     max-width: 100%;
-    width: 240px;
+    // width: 240px;
     font-size: 1.6rem;
     text-decoration: none;
     font-weight: 500;
@@ -46,9 +47,12 @@ form {
     border: solid 2px $color-dark-navyBlue;
     background: none;
     border-radius: 5px;
-    padding: .6rem 9rem;
+    padding: .6rem 3rem;
     cursor: pointer;
     box-shadow: $shadow-lg;
+    @include phone {
+      padding: 1rem 17.5rem;
+    }
   }
 
   button[type=submit] {
@@ -66,7 +70,7 @@ form {
     border: none;
     border-radius: 5px;
     height: 34px;
-    width: 240px;
+    width: 320px;
     padding-left: 1rem;
     margin-top: 1rem;
     opacity: 1;
@@ -81,6 +85,11 @@ form {
     font-weight: bold;
     font-size: 13px;
     color: $color-text-gray-800;
+  }
+
+  span {
+    margin-left: 14rem;
+    color: #FA1FE4;
   }
 }
 

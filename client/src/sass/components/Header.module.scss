@@ -39,6 +39,7 @@ header {
         display: flex;
         align-items: center;
           a {
+            color: $color-dark-navyBlue;
             text-decoration: none;
             font-size: 1.6rem;
             border: solid 1px $color-dark-navyBlue;
@@ -48,11 +49,21 @@ header {
             margin-right: 1.6rem;
             &:active {
               box-shadow: none;
+              background-color: #E1AF06;
+              border: none;
+            }
+            &:hover{
+              
             }
             &:nth-child(2) {
               margin-right: 0;
               background-color: $color-dark-navyBlue;
               color: $color-dark-yellow;
+              &:active {
+                border: none;
+                background: #E1AF06;
+                color: $color-dark-navyBlue;
+              }
             }
         }
         // button {

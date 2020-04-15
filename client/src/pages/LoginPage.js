@@ -12,13 +12,13 @@ import styles from './../sass/pages/LoginPage.module.scss';
 const LoginPage = () => {
 
   return (
-    <div className={styles.logInBody}>
+    <>
       <LoginPageHeader />
       <div className={styles.container}>
         <LoginForm />
+        {/* <div>Forgot password?</div> */}
       </div>
-      
-    </div>
+    </>
   )
 };
 

@@ -32,6 +32,11 @@ header {
         border-radius: 5px;
         padding: .8rem 1.6rem;
         box-shadow: $shadow-lg;
+        &:active {
+          box-shadow: none;
+          background-color: #E1AF06;
+          border: none;
+        }
       }
       @include phone {
         display: none;
