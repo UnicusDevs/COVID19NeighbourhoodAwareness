@@ -11,7 +11,7 @@ import { saveLatestPostDataToStore, saveAllPostsDataToStore } from './../redux/a
 import styles from '../sass/components/Header.module.scss';
 
 // API Calls
-import { getLatestPost, getAllPosts } from './../api/handlePost';
+import { getLatestPost, getAllPosts, getLimitedPosts } from './../api/handlePost';
 import { getCurrentUser } from './../api/getUserData';
 import jwt from 'jsonwebtoken'
 
@@ -37,11 +37,19 @@ const Header = (props) => {
       props.setCurrentUser(null);
     })
 
+    // getAllPosts().then(async (response) => {
+    //   const allPostsData = response.data;
+    //   await props.saveAllPostsDataToStore(allPostsData)
+    // }).catch((err) => {
+    //   props.saveAllPostsDataToStore(null)
+    // })
+
     getAllPosts().then(async (response) => {
-      const allPostsData = response.data;
-      await props.saveAllPostsDataToStore(allPostsData)
+      const posts = response.data;
+
+      await props.saveAllPostsDataToStore(posts);
     }).catch((err) => {
-      props.saveAllPostsDataToStore(null)
+      props.saveAllPostsDataToStore([]);
     })
   };
 

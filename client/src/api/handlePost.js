@@ -12,12 +12,21 @@ export const getAllPosts = () => {
   return axiosAPI.get('/post')
 };
 
-export const getLimitedPosts = () => {
-  
-  let limit = 5;
+export const getLimitedPosts = (pageNumber) => {
 
-  return axiosAPI.get(`/post/limit?limit=${limit}`)
-}
+  let limit = 5;
+  let page = pageNumber;
+
+  return axiosAPI.get(`/post/limit?limit=${limit}&page=${page}`)
+};
+
+// export const getLimitedPosts = (id) => {
+//   let limit = 5;
+//   let lastValue = id;
+//   console.log(id)
+
+//   return axiosAPI.get(`/post/limit?limit=${limit}&lastValue=${lastValue}`)
+// }
 export const getLatestPost = (props, response) => {
   return axiosAPI.get(`/post/latest/${props}`);
 };

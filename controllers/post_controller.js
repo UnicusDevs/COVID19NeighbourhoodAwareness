@@ -3,52 +3,44 @@ const User = require('./../models/User');
 
 // Below function gets all the posts
 async function getAllPosts(req, res) {
-  Post.find().sort({ createdAt: -1 }).then(posts => res.json(posts))
+  // Post.find().sort({ createdAt: -1 }).then(posts => res.json(posts))
+  Post.find().sort({ createdAt: -1 }).limit(6).then(posts => res.json(posts))
 };
 
 // Below function gets a specified number of posts
 async function getPaginatedPosts(req, res) {
-  // console.log(req)
-  // const posts = await Post.find()
+
+  let page, limit, skip, lastPage, query;
   
-  const page = parseInt(req.query.page)
-  const limit = parseInt(req.query.limit)
-  
+  page = parseInt(req.query.page)
+  limit = parseInt(req.query.limit)
+  skip = (page) * limit;
+  lastPage = page * limit;
+  counts = await Post.countDocuments()
 
-  
-  // const page = req.params.page_count;
-  // const limit = req.params.limit_count;
+  const paginate = {}
 
-  // const startIndex = (page - 1) * limit
-  // const endIndex = page * limit
+  if (skip > 0) {
+    paginate.prev = {
+      page: page - 1,
+      limit: limit
+    }
+  }
 
-  // Return current page and limit
-  // results.page = {
-  //   page: page,
-  //   limit: limit,
-  // }  
-
-  // // Check if there is a next page
-  // if (endIndex < posts.length) {
-  //   // Set next page
-  //   results.next = {
-  //     page: page + 1,
-  //     limit: limit
-  //   }
-  // }
-
-  // // Check if there is a previous page
-  // if (startIndex > 0) {
-  //   // Set previous page
-  //   results.previous = {
-  //     page: page - 1,
-  //     limit: limit
-  //   }
-  // }
-
-  // results.results = posts.slice(startIndex, endIndex)
+  //For next page
+  if (lastPage < counts) {
+    paginate.next = {
+      page: page + 1,
+      limit: limit
+    }
+  }
   try {
-    const posts = Post.find().limit(limit).then(posts => res.json(posts));
+    // const posts = await Post.findOne({ _id: lastValue}).limit(limit);
+    const posts = await Post.find()
+      .sort({createdAt: (-1)})
+      .skip(skip).limit(limit)
+      .then(posts => res.json(posts));
+
     // res.json({
     //   posts: posts
     // })
