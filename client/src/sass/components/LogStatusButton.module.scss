@@ -22,3 +22,8 @@
     padding: 0.8rem;
   }
 }
+
+.button:disabled {
+  background: #455055;
+  cursor: not-allowed;
+}
