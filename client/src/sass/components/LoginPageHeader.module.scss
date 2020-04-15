@@ -25,7 +25,6 @@ header {
       justify-content: center;
     }
     .logo {
-      
       @include phone {
         display: none;
       }

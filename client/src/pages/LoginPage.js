@@ -17,6 +17,7 @@ const LoginPage = () => {
       <div className={styles.container}>
         <LoginForm />
       </div>
+      
     </div>
   )
 };
