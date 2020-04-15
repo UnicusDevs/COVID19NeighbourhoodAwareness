@@ -1,17 +1,19 @@
 @import './../main.scss';
 
-form {
-  align-content: center;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-}
+// form {
+//   align-content: center;
+//   align-items: center;
+//   display: flex;
+//   flex-direction: column;
+// }
 
 .signUpFormContainer {
   display: grid;
   align-content: center;
-  grid-template-columns: 0.5fr 0.5fr;
-  width: 42%;
+  align-items: center;
+  text-align: center;
+  grid-template-columns: 0.2fr 0.2fr;
+  width: 100%;
 
   button {
     width: 80px;
