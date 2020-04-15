@@ -7,7 +7,13 @@ async function getAllPosts(req, res) {
 };
 
 // Below function gets a specified number of posts
-async function getPaginatedPosts(req, res, next) {
+async function getPaginatedPosts(req, res) {
+  const posts = await Post.find()
+  console.log(posts)
+  try {
+    const page = parseInt(req.query.page)
+    
+    const limit = parseInt(req.query.limit)
 
   const posts = Post.find();
   
@@ -17,30 +23,64 @@ async function getPaginatedPosts(req, res, next) {
   const startIndex = (page - 1) * limit
   const endIndex = page * limit
 
-  const results = {}
+    // Return current page and limit
+    results.page = {
+      page: page,
+      limit: limit,
+    }  
 
-  console.log(posts)
-  if (endIndex < await posts.countDocuments().exec()) {
-    results.next = {
-      page: page + 1,
-      limit: limit
+    // Check if there is a next page
+    if (endIndex < posts.length) {
+      // Set next page
+      results.next = {
+        page: page + 1,
+        limit: limit
+      }
     }
-  }
-  
-  if (startIndex > 0) {
-    results.previous = {
-      page: page - 1,
-      limit: limit
+
+    // Check if there is a previous page
+    if (startIndex > 0) {
+      // Set previous page
+      results.previous = {
+        page: page - 1,
+        limit: limit
+      }
     }
-  }
-  try {
-    results.results = await Post.find().limit(limit).skip(startIndex).exec()
-    res.getPaginatedPosts = results
-    next()
+
+    results.results = posts.slice(startIndex, endIndex)
+    res.json(results)
   } catch (err) {
-    res.status(500).json({ message: err.message })
-  }
+      res.json({
+        message: err
+      })
+    }
 }
+
+// Alternative implementation of the above
+// async function getPaginatedPosts(req, res) {
+//   try {
+//     const perPage = req.query.perPage
+//       ? parseInt(req.query.perPage)
+//       : 5;
+
+//     const page = req.query.page
+//       ? parseInt(req.query.page)
+//       : 1;
+
+//     const posts = await Post.find()
+//       .skip ((page - 1 ) * perPage) 
+//       .limit(perPage)
+//       res.json({
+//         posts, 
+//         meta: {
+//           page,
+//           perPage
+//         }}
+//       )
+//     } catch (err) {
+//     next(err);
+//   }
+// }
 
 
 
