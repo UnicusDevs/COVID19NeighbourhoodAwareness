@@ -14,7 +14,7 @@ export const getAllPosts = () => {
 
 export const getLimitedPosts = (pageNumber) => {
 
-  let limit = 10;
+  let limit = 15;
   let page = pageNumber;
 
   return axiosAPI.get(`/post/limit?limit=${limit}&page=${page}`)

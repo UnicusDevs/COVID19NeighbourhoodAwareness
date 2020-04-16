@@ -29,6 +29,7 @@ $shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.50);
 
 html {
   font-size: 62.5%; // 1rem = 10px, 10px/16px = 62.5%
+  overflow-y: hidden;
 
   @include xl-desk {
     font-size: 68.75%;
