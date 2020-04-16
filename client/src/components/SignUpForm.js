@@ -1,5 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Cookies from 'universal-cookie';
+
+// Google API
+import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 
 // React hook
 import { useForm } from 'react-hook-form';
@@ -18,6 +21,11 @@ import styles from './../sass/components/SignupForm.module.scss';
 const cookies = new Cookies();
 
 let SignUpForm = props => {
+
+  const [address, setAddress] = useState("");
+
+  const handleSelect = async value => {console.log(value)}
+
 
   // To Do: Add token on login stage
   // The below is a axios post to create new user then log them in. 
@@ -134,12 +142,27 @@ let SignUpForm = props => {
             <label> Suburb </label>
           </div>
 
-          <input
+          <GooglePlacesAutocomplete
+            
+            autocompletionRequest={{
+              componentRestrictions: {
+                country: ['au'],
+              }
+            }}
+
+            onSelect={({description}) => {
+              console.log(description)
+            }}
+          > 
+
+          <input 
             name="suburb"
-            placeholder="Richmond"
             type="text"
+            placeholder="Richmond"
             ref={register({ required: true, minLength: 2 })}
           />
+          
+          </GooglePlacesAutocomplete>
 
           {errors.suburb && errors.suburb.types.required && (<p>Suburb required</p>)}
         </div>
