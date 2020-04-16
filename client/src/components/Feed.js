@@ -1,7 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
+
+// API Calls
+import { getLimitedPosts } from './../api/handlePost';
 
 // Redux 
 import {connect} from 'react-redux';
+import { addNewPostToAllPostStore } from './../redux/actions/postActions';
 
 // Components
 import LogStatus from './LogStatus';
@@ -11,8 +15,23 @@ import LogStatusButton from './LogStatusButton';
 import styles from './../sass/components/Feed.module.scss';
 
 const Feed = (props) => {
+
+  const [pageNumber, setPageNumber] = useState(1);
  
-  const handleAllPosts = () => {
+  const onScroll = async (event) => {
+    let element = event.target
+    if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+      setPageNumber(pageNumber + 1)
+      await getLimitedPosts(pageNumber).then(async (response) => {
+        const newPosts = response.data;
+        props.addNewPostToAllPostStore(newPosts)
+      }).catch((err) => {
+        console.log(err)
+      })
+    }
+  } 
+  
+   const handleAllPosts = () => {
     if (props.allPosts === null || undefined) {
       return (
         <div>
@@ -49,13 +68,20 @@ const Feed = (props) => {
   };
 
   return (
-    <div className={styles.feed}>
+    <div className={styles.feed} onScroll={onScroll} >
       <div className={styles.logFeedContainer}>
         <LogStatusButton />
         {handleAllPosts()}
       </div>
     </div>
   );
+};
+
+// Below calls dispatch with redux store. 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addNewPostToAllPostStore: (newPost) => dispatch(addNewPostToAllPostStore(newPost))
+  }
 };
 
 function mapStateToProps(state) {
@@ -65,4 +91,4 @@ function mapStateToProps(state) {
   }
 };
 
-export default connect(mapStateToProps, null)(Feed);
+export default connect(mapStateToProps, mapDispatchToProps)(Feed);

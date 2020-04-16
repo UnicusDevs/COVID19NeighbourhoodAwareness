@@ -8,6 +8,8 @@ import LoginModule from './../components/LoginModule';
 // Redux
 import { connect } from "react-redux";
 
+// CSS
+import styles from './../sass/pages/HomePage.module.scss';
 
 const HomePage = (props) => {
 
@@ -29,18 +31,19 @@ const HomePage = (props) => {
     } else {
       return (
         <div>
-          <About /> 
+          <About/> 
         </div>
       )
     }
   };
 
   return (
-    <div>
+    <div className={styles.mainContainer}>
       {handlePopUp(props.displayPopUpLogin, props.displayPopUpSignUp)} 
     </div>
   )
 };
+
 
 // Connects to redux store so don't need to import.
 function mapStateToProps(state) {
@@ -50,5 +53,5 @@ function mapStateToProps(state) {
   };
 };
 
-export default connect(mapStateToProps)(HomePage);
+export default connect(mapStateToProps, null)(HomePage);
 

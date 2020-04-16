@@ -38,10 +38,10 @@ const Header = (props) => {
     })
 
     getAllPosts().then(async (response) => {
-      const allPostsData = response.data;
-      await props.saveAllPostsDataToStore(allPostsData)
+      const posts = response.data;
+      await props.saveAllPostsDataToStore(posts);
     }).catch((err) => {
-      props.saveAllPostsDataToStore(null)
+      props.saveAllPostsDataToStore([]);
     })
   };
 

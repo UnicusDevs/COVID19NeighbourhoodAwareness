@@ -3,6 +3,7 @@
 header {
   height: 80px;
   width: 100%;
+  overflow: hidden;
 
   @include phone {
     display: flex;
@@ -13,6 +14,7 @@ header {
     background: $color-dark-yellow;
     height: 6rem;
   }
+
   .innercontainer {
     display: flex;
     align-items: center;
@@ -24,6 +26,7 @@ header {
       justify-content: center;
     }
     .logo {
+      
       a {
         font-size: 2.8rem;
         font-weight: 700;
@@ -34,6 +37,7 @@ header {
       }
     }
     .navigation {
+      
       nav {
         display: flex;
         align-items: center;
@@ -68,3 +72,7 @@ header {
     }
   }
 };
+
+.navBarHidden {
+  display: none;
+}
