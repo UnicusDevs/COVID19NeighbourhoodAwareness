@@ -71,8 +71,8 @@ let LoginForm = props => {
             ref={register({ required: true, pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/  })} 
           />
 
-          {errors.emailAddress && errors.emailAddress.types.required && (<p>Email required</p>)}
-          {errors.emailAddress && errors.emailAddress.types.pattern && (<p>Not a valid email address</p>)}
+          {errors.emailAddress && errors.emailAddress.types.required && (<h5>Email required</h5>)}
+          {errors.emailAddress && errors.emailAddress.types.pattern && (<h5>Not a valid email address</h5>)}
         </div>
 
         <div className={styles.inputContainer}>
@@ -87,7 +87,7 @@ let LoginForm = props => {
             ref={register({ required: true })}
           />
 
-          {errors.password && errors.password.types.required && (<p>Password required</p>)}
+          {errors.password && errors.password.types.required && (<h5>Password required</h5>)}
         </div>
 
         <div className={styles.buttons}>

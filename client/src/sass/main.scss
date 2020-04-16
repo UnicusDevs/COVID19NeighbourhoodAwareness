@@ -10,6 +10,7 @@ $color-dark-yellow: #FFC911;
 $color-dark-navyBlue: #183042;
 $color-black: #151E2E;
 $color-bright-green: #00D6A8;
+$color-bright-pink: #FA1FE4;
 $color-white: #fff;
 $color-text-red: #ED3B3C;
 $color-text-gray-500: #a0aec0;
@@ -21,6 +22,7 @@ $color-border-gray-500: #C4C4C4;
 $gradient-purple-opaque: linear-gradient(123.83deg, rgba(219, 160, 221, 0.64) 8.94%, rgba(221, 160, 221, 0) 101.38%);
 
 // box-shadows
+$shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 $shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.50);
 $shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 
@@ -69,6 +71,12 @@ h2 {
 
 h3 {
   color: $color-dark-navyBlue;
+}
+
+h5 {
+  margin-top: 1rem;
+  color: $color-bright-pink;
+  font-size: 1rem;
 }
 
 p {

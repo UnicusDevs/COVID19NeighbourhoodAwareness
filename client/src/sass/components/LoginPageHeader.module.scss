@@ -32,7 +32,12 @@ header {
         border-radius: 5px;
         padding: .8rem 1.6rem;
         box-shadow: $shadow-lg;
+        &:hover {
+          background-color: #FFDA5E;
+          transition: .2s ease-in-out;   
+          }    
         &:active {
+          background: none;
           box-shadow: none;
           background-color: #E1AF06;
           border: none;
@@ -55,7 +60,7 @@ header {
         margin-left: .8rem;
         font-size: 1.6rem;
         text-decoration: none;
-        color: #FA1FE4;
+        color: $color-bright-pink;
        }
       }
     }

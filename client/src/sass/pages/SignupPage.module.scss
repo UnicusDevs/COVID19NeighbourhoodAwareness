@@ -1,24 +1,4 @@
 @import './../main.scss';
 
-.signUpPageContainer {
-
-
-  .leftSideContainer {
-    padding-top: 1rem;
-    padding-left: 1rem;
-    background: $color-dark-yellow;
-    min-width: 100px;
-    max-width: 282px;
-    align-content: center;
-  }
-
-  .rightSideContainer {
-    background: $color-white;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-  }
-}
 
 

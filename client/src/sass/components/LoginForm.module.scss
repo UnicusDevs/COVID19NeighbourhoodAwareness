@@ -5,8 +5,8 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  margin-top: 12rem;
-  border: solid 1px red;
+  margin-top: 10rem;
+  // border: solid 1px red;
 }
 
 .signUpFormContainer {
@@ -51,7 +51,7 @@
     cursor: pointer;
     box-shadow: $shadow-lg;
     @include phone {
-      padding: 1rem 17.5rem;
+      padding: 1rem 6rem;
     }
   }
 
@@ -69,8 +69,8 @@
     // background: $color-dark-yellow;
     border: none;
     border-radius: 5px;
-    height: 34px;
-    width: 320px;
+    height: 3.4rem;
+    width: 32rem;
     padding-left: 1rem;
     margin-top: 1rem;
     opacity: 1;
@@ -89,7 +89,7 @@
 
   span {
     margin-left: 14rem;
-    color: #FA1FE4;
+    color: $color-bright-pink;
   }
 }
 
