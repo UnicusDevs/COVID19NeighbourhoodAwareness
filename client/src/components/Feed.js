@@ -10,30 +10,30 @@ import { addNewPostToAllPostStore } from './../redux/actions/postActions';
 // Components
 import LogStatus from './LogStatus';
 import LogStatusButton from './LogStatusButton';
-import useInfiniteScroll from './useInfiniteScroll';
 
 // Styles
 import styles from './../sass/components/Feed.module.scss';
 
 const Feed = (props) => {
 
-  const [pageNumber, setPageNumber] = useState(1);
+  // const [pageNumber, setPageNumber] = useState(1);
  
-  const onScroll = async (event) => {
-    let element = event.target
-    if (element.scrollHeight - element.scrollTop === element.clientHeight) {
-      // const id = props.allPosts[props.allPosts.length -1]._id;
+  // const onScroll = async (event) => {
+  //   let element = event.target
+  //   if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+  //     // const id = props.allPosts[props.allPosts.length -1]._id;
     
-      setPageNumber(pageNumber + 1)
-      console.log(pageNumber)
-      await getLimitedPosts(pageNumber).then(async (response) => {
-        const newPosts = response.data;
-        props.addNewPostToAllPostStore(newPosts)
-      }).catch((err) => {
-        console.log(err)
-      })
-    }
-  } 
+  //     setPageNumber(pageNumber + 1)
+  //     console.log(pageNumber)
+  //     await getLimitedPosts(pageNumber).then(async (response) => {
+  //       const newPosts = response.data;
+  //       props.addNewPostToAllPostStore(newPosts)
+  //     }).catch((err) => {
+  //       console.log(err)
+  //     })
+  //   }
+  // } 
+  
    const handleAllPosts = () => {
     if (props.allPosts === null || undefined) {
       return (
@@ -71,7 +71,7 @@ const Feed = (props) => {
   };
 
   return (
-    <div className={styles.feed} onScroll={onScroll}>
+    <div className={styles.feed} >
       <div className={styles.logFeedContainer}>
         <LogStatusButton />
         {handleAllPosts()}

@@ -11,6 +11,7 @@ import SignUpPage from './../pages/SignUpPage';
 import NotFoundPage from './../pages/NotFoundPage';
 
 class AppRouter extends React.Component {
+
   render() {
     return (
       <Router>

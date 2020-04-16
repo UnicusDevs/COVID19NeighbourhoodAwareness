@@ -14,19 +14,13 @@ export const getAllPosts = () => {
 
 export const getLimitedPosts = (pageNumber) => {
 
-  let limit = 5;
+  let limit = 10;
   let page = pageNumber;
 
   return axiosAPI.get(`/post/limit?limit=${limit}&page=${page}`)
 };
 
-// export const getLimitedPosts = (id) => {
-//   let limit = 5;
-//   let lastValue = id;
-//   console.log(id)
 
-//   return axiosAPI.get(`/post/limit?limit=${limit}&lastValue=${lastValue}`)
-// }
 export const getLatestPost = (props, response) => {
   return axiosAPI.get(`/post/latest/${props}`);
 };
