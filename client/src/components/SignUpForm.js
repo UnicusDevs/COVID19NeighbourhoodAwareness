@@ -162,15 +162,18 @@ let SignUpForm = props => {
 
             renderSuggestions={(active, suggestions, onSelectSuggestion) => (
               <div className={styles.suggestionsContainer}>
-                {suggestions.map((suggestion) => (
-                  <div
-                    className={styles.suggestion}
-                    onClick={(event) => onSelectSuggestion(suggestion, event)}
-                  >
-                    {suggestion.description}
-                    <hr />
-                  </div>
-                ))
+                {suggestions.map((suggestion) => {
+                  return (
+                    <div
+                      key={suggestion.id}
+                      className={styles.suggestion}
+                      onClick={(event) => onSelectSuggestion(suggestion, event)}
+                    >
+                      {suggestion.description}
+                      <hr />
+                    </div>
+                  )
+                })
                 }
               </div>
             )}
