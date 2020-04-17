@@ -24,9 +24,6 @@ let SignUpForm = props => {
 
   const [address, setAddress] = useState("");
 
-  const handleSelect = async value => {console.log(value)}
-
-
   // To Do: Add token on login stage
   // The below is a axios post to create new user then log them in. 
   let sendUserToDatabase = (values) => {
@@ -51,6 +48,7 @@ let SignUpForm = props => {
       }
     }).catch((err) => {
       // Below saves error message to redux store.
+      console.log(err.response.data.error)
       props.saveFormErrorMessages(err.response.data.error)
     })
   };
@@ -70,6 +68,10 @@ let SignUpForm = props => {
 
   const handlePopUpClose = () => {
     props.togglePopUpOffSignUp()
+  }
+
+  const handleChange = (event) => {
+    setAddress(event.target.value)
   }
 
   return (
@@ -144,6 +146,7 @@ let SignUpForm = props => {
 
           <GooglePlacesAutocomplete
             
+            placeholder="Suburb"
             autocompletionRequest={{
               componentRestrictions: {
                 country: ['au'],
@@ -151,18 +154,20 @@ let SignUpForm = props => {
             }}
 
             onSelect={({description}) => {
-              console.log(description)
+              setAddress(description)
             }}
           > 
-
-          <input 
-            name="suburb"
-            type="text"
-            placeholder="Richmond"
-            ref={register({ required: true, minLength: 2 })}
-          />
           
           </GooglePlacesAutocomplete>
+
+          <input
+            name="suburb"
+            type="text"
+            value={address}
+            onChange={handleChange}
+            className={styles.hiddenInput}
+            ref={register({ required: true, minLength: 2 })}
+          />
 
           {errors.suburb && errors.suburb.types.required && (<p>Suburb required</p>)}
         </div>
