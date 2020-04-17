@@ -4,6 +4,7 @@ import React from 'react';
 import About from './../components/About';
 import SignUpModule from './../components/SignUpModule';
 import LoginModule from './../components/LoginModule';
+import Header from './../components/Header';
 
 // Redux
 import { connect } from "react-redux";
@@ -17,6 +18,7 @@ const HomePage = (props) => {
     if (displayPopUpSignUp === true) {
       return (
         <div>
+          <Header />
           <SignUpModule />
           <About />
         </div>
@@ -24,6 +26,7 @@ const HomePage = (props) => {
     } else if (displayPopUpLogin === true) {
       return (
         <div>
+          <Header />
           <LoginModule />
           <About />
         </div>
@@ -31,7 +34,8 @@ const HomePage = (props) => {
     } else {
       return (
         <div>
-          <About/> 
+          <Header />
+          <About /> 
         </div>
       )
     }

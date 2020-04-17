@@ -48,14 +48,13 @@ let LoginForm = props => {
     sendUserToDatabase(formData);
   };
 
-  const handlePopUpClose = () => {
-    props.togglePopUpOffLogin()
-  }
-
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form} >
-      <div className={styles.signUpFormContainer}>
-
+      <div className={styles.logInFormContainer}>
+        <div className={styles.logInFormHeader}>
+          <h1>Welcome back</h1>
+          <h2>Please sign in...</h2>
+        </div>
         <div className={styles.inputContainer}>
           <div>
             <label> Email Address </label>
@@ -68,12 +67,12 @@ let LoginForm = props => {
             ref={register({ required: true, pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/  })} 
           />
 
-          {errors.emailAddress && errors.emailAddress.types.required && (<p>Email required</p>)}
-          {errors.emailAddress && errors.emailAddress.types.pattern && (<p>Not a valid email address</p>)}
+          {errors.emailAddress && errors.emailAddress.types.required && (<h5>Email required</h5>)}
+          {errors.emailAddress && errors.emailAddress.types.pattern && (<h5>Not a valid email address</h5>)}
         </div>
 
         <div className={styles.inputContainer}>
-          <div>
+          <div className={styles.passWordLabel}>
             <label> Password </label>
           </div>
 
@@ -84,12 +83,11 @@ let LoginForm = props => {
             ref={register({ required: true })}
           />
 
-          {errors.password && errors.password.types.required && (<p>Password required</p>)}
+          {errors.password && errors.password.types.required && (<h5>Password required</h5>)}
         </div>
 
         <div className={styles.buttons}>
-          <button onClick={handlePopUpClose}> Cancel </button>
-          <button type="submit"> Submit </button>
+          <button type="submit">Log in</button>
         </div>
 
       </div>      

@@ -1,0 +1,69 @@
+@import './../main.scss';
+
+header {
+  height: 80px;
+  width: 100%;
+
+  @include phone {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: $color-dark-yellow;
+		height: 6rem;
+		opacity: .9;
+  }
+  .innercontainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+
+    @include phone {
+      height: 80px;
+      justify-content: center;
+    }
+    .logo {
+      a {
+        text-decoration: none;
+        font-size: 1.6rem;
+        border: solid 1px $color-dark-navyBlue;
+        border-radius: 5px;
+        padding: .8rem 1.6rem;
+        box-shadow: $shadow-lg;
+        &:hover {
+          background-color: $color-light-yellow;
+          box-shadow: $shadow-lg;
+          transition: .1s ease-in-out;   
+          }    
+        &:active {
+          background: none;
+          box-shadow: none;
+          background-color: $color-dark-yellow-100;
+          border: none;
+        }
+      }
+      @include phone {
+        display: none;
+      }
+    }
+    .navigation {
+      nav {
+        display: flex;
+        align-items: center;
+       p { 
+        font-size: 1.6rem;
+        color: $color-text-gray-800;
+
+       }
+       a {
+        margin-left: .8rem;
+        font-size: 1.6rem;
+        text-decoration: none;
+        color: $color-bright-pink;
+       }
+      }
+    }
+  }
+};
