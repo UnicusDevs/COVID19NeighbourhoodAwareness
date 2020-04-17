@@ -9,7 +9,7 @@
 
   .signUpFormContainer {
     border-radius: 25px;
-    padding: 3.4rem 5rem 7rem 5rem;
+    padding: 3.4rem 5rem 6.4rem 5rem;
     background: $gradient-purple-opaque;
     box-shadow: $shadow-lg;
     @include phone {
@@ -18,7 +18,7 @@
       width: 100vw;
     }
     .signUpFormHeader {
-      margin-bottom: 3rem;
+      margin-bottom: 3.2rem;
       h1 {
         text-align: center;
         color: $color-text-gray-800;

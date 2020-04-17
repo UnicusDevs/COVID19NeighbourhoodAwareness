@@ -34,6 +34,7 @@ header {
         box-shadow: $shadow-lg;
         &:hover {
           background-color: $color-light-yellow;
+          box-shadow: $shadow-lg;
           transition: .1s ease-in-out;   
           }    
         &:active {
