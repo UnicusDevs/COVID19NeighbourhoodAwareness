@@ -68,6 +68,7 @@ let SignUpForm = props => {
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form} >
     
       <div className={styles.signUpFormContainer}>
+
         <div className={styles.signUpFormHeader}>
           <h1>Sign up</h1>
         </div> 
@@ -184,8 +185,7 @@ let SignUpForm = props => {
             <div className={styles.buttons}>
               <button type="submit"> Submit </button>
             </div>
-          </div> 
-            
+          </div>
         </div>
       </div>      
    </form>

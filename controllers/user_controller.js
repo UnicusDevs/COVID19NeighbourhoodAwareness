@@ -90,6 +90,7 @@ async function signUp(req, res) {
 
 // Get profile Data
 async function getUserProfileStuff(user, currentUser = false) {
+
   const { EmailAddress, FirstName, LastName, Suburb, Age  } = user;
 
   return {
@@ -106,10 +107,9 @@ async function getUserProfileStuff(user, currentUser = false) {
 // Get current user
 async function getCurrentUser(req, res) {
 
-  
   if (req.user === undefined) {
     console.log("No user found")
-  } else {
+  } else if (req.user) {
 
     const { id, FirstName, LastName, Suburb, EmailAddress, Age } = req.user;
 
@@ -121,11 +121,8 @@ async function getCurrentUser(req, res) {
       EmailAddress: EmailAddress,
       Age: Age
     };
-  }
-  
-  try {
     res.json({ ...userData, success: req.success });
-  } catch (err) {
+  } else  {
     res.json({
       message: err
     });
@@ -154,9 +151,17 @@ async function getUser(req, res) {
 
 // Get all users
 async function getAllUsers(req, res) {
-  User.find()
-    .sort({date: -1})
-    .then(users => res.json(users))
+
+  try {
+    User.find()
+      .sort({ date: -1 })
+      .then(users => res.json(users))
+  } catch (err) {
+    res.json({
+      message: err
+    })
+  }
+
 };
 
 module.exports = { getCurrentUser, getAllUsers, signUp, login, upload, getUser };

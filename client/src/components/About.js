@@ -3,6 +3,7 @@ import Feed from './../components/Feed';
 import styles from '../sass/components/About.module.scss';
 
 const About = (props) => {
+	
 	return (
 		<div className={styles.about}>
 			<div className={styles.container}>
