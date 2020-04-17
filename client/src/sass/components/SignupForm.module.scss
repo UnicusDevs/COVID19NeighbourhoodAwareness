@@ -5,155 +5,125 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  margin-top: 10rem;
-  // border: solid 1px red;
-}
+  margin-top: 7.5rem;
 
-.signUpFormContainer {
-  border-radius: 25px;
-  padding: 4.8rem 4.2rem 4.8rem 4.2rem;
-  background: $gradient-purple-opaque;
-  box-shadow: $shadow-lg;
-
-  .signUpFormHeader {
-    margin-bottom: 3.2rem;
-    // line-height: 2rem;
-    h1 {
-      text-align: center;
-      color: $color-text-gray-800;
-      font-size: 2.4rem;
-      opacity: .9;
+  .signUpFormContainer {
+    border-radius: 25px;
+    padding: 3.4rem 5rem 4.8rem 5rem;
+    background: $gradient-purple-opaque;
+    box-shadow: $shadow-lg;
+    @include phone {
+      background: none;
+      box-shadow: none;
+      width: 100vw;
     }
-    h2 {
-      text-align: center;
-      color: $color-text-gray-800;
-      font-size: 1.8rem;
-      opacity: .8;
+    .signUpFormHeader {
+      margin-bottom: 3.2rem;
+      h1 {
+        text-align: center;
+        color: $color-text-gray-800;
+        font-size: 2.4rem;
+        opacity: .9;
+      }
+    }
+    .row {
+      display: flex;
+      justify-content: space-between;
+      @include phone {
+        flex-direction: column;
+      }
+      .left {
+        width: 50%;
+        margin-right: 4rem;
+        @include tab-land {
+          width: 50%;
+          margin-right: 30px;
+        }
+        @include tab-port {
+          width: 50%;
+        }
+        @include phone {
+          width: 100%;
+        }
+      }
+    .right {
+      width: 50%;
+      @include tab-land {
+        width: 50%;
+      }
+      @include tab-port {
+        width: 100%;
+      }
+      @include phone {
+        width: 100%;
+      }
+    }
+      .inputContainer { 
+        margin: 1rem;
+        display: flex;
+        flex-direction: column;
+        input {
+          border: none;
+          border-radius: 5px;
+          height: 3.4rem;
+          width: 100%;
+          min-width: 28rem;
+          padding-left: 1rem;
+          margin-top: 1rem;
+          @include phone {
+            width: 100%;
+            padding: 2.4rem 1rem;
+          }
+        }
+        input::placeholder {
+          color: $color-text-gray-500;
+          font-size: 13px;
+        }
+        label {
+          font-weight: bold;
+          font-size: 1.3rem;
+          color: $color-text-gray-800;
+        }
+      }
+      .buttons {
+        display: flex;
+        align-items: flex-start;
+        margin: 3.6rem 1rem 1rem 1rem;
+        button[type=submit] {
+          width: 50%;
+          font-size: 1.6rem;
+          text-decoration: none;
+          font-weight: 500;
+          background: $color-dark-navyBlue;
+          border: none;
+          color: $color-dark-yellow;
+          border-radius: 5px;
+          padding: .8rem 3rem;
+          cursor: pointer;
+          box-shadow: $shadow;
+          &:focus {
+            outline: none;
+          }
+          &:hover {
+            background: $color-dark-navyBlue-200;
+            box-shadow: $shadow-lg;
+            transition: .1s ease-in-out;
+          }
+          &:active {
+            background-color: $color-dark-yellow-100;
+            color: $color-dark-navyBlue;
+            box-shadow: none;
+            &:focus {
+              outline: none;
+            }
+          } 
+          @include phone {
+            padding: 1rem;
+            width: 100%;
+            font-size: 1.8rem;
+          }
+        }
+      }
     }
   }
-}
-
-
-
-.row {
-  display: flex;
-	justify-content: space-between;
-
-	@include phone {
-		flex-direction: column;
-  }
-}
-
-.left {
-	width: 50%;
-  margin-right: 40px;
-  // border: solid 1px red;
-
-	@include tab-land {
-		width: 50%;
-		margin-right: 30px;
-	}
-
-	@include tab-port {
-		width: 50%;
-	}
-
-	@include phone {
-		width: 100%;
-	}
-}
-
-.right {
-  width: 50%;
-  // border: solid 1px red;
-
-	@include tab-land {
-		width: 50%;
-	}
-
-	@include tab-port {
-		width: 100%;
-	}
-
-	@include phone {
-		width: 100%;
-	}
-}
-
-
-button {
-
-  max-width: 100%;
-  // width: 240px;
-  font-size: 1.6rem;
-  text-decoration: none;
-  font-weight: 500;
-  border: solid 2px $color-dark-navyBlue;
-  background: none;
-  border-radius: 5px;
-  padding: .6rem 3rem;
-  cursor: pointer;
-  box-shadow: $shadow-lg;
-  @include phone {
-    padding: 1rem 17.5rem;
-  }
-}
-
-button[type=submit] {
-  background: $color-dark-navyBlue;
-  color: $color-dark-yellow;
-}
-
-.inputContainer { 
-  margin: 1rem;
-  // border: solid 1px red;
-  display: flex;
-  flex-direction: column;
-
-  input {
-    border: none;
-    border-radius: 5px;
-    height: 3.4rem;
-    width: 24rem;
-    padding-left: 1rem;
-    // padding-top: 1rem;
-    // padding-bottom: 1rem;
-    margin-top: 1rem;
-    // border: solid 1px red;
-  }
-
-  input::placeholder {
-    color: $color-text-gray-500;
-    font-size: 13px;
-  }
-
-  label {
-    font-weight: bold;
-    font-size: 1.3;
-    color: $color-text-gray-800;
-  }
-}
-
-.buttons {
-  display: flex;
-  align-items: flex-start;
-  margin: 3.6rem 1rem 1rem 1rem;
-  // border: solid 1px red;
-}
-
-.signUpFormHeader {
-  margin-bottom: 3.2rem;
-  // line-height: 2rem;
-  h1 {
-    text-align: center;
-    color: $color-text-gray-800;
-    font-size: 2.4rem;
-    opacity: .9;
-  }
-  h2 {
-    text-align: right;
-    color: $color-text-gray-800;
-    font-size: 1.8rem;
-    opacity: .8;
-  }
-}
+}    

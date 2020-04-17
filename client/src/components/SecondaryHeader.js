@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
-import { Link, useLocation } from "react-router-dom";
+import React from 'react';
+import { Link } from "react-router-dom";
 
 // CSS
-import styles from './../sass/components/LoginPageHeader.module.scss';
+import styles from './../sass/components/SecondaryHeader.module.scss';
 
-const LoginPageHeader = (props) => {
+const SecondaryHeader = (props) => {
 	
 	const renderLoginOrSignup = () => {
 		if (window.location.pathname === "/signup")
@@ -40,4 +40,4 @@ const LoginPageHeader = (props) => {
   )
 };
 
-export default LoginPageHeader;
+export default SecondaryHeader;

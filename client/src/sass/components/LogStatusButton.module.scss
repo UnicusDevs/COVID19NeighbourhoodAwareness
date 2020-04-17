@@ -7,7 +7,6 @@
 .button {
   background-color: $color-dark-navyBlue;
   border-radius: 5px;
-  border: none;
   color: $color-dark-yellow;
   font-size: 1.6rem;
   font-weight: 700;
@@ -17,20 +16,20 @@
   margin-left: 1.6rem;
   padding: 1.2rem;
   width: 92%;
-  box-shadow: $shadow;
   &:focus {
     outline: none;
   }
   &:hover {
-    background-color: #dda0dd;
-    background-color: #0F1520;
+    background-color: $color-dark-navyBlue-100;
     color: $color-dark-yellow;
     box-shadow: $shadow-lg;
-    // color: $color-dark-navyBlue;
+    transition: .2s ease-in-out;
   }
   &:active {
-    // background-color: #C18CC1;
+    background-color: $color-bright-green;
+    color: $color-dark-navyBlue;
     box-shadow: none;
+    border: none;
     &:focus {
       outline: none;
     }

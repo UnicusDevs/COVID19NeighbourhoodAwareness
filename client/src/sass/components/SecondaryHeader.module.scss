@@ -33,13 +33,13 @@ header {
         padding: .8rem 1.6rem;
         box-shadow: $shadow-lg;
         &:hover {
-          background-color: #FFDA5E;
-          transition: .2s ease-in-out;   
+          background-color: $color-light-yellow;
+          transition: .1s ease-in-out;   
           }    
         &:active {
           background: none;
           box-shadow: none;
-          background-color: #E1AF06;
+          background-color: $color-dark-yellow-100;
           border: none;
         }
       }

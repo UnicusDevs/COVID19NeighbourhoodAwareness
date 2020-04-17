@@ -2,8 +2,7 @@ import React from 'react';
 
 // Components
 import SignUpForm from './../components/SignUpForm';
-import BackButton from './../components/BackButton';
-import LoginPageHeader from './../components/LoginPageHeader';
+import SecondaryHeader from './../components/SecondaryHeader';
 // CSS
 import styles from './../sass/pages/SignupPage.module.scss';
 
@@ -11,13 +10,11 @@ const SignupPage = () => {
 
   return (
     <>
-      <div className={styles.container}>
-        <LoginPageHeader /> 
-        <div classNAme={styles.row}>  
-          <SignUpForm />
-        </div>
+      <SecondaryHeader />
+      <div className={styles.container}> 
+        <SignUpForm />
       </div>  
-    </>
+    </>  
   )
 };
 

@@ -39,69 +39,37 @@ header {
         display: flex;
         align-items: center;
           a {
-            color: $color-dark-navyBlue;
-            background-color: $color-bright-green;
             text-decoration: none;
             font-size: 1.6rem;
-            // border: solid 1px $color-dark-navyBlue;
+            border: solid 1px $color-dark-navyBlue;
             border-radius: 5px;
-            padding: .8rem 1.6rem;
-            // box-shadow: $shadow;
-            margin-right: .6rem;
-            &:hover{
-              background-color: #00BB93;
-             
+            padding: .8rem 2rem;
+            color: $color-dark-navyBlue;
+            margin: .5rem;
+            &:hover {
+              background-color: $color-light-yellow;
               color: $color-dark-navyBlue;
-              border: none;
-              // box-shadow: $shadow-lg;
-            }
+              transition: .1s ease-in-out;
+              box-shadow: $shadow-lg;
+              }    
             &:active {
+              background: none;
               box-shadow: none;
-              background-color: #E1AF06;
+              background-color: $color-dark-yellow-100;
               border: none;
             }
             &:nth-child(2) {
               margin-right: 0;
-              background-color: plum;
-              color: $color-dark-navyBlue;
+              background-color: $color-dark-navyBlue;
+              color: $color-dark-yellow;
               &:hover{
-                background-color: #C18CC1;
-                color: $color-dark-navyBlue; 
-                border: none; 
-              }
-              &:active {
-                border: none;
-                background: #E1AF06;
-                color: $color-dark-navyBlue;
+                color: $color-dark-yellow; 
+                background-color: $color-dark-navyBlue-200;
+                transition: .1s ease-in-out;
+                box-shadow: $shadow-lg;
               }
             }
         }
-        // button {
-        //   font-size: 1.6rem;
-        //   text-decoration: none;
-        //   font-weight: 500;
-        //   margin: 0 .8rem;
-        //   border: solid 2px $color-dark-navyBlue;
-        //   background: none;
-        //   border-radius: 5px;
-        //   padding: .3rem 1.8rem;
-        //   cursor: pointer;
-
-        //   &:nth-child(1) {
-        //     color: $color-dark-yellow;
-        //     background: $color-dark-navyBlue;
-        //     border-radius: 5px;
-        //     padding: .3rem 1.8rem;
-        //     border: solid 2px $color-dark-navyBlue;
-        //   }
-          
-        //   &:nth-child(2) {
-        //     border: solid 2px $color-dark-navyBlue;
-        //     border-radius: 5px;
-        //     padding: .3rem 1.6rem;
-        //     margin-right: 0;
-        //   }
-        // }
       }
     }
   }

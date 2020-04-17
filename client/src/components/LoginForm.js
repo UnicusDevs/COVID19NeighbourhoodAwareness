@@ -54,8 +54,8 @@ let LoginForm = props => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form} >
-      <div className={styles.signUpFormContainer}>
-        <div className={styles.signUpFormHeader}>
+      <div className={styles.logInFormContainer}>
+        <div className={styles.logInFormHeader}>
           <h1>Welcome back</h1>
           <h2>Please sign in...</h2>
         </div>
@@ -92,7 +92,7 @@ let LoginForm = props => {
 
         <div className={styles.buttons}>
           {/* <button onClick={handlePopUpClose}> Cancel </button> */}
-          <button type="submit"> Sign in </button>
+          <button type="submit">Log in</button>
         </div>
 
       </div>      
