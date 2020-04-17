@@ -1,13 +1,22 @@
 import React from 'react';
 
-import LoginForm from '../components/LoginForm';
+
+// Components
+import LoginForm from './../components/LoginForm';
+import SecondaryHeader from './../components/SecondaryHeader';
+
+// CSS
+import styles from './../sass/pages/LoginPage.module.scss';
 
 const LoginPage = () => {
+
   return (
-    <div>
-      <h1> Login Page </h1>
-      <LoginForm/>
-    </div>
+    <>
+      <SecondaryHeader />
+      <div className={styles.container}>
+        <LoginForm />
+      </div>
+    </>
   )
 };
 
