@@ -48,10 +48,6 @@ let LoginForm = props => {
     sendUserToDatabase(formData);
   };
 
-  const handlePopUpClose = () => {
-    props.togglePopUpOffLogin()
-  }
-
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form} >
       <div className={styles.logInFormContainer}>
@@ -91,7 +87,6 @@ let LoginForm = props => {
         </div>
 
         <div className={styles.buttons}>
-          {/* <button onClick={handlePopUpClose}> Cancel </button> */}
           <button type="submit">Log in</button>
         </div>
 
