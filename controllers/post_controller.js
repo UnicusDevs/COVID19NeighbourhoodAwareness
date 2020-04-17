@@ -3,8 +3,81 @@ const User = require('./../models/User');
 
 // Below function gets all the posts
 async function getAllPosts(req, res) {
-  Post.find().sort({ createdAt: -1 }).then(posts => res.json(posts))
+  // Post.find().sort({ createdAt: -1 }).then(posts => res.json(posts))
+  Post.find().sort({ createdAt: -1 }).limit(6).then(posts => res.json(posts))
 };
+
+// Below function gets a specified number of posts
+async function getPaginatedPosts(req, res) {
+
+  let page, limit, skip, lastPage, query;
+  
+  page = parseInt(req.query.page)
+  limit = parseInt(req.query.limit)
+  skip = (page) * limit;
+  lastPage = page * limit;
+  counts = await Post.countDocuments()
+
+  const paginate = {}
+
+  if (skip > 0) {
+    paginate.prev = {
+      page: page - 1,
+      limit: limit
+    }
+  }
+
+  //For next page
+  if (lastPage < counts) {
+    paginate.next = {
+      page: page + 1,
+      limit: limit
+    }
+  }
+  try {
+    // const posts = await Post.findOne({ _id: lastValue}).limit(limit);
+    const posts = await Post.find()
+      .sort({createdAt: (-1)})
+      .skip(skip).limit(limit)
+      .then(posts => res.json(posts));
+
+    // res.json({
+    //   posts: posts
+    // })
+  } catch (err) {
+    res.json({  
+      message: err
+    })
+  }
+}
+
+// Alternative implementation of the above
+// async function getPaginatedPosts(req, res) {
+//   try {
+//     const perPage = req.query.perPage
+//       ? parseInt(req.query.perPage)
+//       : 5;
+
+//     const page = req.query.page
+//       ? parseInt(req.query.page)
+//       : 1;
+
+//     const posts = await Post.find()
+//       .skip ((page - 1 ) * perPage) 
+//       .limit(perPage)
+//       res.json({
+//         posts, 
+//         meta: {
+//           page,
+//           perPage
+//         }}
+//       )
+//     } catch (err) {
+//     next(err);
+//   }
+// }
+
+
 
 // Below function creates a new post
 async function createNewPost(req, res) {
@@ -32,10 +105,13 @@ async function createNewPost(req, res) {
 
 // The below function gets all the posts that match the user suburb.
 async function getPostBasedOnSuburb(req, res) { 
-
   const user = await User.findOne({ email: req.body.User })
   Post.find({"Suburb": user.Suburb}).then(post => res.json(post))
 };
+
+async function getLatestPost(req, res) {
+  const post = Post.find({User: req.params.user_id}).sort({createdAt: -1}).limit(1).then(post => res.json(post))
+}
 
 async function increaseClap(req, res) {
   try {
@@ -47,4 +123,4 @@ async function increaseClap(req, res) {
   }
 }
 
-module.exports = { getAllPosts, createNewPost, getPostBasedOnSuburb, increaseClap };
+module.exports = { getAllPosts, getPaginatedPosts, createNewPost, getPostBasedOnSuburb, increaseClap, getLatestPost };

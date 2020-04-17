@@ -5,28 +5,45 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { togglePopUpOnSignUp, togglePopUpOnLogin, togglePopUpOffLogin, togglePopUpOffSignUp } from "./../redux/actions/popUpActions";
 import { setCurrentUser } from './../redux/actions/userActions';
+import { saveLatestPostDataToStore, saveAllPostsDataToStore } from './../redux/actions/postActions';
 
 //Styles
 import styles from '../sass/components/Header.module.scss';
 
 // API Calls
-import axiosAPI from './../api/baseURL';
+import { getLatestPost, getAllPosts } from './../api/handlePost';
+import { getCurrentUser } from './../api/getUserData';
 import jwt from 'jsonwebtoken'
+
 
 const Header = (props) => {
 
   useEffect(() => {
-    async function fetchAPI() {
-      await axiosAPI.get('/user/current').then(async (response) => {
-        let token = jwt.decode(response.config.headers.Authorization)
-        props.setCurrentUser(response.data);
-      }).catch((err) => {
-        props.setCurrentUser(null);
-      })
-    };
-
-    fetchAPI()
+    onLoad();
   }, []);
+
+  // The below gets the following data: 1. current user 2. currentUsers latest post 3. All posts
+  // All data is saved to the redux store.
+  async function onLoad() {
+    await getCurrentUser().then((response) => {
+      jwt.decode(response.config.headers.Authorization)
+      props.setCurrentUser(response.data);
+      return getLatestPost(response.data.id)
+    }).then((response) => {
+      const latestPostData = response.data;
+      props.saveLatestPostDataToStore(latestPostData)
+    }).catch((err) => {
+      props.saveLatestPostDataToStore(null)
+      props.setCurrentUser(null);
+    })
+
+    getAllPosts().then(async (response) => {
+      const posts = response.data;
+      await props.saveAllPostsDataToStore(posts);
+    }).catch((err) => {
+      props.saveAllPostsDataToStore([]);
+    })
+  };
 
   const handleSignOut = () => {
     const now = new Date()
@@ -101,7 +118,9 @@ const mapDispatchToProps = (dispatch) => {
     togglePopUpOffSignUp: () => dispatch(togglePopUpOffSignUp()),
     togglePopUpOnLogin: () => dispatch(togglePopUpOnLogin()),
     togglePopUpOffLogin: () => dispatch(togglePopUpOffLogin()),
-    setCurrentUser: (userData) => dispatch(setCurrentUser(userData))
+    setCurrentUser: (userData) => dispatch(setCurrentUser(userData)),
+    saveLatestPostDataToStore: (latestPostData) => dispatch(saveLatestPostDataToStore(latestPostData)),
+    saveAllPostsDataToStore: (allPostsData) => dispatch(saveAllPostsDataToStore(allPostsData))
   }
 };
 
