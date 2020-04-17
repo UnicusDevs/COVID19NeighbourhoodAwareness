@@ -60,6 +60,7 @@ let SignUpForm = props => {
 
   // The below sends the data off to the store, and calls axios function
   const onSubmit = formData => {
+    console.log(formData)
     // Below saves formData to redux
     props.saveFormData(formData)
     // Below calls axios function
@@ -145,13 +146,57 @@ let SignUpForm = props => {
           </div>
 
           <GooglePlacesAutocomplete
-            
+            renderInput={(props) => (
+              <div className="custom-wrapper">
+                <input
+                  name="suburb"
+                  type="text"
+                  {...props}
+                  className={styles.googleInput}
+                  ref={register({ required: true, minLength: 2 })}
+                />
+
+                
+              </div>
+            )}
+
+            renderSuggestions={(active, suggestions, onSelectSuggestion) => (
+              <div className={styles.suggestionsContainer}>
+                {suggestions.map((suggestion) => (
+                  <div
+                    className={styles.suggestion}
+                    onClick={(event) => onSelectSuggestion(suggestion, event)}
+                  >
+                    {suggestion.description}
+                    <hr />
+                  </div>
+                ))
+                }
+              </div>
+            )}
+          />
+
+          {/* <GooglePlacesAutocomplete
             placeholder="Suburb"
             autocompletionRequest={{
               componentRestrictions: {
                 country: ['au'],
               }
             }}
+
+            renderSuggestions={(active, suggestions, onSelectSuggestion) => (
+              <div className={styles.suggestionsContainer}> 
+                {suggestions.map((suggestion) => (
+                <div
+                  className={styles.suggestion}
+                  onClick={(event) => onSelectSuggestion(suggestion, event)}
+                >
+                  {suggestion.description}
+                </div>
+                ))
+                }
+              </div>
+            )}
 
             onSelect={({description}) => {
               setAddress(description)
@@ -167,7 +212,7 @@ let SignUpForm = props => {
             onChange={handleChange}
             className={styles.hiddenInput}
             ref={register({ required: true, minLength: 2 })}
-          />
+          /> */}
 
           {errors.suburb && errors.suburb.types.required && (<p>Suburb required</p>)}
         </div>

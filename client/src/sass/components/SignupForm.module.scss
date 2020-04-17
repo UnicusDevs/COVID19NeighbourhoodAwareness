@@ -56,6 +56,27 @@ form {
   margin-left: 6rem;
 }
 
-.hiddenInput {
-  display: none;
+.googleInput:focus {
+  border-radius: 5px 5px 0px 0px;
+}
+
+.suggestionsContainer {
+  background-color: $color-white;
+  border-radius: 0px 0px 5px 5px;
+  border: solid 1px $color-dark-navyBlue;
+      border-top-color: rgb(24, 48, 66);
+      border-top-style: solid;
+      border-top-width: 1px;
+  border-top: none;
+  padding: 1rem;
+  width: 240px;
+
+  hr {
+    margin-top: 1rem;
+    border:solid 0.1px $color-dark-navyBlue
+  }
+}
+.suggestion {
+  padding-bottom: 0.5rem;
+  color: $color-dark-navyBlue;
 }
