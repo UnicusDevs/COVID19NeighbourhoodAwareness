@@ -13,9 +13,8 @@ const { checkToken } = require("./../../controllers/authentication_controller");
 
 // Gets
 router.get('/', getAllPosts);
-router.get('/suburb', getPostBasedOnSuburb);
+router.get('/suburb/:user_id', checkToken, getPostBasedOnSuburb);
 router.get('/latest/:user_id', checkToken, getLatestPost);
-router.get('/suburb', getPostBasedOnSuburb);
 router.get('/limit', getPaginatedPosts);
 
 // Posts

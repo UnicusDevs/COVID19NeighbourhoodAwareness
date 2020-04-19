@@ -5,15 +5,16 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { togglePopUpOnSignUp, togglePopUpOnLogin, togglePopUpOffLogin, togglePopUpOffSignUp } from "./../redux/actions/popUpActions";
 import { setCurrentUser } from './../redux/actions/userActions';
-import { saveLatestPostDataToStore, saveAllPostsDataToStore } from './../redux/actions/postActions';
+import { saveLatestPostDataToStore, saveAllPostsDataToStore, saveFilteredPostsToStore } from './../redux/actions/postActions';
 
 //Styles
 import styles from '../sass/components/Header.module.scss';
 
 // API Calls
-import { getLatestPost, getAllPosts } from './../api/handlePost';
+import { getUserPosts, getAllPosts } from './../api/handlePost';
 import { getCurrentUser } from './../api/getUserData';
 import jwt from 'jsonwebtoken'
+import axios from 'axios';
 
 
 const Header = (props) => {
@@ -25,17 +26,25 @@ const Header = (props) => {
   // The below gets the following data: 1. current user 2. currentUsers latest post 3. All posts
   // All data is saved to the redux store.
   async function onLoad() {
+
+    let userId = "";
+
     await getCurrentUser().then((response) => {
+      userId = response.data.id
       jwt.decode(response.config.headers.Authorization)
       props.setCurrentUser(response.data);
-      return getLatestPost(response.data.id)
-    }).then((response) => {
-      const latestPostData = response.data;
-      props.saveLatestPostDataToStore(latestPostData)
-    }).catch((err) => {
+
+      // The below makes a get to retrieve all latest posts.
+      return getUserPosts(userId)
+    }).then(axios.spread((latestPosts, userSuburbPosts) => {
+      props.saveLatestPostDataToStore(latestPosts.data)
+      props.saveFilteredPostsToStore(userSuburbPosts.data)
+    })).catch((err) => {
+      console.log(err)
+      props.saveFilteredPostsToStore(null)
       props.saveLatestPostDataToStore(null)
       props.setCurrentUser(null);
-    })
+    });
 
     getAllPosts().then(async (response) => {
       const posts = response.data;
@@ -120,7 +129,8 @@ const mapDispatchToProps = (dispatch) => {
     togglePopUpOffLogin: () => dispatch(togglePopUpOffLogin()),
     setCurrentUser: (userData) => dispatch(setCurrentUser(userData)),
     saveLatestPostDataToStore: (latestPostData) => dispatch(saveLatestPostDataToStore(latestPostData)),
-    saveAllPostsDataToStore: (allPostsData) => dispatch(saveAllPostsDataToStore(allPostsData))
+    saveAllPostsDataToStore: (allPostsData) => dispatch(saveAllPostsDataToStore(allPostsData)),
+    saveFilteredPostsToStore: (filteredPosts) => dispatch(saveFilteredPostsToStore(filteredPosts))
   }
 };
 
