@@ -33,7 +33,7 @@
 	}
 
 	@include phone {
-		padding: 24px;
+		padding: 24px 24px 8px 24px;
 		width: 100%;
 	}
 }
@@ -49,6 +49,28 @@
 		display: block;
 		margin-bottom: 1rem;
 	}
+	.videoLinkText {
+		margin-top: 2.4rem;
+		background: $color-light-yellow;
+		opacity: .9;
+		border-radius: 5px;
+		p {
+			color: $color-bright-pink;
+			padding: 3rem;
+			line-height: 2.4rem;
+			a {
+				text-decoration: none;
+				color: $color-bright-pink;
+				&:hover {
+					color: $color-dark-navyBlue;
+				}
+			}
+		}
+		@include tab-port {
+			margin-left: 3rem;
+		}
+	}
+
 
 .right {
 	width: 55%;
