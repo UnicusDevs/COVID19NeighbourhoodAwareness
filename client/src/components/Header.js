@@ -94,7 +94,7 @@ const Header = (props) => {
               </div>
               <div className={styles.navigation}>
                 <nav>
-                  <button onClick={handleSignOut}>Sign out</button>
+                  <button className={styles.signOutButton} onClick={handleSignOut}>Log out</button>
                 </nav>
               </div>
             </div>

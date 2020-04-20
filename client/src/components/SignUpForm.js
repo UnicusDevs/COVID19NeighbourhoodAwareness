@@ -13,7 +13,7 @@ import { saveFormData, saveFormErrorMessages } from "./../redux/actions/signupFo
 import { togglePopUpOffSignUp } from "./../redux/actions/popUpActions";
 
 // CSS
-import styles from './../sass/components/SignUpForm.module.scss';
+import styles from './../sass/components/SignupForm.module.scss';
 
 const cookies = new Cookies();
 
