@@ -12,7 +12,7 @@ import {getUserData} from './../api/getUserData';
 import styles from './../sass/components/LogStatus.module.scss';
 
 // Other 
-import ProfileImageDefault from './../assets/icons8-name-96.png';
+import ProfileImageDefault from './../assets/icons8-login-as-user-96.png';
 
 const LogStatus = (props) => {
 
@@ -55,7 +55,7 @@ const LogStatus = (props) => {
     } else if (image) {
       return <img src={image} className={styles.image} alt="Avatar" />
     }
-  }
+  };
 
   return (
     <div className={styles.logStatus}>
