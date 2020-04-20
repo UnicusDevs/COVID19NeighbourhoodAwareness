@@ -75,7 +75,7 @@ async function signUp(req, res) {
     Password: hashPassword,
     EmailAddress: req.body.EmailAddress,
     Age: req.body.Age,
-    // ImageURL: req.file.path
+    ImageURL: req.file.path
   });
 
   try {
@@ -111,7 +111,7 @@ async function getCurrentUser(req, res) {
     console.log("No user found")
   } else if (req.user) {
 
-    const { id, FirstName, LastName, Suburb, EmailAddress, Age } = req.user;
+    const { id, FirstName, LastName, Suburb, EmailAddress, Age, ImageURL } = req.user;
 
     const userData = {
       id: id,
@@ -119,7 +119,8 @@ async function getCurrentUser(req, res) {
       LastName: LastName,
       Suburb: Suburb,
       EmailAddress: EmailAddress,
-      Age: Age
+      Age: Age,
+      ImageURL: ImageURL
     };
     res.json({ ...userData, success: req.success });
   } else  {
@@ -132,13 +133,14 @@ async function getCurrentUser(req, res) {
 async function getUser(req, res) {
 
   const user = await User.findOne({_id: req.params.user_id}) 
-  const {FirstName, LastName, Age  } = user;
+  const {FirstName, LastName, Age, ImageURL  } = user;
 
   try {
     res.json({
       FirstName: FirstName,
       LastName: LastName,
-      Age: Age
+      Age: Age,
+      ImageURL: ImageURL
     })
   } catch (err) {
     res.json({

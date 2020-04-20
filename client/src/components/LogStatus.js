@@ -11,24 +11,29 @@ import {getUserData} from './../api/getUserData';
 // SASS
 import styles from './../sass/components/LogStatus.module.scss';
 
+// Other 
+import ProfileImageDefault from './../assets/icons8-name-96.png';
+
 const LogStatus = (props) => {
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [age, setAge] = useState(0);
   const [createdAt, setCreatedAt] = useState("");
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const [image, setImage] = useState(null);
 
   useEffect(() => {
     async function fetchAPI() {
       const id = props.user;
       await getUserData(id).then((response) => {
-        const {FirstName, LastName, Age } = response.data;
-        
+        const {FirstName, LastName, Age, ImageURL } = response.data;
+        console.log(response.data)
         setFirstName(FirstName);
         setLastName(LastName);
         setAge(Age);
-        setCount(props.claps)
+        setCount(props.claps);
+        setImage(ImageURL);
 
       }).catch((err) => {
         console.log(err)
@@ -44,11 +49,19 @@ const LogStatus = (props) => {
     return addClapsToPost(postId);
   };
 
+  const handleProfileImage = () => {
+    if (!image) {
+      return <img src={ProfileImageDefault} className={styles.image} alt="Avatar" /> 
+    } else if (image) {
+      return <img src={image} className={styles.image} alt="Avatar" />
+    }
+  }
+
   return (
     <div className={styles.logStatus}>
-      {/* <div className={styles.imageContainer} >
-        <img src={props.imageURL} className={styles.image} alt="Avatar" /> 
-      </div> */}
+      <div className={styles.imageContainer} >
+        {handleProfileImage()}
+      </div>
       <div className={styles.textContainer}>
         <p> Your neighbour {firstName} self-isolated today! </p>
         <div>
