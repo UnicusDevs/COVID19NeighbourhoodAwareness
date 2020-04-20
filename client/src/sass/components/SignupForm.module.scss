@@ -45,7 +45,34 @@
         @include phone {
           width: 100%;
         }
+
+        .googleInput:focus {
+          border-radius: 5px 5px 0px 0px;
+          border-bottom: 1px solid $color-dark-navyBlue;
+        }
+
+        .suggestionsContainer {
+          background-color: $color-white;
+          border-radius: 0px 0px 5px 5px;
+          padding: 1rem;
+          position: absolute;
+          hr {
+            margin-top: 1rem;
+            border: 0.1px solid $color-dark-navyBlue
+          }
+        }
+
+        .suggestion {
+          padding-bottom: 0.5rem;
+          color: $color-text-gray-700;
+
+          h4:hover {
+            cursor: pointer;
+            color: $color-dark-navyBlue 
+          }
+        }
       }
+
     .right {
       width: 50%;
       @include tab-land {
@@ -62,6 +89,7 @@
         margin: 1rem;
         display: flex;
         flex-direction: column;
+        position: relative;
         input {
           border: none;
           border-radius: 5px;
@@ -126,4 +154,9 @@
       }
     }
   }
-}    
+
+  label {
+    font-weight: bold;
+    font-size: 13px;
+  }
+}

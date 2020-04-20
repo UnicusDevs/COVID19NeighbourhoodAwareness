@@ -13,7 +13,6 @@ const signUpFormReducer = (state = signUpFormDefaultState, action) => {
   switch (action.type) { 
     case SAVE_FORM_DATA:
       const formData = action.payload.formData
-      
         return {
           ...state,
           firstName: formData.firstName,
