@@ -173,7 +173,7 @@ let SignUpForm = props => {
                   </div>
                 )}
                 />
-              {errors.suburb && errors.suburb.types.required && (<p>Suburb required</p>)}
+              {errors.suburb && errors.suburb.types.required && (<h5>Suburb required</h5>)}
             </div>
           </div> 
           <div className={styles.right}>

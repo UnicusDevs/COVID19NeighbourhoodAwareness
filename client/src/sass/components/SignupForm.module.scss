@@ -46,14 +46,6 @@
           width: 100%;
         }
 
-        // .googleInputContainer {
-        //   position: relative;
-        // }
-
-        .googleInput {
-          position: relative;
-        }
-
         .googleInput:focus {
           border-radius: 5px 5px 0px 0px;
           border-bottom: 1px solid $color-dark-navyBlue;
@@ -64,7 +56,6 @@
           border-radius: 0px 0px 5px 5px;
           padding: 1rem;
           position: absolute;
-
           hr {
             margin-top: 1rem;
             border: 0.1px solid $color-dark-navyBlue
@@ -98,6 +89,7 @@
         margin: 1rem;
         display: flex;
         flex-direction: column;
+        position: relative;
         input {
           border: none;
           border-radius: 5px;
