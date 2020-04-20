@@ -31,7 +31,7 @@ const LogStatusButton = (props) => {
     };
 
     return result
-  }
+  };
 
   const handleStatusButtonOnClick = (currentUser) => {
     handlePost(props.currentUser).then((response) => {
