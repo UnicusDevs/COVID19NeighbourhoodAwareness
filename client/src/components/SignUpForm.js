@@ -135,44 +135,44 @@ let SignUpForm = props => {
             <div>
               <label> Suburb </label>
             </div>
-            <GooglePlacesAutocomplete
+              <GooglePlacesAutocomplete
+    
+                autocompletionRequest={{
+                  componentRestrictions: {
+                    country: ['au'],
+                  },
+                }}
 
-              autocompletionRequest={{
-                componentRestrictions: {
-                  country: ['au'],
-                },
-              }}
-              renderInput={(props) => (
-                <div>
-                  <input
-                    name="suburb"
-                    type="text"
-                    {...props}
-                    className={styles.googleInput}
-                    ref={register({ required: true, minLength: 2 })}
-                  />
-                </div>
-              )}
+                renderInput={(props) => (
+                  <div className={styles.googleInputContainer}>
+                    <input
+                      name="suburb"
+                      type="text"
+                      {...props}
+                      className={styles.googleInput}
+                      ref={register({ required: true, minLength: 2 })}
+                    />
+                  </div>
+                )}
 
-              renderSuggestions={(active, suggestions, onSelectSuggestion) => (
-                <div className={styles.suggestionsContainer}>
-                  {suggestions.map((suggestion) => {
-                    return (
-                      <div
-                        key={suggestion.id}
-                        className={styles.suggestion}
-                        onClick={(event) => onSelectSuggestion(suggestion, event)}
-                      >
-                        <h4>{suggestion.description}</h4>
-                        <hr />
-                      </div>
-                    )
-                  })
-                  }
-                </div>
-              )}
-              />
-
+                renderSuggestions={(active, suggestions, onSelectSuggestion) => (
+                  <div className={styles.suggestionsContainer}>
+                    {suggestions.map((suggestion) => {
+                      return (
+                        <div
+                          key={suggestion.id}
+                          className={styles.suggestion}
+                          onClick={(event) => onSelectSuggestion(suggestion, event)}
+                        >
+                          <h4>{suggestion.description}</h4>
+                          <hr />
+                        </div>
+                      )
+                    })
+                    }
+                  </div>
+                )}
+                />
               {errors.suburb && errors.suburb.types.required && (<p>Suburb required</p>)}
             </div>
           </div> 

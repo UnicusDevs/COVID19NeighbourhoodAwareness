@@ -46,6 +46,14 @@
           width: 100%;
         }
 
+        // .googleInputContainer {
+        //   position: relative;
+        // }
+
+        .googleInput {
+          position: relative;
+        }
+
         .googleInput:focus {
           border-radius: 5px 5px 0px 0px;
           border-bottom: 1px solid $color-dark-navyBlue;
@@ -55,7 +63,7 @@
           background-color: $color-white;
           border-radius: 0px 0px 5px 5px;
           padding: 1rem;
-          // width: 280px;
+          position: absolute;
 
           hr {
             margin-top: 1rem;
@@ -72,8 +80,8 @@
             color: $color-dark-navyBlue 
           }
         }
-
       }
+
     .right {
       width: 50%;
       @include tab-land {
