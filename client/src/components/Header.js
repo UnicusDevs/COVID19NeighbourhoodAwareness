@@ -80,7 +80,7 @@ const Header = (props) => {
           <div className={styles.container}>
             <div className={styles.innercontainer}>
               <div className={styles.logo}>
-                <Link to="/">Home2Home</Link>
+                <Link to="/">NeighboursBook</Link>
               </div>
               <div className={styles.navigation}>
                 <nav>

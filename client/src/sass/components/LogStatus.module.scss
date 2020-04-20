@@ -79,6 +79,8 @@
     &:nth-child(3) {
       color: $color-bright-green;
       font-weight: 600;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 }
