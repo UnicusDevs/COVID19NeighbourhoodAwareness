@@ -1,4 +1,4 @@
-import { SAVE_FORM_DATA, SAVE_FORM_ERROR} from "./allActions";
+import { SAVE_FORM_DATA, SAVE_FORM_ERROR } from "./allActions";
 
 export const saveFormData = formData => {
   return {
