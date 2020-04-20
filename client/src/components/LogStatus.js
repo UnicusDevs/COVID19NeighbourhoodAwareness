@@ -28,13 +28,11 @@ const LogStatus = (props) => {
       const id = props.user;
       await getUserData(id).then((response) => {
         const {FirstName, LastName, Age, ImageURL } = response.data;
-        console.log(response.data)
         setFirstName(FirstName);
         setLastName(LastName);
         setAge(Age);
         setCount(props.claps);
         setImage(ImageURL);
-
       }).catch((err) => {
         console.log(err)
       })

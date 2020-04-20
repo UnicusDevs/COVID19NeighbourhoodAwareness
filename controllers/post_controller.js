@@ -51,33 +51,6 @@ async function getPaginatedPosts(req, res) {
   }
 }
 
-// Alternative implementation of the above
-// async function getPaginatedPosts(req, res) {
-//   try {
-//     const perPage = req.query.perPage
-//       ? parseInt(req.query.perPage)
-//       : 5;
-
-//     const page = req.query.page
-//       ? parseInt(req.query.page)
-//       : 1;
-
-//     const posts = await Post.find()
-//       .skip ((page - 1 ) * perPage) 
-//       .limit(perPage)
-//       res.json({
-//         posts, 
-//         meta: {
-//           page,
-//           perPage
-//         }}
-//       )
-//     } catch (err) {
-//     next(err);
-//   }
-// }
-
-
 
 // Below function creates a new post
 async function createNewPost(req, res) {

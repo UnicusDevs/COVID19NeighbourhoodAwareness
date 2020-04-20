@@ -1,26 +1,20 @@
 import React, {useState} from 'react';
-import Cookies from 'universal-cookie';
 
 // React hook
 import { useForm } from 'react-hook-form';
 
 // API
-import axiosAPI from "./../api/baseURL";
-import {signup} from "./../api/registration";
+import { signup } from "./../api/registration";
 
 // Redux
 import { connect } from 'react-redux';
 import { saveFormData, saveFormErrorMessages } from "./../redux/actions/signupFormActions.js";
-import { togglePopUpOffSignUp } from "./../redux/actions/popUpActions";
 
 // CSS
 import styles from './../sass/components/SignupForm.module.scss';
 
-const cookies = new Cookies();
-
 let SignUpForm = props => {
 
-  let fileReader;
   const [profileImage, setProfileImage] = useState("");
 
   // The below is a axios post to create new user then log them in. 
@@ -35,16 +29,13 @@ let SignUpForm = props => {
 
   // The below sends the data off to the store, and calls axios function
   const onSubmit = formData => {
-    console.log(formData)
+
     // Below saves formData to redux
     props.saveFormData(formData)
     // Below calls axios function
     sendUserToDatabase(formData);
   };
 
-  const handlePopUpClose = () => {
-    props.togglePopUpOffSignUp()
-  };
 
   const handleFileChosen = (event) => {
     const file = event.target.files[0]
@@ -59,7 +50,7 @@ let SignUpForm = props => {
           <h1>Sign up</h1>
         </div> 
         <div className={styles.profileImageContainer}>
-          <img src={profileImage} className={styles.profileImage}/>
+          <img src={profileImage} alt="profile" className={styles.profileImage}/>
           <div>
             <label> Profile Image </label>
           </div>
@@ -198,7 +189,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     saveFormData: (formData) => dispatch(saveFormData(formData)),
     saveFormErrorMessages: (errorMessage) => dispatch(saveFormErrorMessages(errorMessage)),
-    togglePopUpOffSignUp: () => dispatch(togglePopUpOffSignUp()),
   }
 };
 
