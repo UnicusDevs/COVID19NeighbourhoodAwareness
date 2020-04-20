@@ -2,17 +2,20 @@ import React from 'react';
 
 // Components
 import SignUpForm from './../components/SignUpForm';
+import SecondaryHeader from './../components/SecondaryHeader';
+// CSS
+import styles from './../sass/pages/SignupPage.module.scss';
 
-class SignupPage extends React.Component {
+const SignupPage = () => {
 
-  render() {
-    return (
-      <div>
-        <h1> SignupPage </h1>
+  return (
+    <>
+      <SecondaryHeader />
+      <div className={styles.container}> 
         <SignUpForm />
-      </div>
-    )
-  }
+      </div>  
+    </>  
+  )
 };
 
 export default SignupPage;

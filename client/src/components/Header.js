@@ -38,10 +38,10 @@ const Header = (props) => {
     })
 
     getAllPosts().then(async (response) => {
-      const allPostsData = response.data;
-      await props.saveAllPostsDataToStore(allPostsData)
+      const posts = response.data;
+      await props.saveAllPostsDataToStore(posts);
     }).catch((err) => {
-      props.saveAllPostsDataToStore(null)
+      props.saveAllPostsDataToStore([]);
     })
   };
 
@@ -76,8 +76,8 @@ const Header = (props) => {
               </div>
               <div className={styles.navigation}>
                 <nav>
-                  <button onClick={handleTogglePopUpOnLogin}>Log in</button>
-                  <button onClick={handleTogglePopUpOnSignUp}>Sign up</button>
+                  <Link to={"/login"}>Log in</Link>
+                  <Link to={"/signup"}>Sign up</Link>
                 </nav>
               </div>
             </div>
@@ -94,7 +94,7 @@ const Header = (props) => {
               </div>
               <div className={styles.navigation}>
                 <nav>
-                  <button onClick={handleSignOut}>Sign out</button>
+                  <button className={styles.signOutButton} onClick={handleSignOut}>Log out</button>
                 </nav>
               </div>
             </div>

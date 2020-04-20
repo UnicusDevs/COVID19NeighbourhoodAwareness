@@ -6,19 +6,31 @@ $font: "Poppins", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxyg
   sans-serif;
 
 // colours
+$color-light-yellow: #FFDA5E;
 $color-dark-yellow: #FFC911;
+$color-dark-yellow-100: #E1AF06;
 $color-dark-navyBlue: #183042;
+$color-dark-navyBlue-100: #152A3A;
+$color-dark-navyBlue-200: #122432;
+
 $color-black: #151E2E;
+
 $color-bright-green: #00D6A8;
+$color-bright-pink: #FA1FE4;
 $color-white: #fff;
 $color-text-red: #ED3B3C;
 $color-text-gray-500: #a0aec0;
 $color-text-gray-600: #9C9B9B;
+$color-text-gray-700: #4a5568;
+$color-text-gray-800: #2d3748;
 $color-border-gray-400: #cbd5e0;
 $color-border-gray-500: #C4C4C4;
+$gradient-purple-opaque: linear-gradient(123.83deg, rgba(219, 160, 221, 0.64) 8.94%, rgba(221, 160, 221, 0) 101.38%);
 
 // box-shadows
+$shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 $shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.50);
+$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 
 // basic resets
 * {
@@ -29,6 +41,7 @@ $shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.50);
 
 html {
   font-size: 62.5%; // 1rem = 10px, 10px/16px = 62.5%
+  overflow-y: hidden;
 
   @include xl-desk {
     font-size: 68.75%;
@@ -65,6 +78,12 @@ h2 {
 
 h3 {
   color: $color-dark-navyBlue;
+}
+
+h5 {
+  margin-top: 1rem;
+  color: $color-bright-pink;
+  font-size: 1rem;
 }
 
 p {

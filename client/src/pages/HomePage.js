@@ -4,10 +4,13 @@ import React from 'react';
 import About from './../components/About';
 import SignUpModule from './../components/SignUpModule';
 import LoginModule from './../components/LoginModule';
+import Header from './../components/Header';
 
 // Redux
 import { connect } from "react-redux";
 
+// CSS
+import styles from './../sass/pages/HomePage.module.scss';
 
 const HomePage = (props) => {
 
@@ -15,6 +18,7 @@ const HomePage = (props) => {
     if (displayPopUpSignUp === true) {
       return (
         <div>
+          <Header />
           <SignUpModule />
           <About />
         </div>
@@ -22,6 +26,7 @@ const HomePage = (props) => {
     } else if (displayPopUpLogin === true) {
       return (
         <div>
+          <Header />
           <LoginModule />
           <About />
         </div>
@@ -29,6 +34,7 @@ const HomePage = (props) => {
     } else {
       return (
         <div>
+          <Header />
           <About /> 
         </div>
       )
@@ -36,11 +42,12 @@ const HomePage = (props) => {
   };
 
   return (
-    <div>
+    <div className={styles.mainContainer}>
       {handlePopUp(props.displayPopUpLogin, props.displayPopUpSignUp)} 
     </div>
   )
 };
+
 
 // Connects to redux store so don't need to import.
 function mapStateToProps(state) {
@@ -50,5 +57,5 @@ function mapStateToProps(state) {
   };
 };
 
-export default connect(mapStateToProps)(HomePage);
+export default connect(mapStateToProps, null)(HomePage);
 

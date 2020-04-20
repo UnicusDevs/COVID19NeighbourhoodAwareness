@@ -1,7 +1,7 @@
 @import './../main.scss';
 
 .about {
-	margin-top: 16rem;
+	margin-top: 10rem;
 
 	@include phone {
 		margin-top: 4rem;
@@ -33,18 +33,44 @@
 	}
 
 	@include phone {
-		padding: 24px;
+		padding: 24px 24px 8px 24px;
 		width: 100%;
 	}
 }
 	.title {
-		margin-bottom: 1.6rem;
+		margin-bottom: 2rem;
 		font-weight: 600;
 	}
 	p {
 		line-height: 3.6rem;
 		font-weight: 400;
 	}
+	.br {
+		display: block;
+		margin-bottom: 1rem;
+	}
+	.videoLinkText {
+		margin-top: 2.4rem;
+		background: $color-light-yellow;
+		opacity: .9;
+		border-radius: 5px;
+		p {
+			color: $color-bright-pink;
+			padding: 3rem;
+			line-height: 2.4rem;
+			a {
+				text-decoration: none;
+				color: $color-bright-pink;
+				&:hover {
+					color: $color-dark-navyBlue;
+				}
+			}
+		}
+		@include tab-port {
+			margin-left: 3rem;
+		}
+	}
+
 
 .right {
 	width: 55%;
