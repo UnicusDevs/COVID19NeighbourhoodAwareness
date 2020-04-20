@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 // Redux 
 import { connect } from 'react-redux';
@@ -45,7 +46,7 @@ const LogStatusButton = (props) => {
     
     if (props.currentUser === null) {
       return (
-        <button className={styles.button}> Click me to signup/login </button>
+        <Link to={"/signup"}><button className={styles.button}> Click me to signup/login </button></Link>
       )
     } else {
 
