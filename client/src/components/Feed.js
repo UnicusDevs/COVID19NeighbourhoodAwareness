@@ -31,14 +31,15 @@ const Feed = (props) => {
     }
   } 
   
-   const handleAllPosts = () => {
-    if (props.allPosts === null || undefined) {
+  const handleAllPosts = () => {
+
+    if (props.allPosts === null) {
       return (
         <div>
           <h1> Loading...</h1>
         </div>
       )
-    } else if (props.allPosts) {
+    } else if (props.currentUser === null && props.allPosts) {
 
       let posts = props.allPosts;
       
@@ -64,6 +65,37 @@ const Feed = (props) => {
       });
 
       return posts
+      // If the use is logged in it will only display the posts in their suburb.
+    } else if (props.currentUser && props.filteredPosts.length > 0 ){
+      let filteredPosts = props.filteredPosts;
+
+      filteredPosts.sort(function (a, b) {
+        // Turn your strings into dates, and then subtract them
+        // to get a value that is either negative, positive, or zero.
+        return new Date(b.createdAt) - new Date(a.createdAt);
+      });
+
+      filteredPosts = props.filteredPosts.map((post) => {
+        const userId = post.User;
+        const claps = post.Claps;
+        const createdAt = post.createdAt;
+        const suburb = post.Suburb;
+        const postId = post._id;
+
+        return (
+          <div key={post._id}>
+            <LogStatus postId={postId} user={userId} createdAt={createdAt} suburb={suburb} claps={claps} />
+          </div>
+        )
+      });
+
+      return filteredPosts;
+    } else {
+      return (
+        <div className={styles.noPostsContainer}>
+          <h1> Oops... Looks like there are no posts <span>😟</span>. Be the first to post!</h1>
+        </div>
+      )
     }
   };
 
@@ -87,7 +119,8 @@ const mapDispatchToProps = (dispatch) => {
 function mapStateToProps(state) {
   return {
     currentUser: state.userReducer.currentUser,
-    allPosts: state.postReducer.allPosts
+    allPosts: state.postReducer.allPosts,
+    filteredPosts: state.postReducer.filteredPosts
   }
 };
 
