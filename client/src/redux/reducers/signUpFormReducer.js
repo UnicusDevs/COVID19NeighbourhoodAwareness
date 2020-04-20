@@ -6,12 +6,13 @@ const signUpFormDefaultState = {
   emailAddress: "",
   age: undefined,
   suburb: "",
+  profileImage: {},
   errorMessage: ""
 };
 
 const signUpFormReducer = (state = signUpFormDefaultState, action) => {
   switch (action.type) { 
-    case SAVE_FORM_DATA:
+    case SAVE_FORM_DATA:    
       const formData = action.payload.formData
         return {
           ...state,
@@ -20,6 +21,7 @@ const signUpFormReducer = (state = signUpFormDefaultState, action) => {
           emailAddress: formData.emailAddress,
           age: formData.age,
           suburb: formData.suburb,
+          profileImage: formData.profileImage
         }
     case SAVE_FORM_ERROR: 
       return {

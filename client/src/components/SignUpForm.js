@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import Cookies from 'universal-cookie';
 
 // Google API
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
@@ -7,50 +6,24 @@ import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 // React hook
 import { useForm } from 'react-hook-form';
 
-// Axios / cookies
-import axiosAPI from "./../api/baseURL";
+// API
+import { signup } from "./../api/registration";
 
 // Redux
 import { connect } from 'react-redux';
 import { saveFormData, saveFormErrorMessages } from "./../redux/actions/signupFormActions.js";
-import { togglePopUpOffSignUp } from "./../redux/actions/popUpActions";
 
 // CSS
 import styles from './../sass/components/SignupForm.module.scss';
 
-const cookies = new Cookies();
-
 let SignUpForm = props => {
 
+  const [profileImage, setProfileImage] = useState("");
   const [address, setAddress] = useState("");
 
-  // To Do: Add token on login stage
   // The below is a axios post to create new user then log them in. 
   let sendUserToDatabase = (values) => {
-    axiosAPI.post("/signup", {
-      FirstName: values.firstName,
-      LastName: values.lastName,
-      Age: values.age,
-      Suburb: values.suburb,
-      EmailAddress: values.emailAddress,
-      Password: values.password,
-    }).then(response => {
-      if (response.status === 200) {
-        axiosAPI.post("/login", {
-          EmailAddress: values.emailAddress,
-          Password: values.password
-        }).then(response => {
-          // Below sets the token. To view more of the token go to baseURL.js
-          const token = response.data;
-          cookies.set("covid19Project", token, { path: "/" })
-          window.location.assign("/");
-        })
-      }
-    }).catch((err) => {
-      // Below saves error message to redux store.
-      console.log(err.response.data.error)
-      props.saveFormErrorMessages(err.response.data.error)
-    })
+    signup(values)
   };
 
   const {register, handleSubmit, errors} = useForm({
@@ -60,16 +33,18 @@ let SignUpForm = props => {
 
   // The below sends the data off to the store, and calls axios function
   const onSubmit = formData => {
-    console.log(formData)
     // Below saves formData to redux
     props.saveFormData(formData)
     // Below calls axios function
     sendUserToDatabase(formData);
   };
 
-  const handlePopUpClose = () => {
-    props.togglePopUpOffSignUp()
-  }
+
+  const handleFileChosen = (event) => {
+    const file = event.target.files[0]
+    // The below creates an object so we can view the image
+    setProfileImage(URL.createObjectURL(file));
+  };
 
   const handleChange = (event) => {
     setAddress(event.target.value)
@@ -81,7 +56,23 @@ let SignUpForm = props => {
         <div className={styles.signUpFormHeader}>
           <h1>Sign up</h1>
         </div> 
+        <div className={styles.profileImageContainer}>
+          <img src={profileImage} alt="profile" className={styles.profileImage}/>
+          <div>
+            <label> Profile Image </label>
+          </div>
+
+          <input
+            name="profileImage"
+            label="Profile Image"
+            type="file"
+            onChange={handleFileChosen}
+            ref={register}
+          />
+
+        </div>
         <div className={styles.row}>
+
           <div className={styles.left}>
             <div className={styles.inputContainer}>
               <div>
@@ -90,7 +81,6 @@ let SignUpForm = props => {
 
               <input 
                 name="firstName" 
-                label="Hello" 
                 placeholder="Josephine" 
                 type="text" 
                 ref={register({required: true, minLength: 2})}
@@ -237,7 +227,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     saveFormData: (formData) => dispatch(saveFormData(formData)),
     saveFormErrorMessages: (errorMessage) => dispatch(saveFormErrorMessages(errorMessage)),
-    togglePopUpOffSignUp: () => dispatch(togglePopUpOffSignUp()),
   }
 };
 
