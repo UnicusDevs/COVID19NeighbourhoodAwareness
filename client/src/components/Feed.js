@@ -90,10 +90,16 @@ const Feed = (props) => {
       });
 
       return filteredPosts;
-    } else {
+    } else if (props.currentUser && props.filteredPosts.length <= 0) {
       return (
         <div className={styles.noPostsContainer}>
           <h1> Oops... Looks like there are no posts <span>😟</span>. Be the first to post!</h1>
+        </div>
+      )
+    } else {
+      return (
+        <div className={styles.noPostsContainer}>
+          <h1> Oops... something went wrong <span>😟</span></h1>
         </div>
       )
     }

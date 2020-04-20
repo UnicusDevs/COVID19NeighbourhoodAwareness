@@ -26,6 +26,7 @@ export function postReducer(state = postDefaultState, action) {
       break;
     case ADD_POST_TO_ALL_POSTS:
       newState.allPosts = state.allPosts.concat(action.newPost)
+      newState.filteredPosts = state.filteredPosts.concat(action.newPost)
       break;
     default:
       break;
