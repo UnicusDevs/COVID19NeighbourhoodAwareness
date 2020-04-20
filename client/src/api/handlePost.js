@@ -1,4 +1,5 @@
 import axiosAPI from './baseURL';
+import axios from "axios";
 
 export const handlePost = ({id, Suburb}, response) => {
   return axiosAPI.post('post/create', {
@@ -21,10 +22,17 @@ export const getLimitedPosts = (pageNumber) => {
 };
 
 
-export const getLatestPost = (props, response) => {
-  return axiosAPI.get(`/post/latest/${props}`);
+export const getUserPosts = (props) => {
+  return axios.all([
+    axiosAPI.get(`/post/latest/${props}`),
+    axiosAPI.get(`/post/suburb/${props}`)
+  ]);
 };
 
 export const addClapsToPost = (postId) => {
   axiosAPI.post(`/post/addClap/${postId}`)
+};
+
+export const filterPostsBasedOffUserSuburb = (userSuburb) => {
+  axiosAPI.get(`/post/suburb/${userSuburb}`)
 };

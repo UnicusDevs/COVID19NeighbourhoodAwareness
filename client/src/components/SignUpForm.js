@@ -1,5 +1,8 @@
 import React, {useState} from 'react';
 
+// Google API
+import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
+
 // React hook
 import { useForm } from 'react-hook-form';
 
@@ -16,6 +19,7 @@ import styles from './../sass/components/SignupForm.module.scss';
 let SignUpForm = props => {
 
   const [profileImage, setProfileImage] = useState("");
+  const [address, setAddress] = useState("");
 
   // The below is a axios post to create new user then log them in. 
   let sendUserToDatabase = (values) => {
@@ -29,7 +33,6 @@ let SignUpForm = props => {
 
   // The below sends the data off to the store, and calls axios function
   const onSubmit = formData => {
-
     // Below saves formData to redux
     props.saveFormData(formData)
     // Below calls axios function
@@ -42,6 +45,10 @@ let SignUpForm = props => {
     // The below creates an object so we can view the image
     setProfileImage(URL.createObjectURL(file));
   };
+
+  const handleChange = (event) => {
+    setAddress(event.target.value)
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form} >
@@ -112,22 +119,53 @@ let SignUpForm = props => {
               />
 
               {errors.age && errors.age.types.required && (<h5>Age required</h5>)}
-            </div>   
-            <div className={styles.inputContainer}> 
-              <div>
-                <label> Suburb </label>
-              </div>
+            </div> 
 
-              <input
-                name="suburb"
-                placeholder="Richmond"
-                type="text"
-                ref={register({ required: true, minLength: 2 })}
-              />
+          <div className={styles.inputContainer}>
+            <div>
+              <label> Suburb </label>
+            </div>
+              <GooglePlacesAutocomplete
+    
+                autocompletionRequest={{
+                  componentRestrictions: {
+                    country: ['au'],
+                  },
+                }}
 
+                renderInput={(props) => (
+                  <div className={styles.googleInputContainer}>
+                    <input
+                      name="suburb"
+                      type="text"
+                      {...props}
+                      className={styles.googleInput}
+                      ref={register({ required: true, minLength: 2 })}
+                    />
+                  </div>
+                )}
+
+                renderSuggestions={(active, suggestions, onSelectSuggestion) => (
+                  <div className={styles.suggestionsContainer}>
+                    {suggestions.map((suggestion) => {
+                      return (
+                        <div
+                          key={suggestion.id}
+                          className={styles.suggestion}
+                          onClick={(event) => onSelectSuggestion(suggestion, event)}
+                        >
+                          <h4>{suggestion.description}</h4>
+                          <hr />
+                        </div>
+                      )
+                    })
+                    }
+                  </div>
+                )}
+                />
               {errors.suburb && errors.suburb.types.required && (<h5>Suburb required</h5>)}
             </div>
-          </div>    
+          </div> 
           <div className={styles.right}>
             <div className={styles.inputContainer}>
               <div>
