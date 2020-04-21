@@ -13,6 +13,7 @@
     padding: 3.4rem 5rem 6.4rem 5rem;
     background: $gradient-purple-opaque;
     box-shadow: $shadow-lg;
+
     @include phone {
       background: none;
       box-shadow: none;
@@ -23,11 +24,12 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-
     }
+
     .profileImage {
       border-radius: 50%;
       width: 100px;
+      margin: 1rem;
     }
 
     .signUpFormHeader {
