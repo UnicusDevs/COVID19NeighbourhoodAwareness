@@ -19,6 +19,7 @@ async function getPaginatedPosts(req, res) {
   
   const paginate = {}
 
+  // The below returns all post regardless of user suburb
   if (req.query.id === undefined) {  
 
     counts = await Post.countDocuments()
@@ -48,6 +49,7 @@ async function getPaginatedPosts(req, res) {
         message: err
       })
     }
+    // The below filters based on the users suburb
   } else if (req.query.id) {
 
     userId = req.query.id;
