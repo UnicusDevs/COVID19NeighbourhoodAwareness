@@ -4,7 +4,7 @@ import React, {useState} from 'react';
 import { getLimitedPosts } from './../api/handlePost';
 
 // Redux 
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { addNewPostToAllPostStore } from './../redux/actions/postActions';
 
 // Components
@@ -20,9 +20,17 @@ const Feed = (props) => {
  
   const onScroll = async (event) => {
     let element = event.target
-    if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+    if (element.scrollHeight - element.scrollTop === element.clientHeight && props.currentUser === null) {
       setPageNumber(pageNumber + 1)
       await getLimitedPosts(pageNumber).then(async (response) => {
+        const newPosts = response.data;
+        props.addNewPostToAllPostStore(newPosts)
+      }).catch((err) => {
+        console.log(err)
+      })
+    } else if (element.scrollHeight - element.scrollTop === element.clientHeight && props.currentUser) {
+      setPageNumber(pageNumber + 1)
+      await getLimitedPosts(pageNumber, props.currentUser.id).then(async (response) => {
         const newPosts = response.data;
         props.addNewPostToAllPostStore(newPosts)
       }).catch((err) => {

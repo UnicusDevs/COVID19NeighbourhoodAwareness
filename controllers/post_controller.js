@@ -10,41 +10,78 @@ async function getAllPosts(req, res) {
 // Below function gets a specified number of posts
 async function getPaginatedPosts(req, res) {
 
-  let page, limit, skip, lastPage, query;
-  
+  let page, limit, userId, skip, lastPage, query;
+
   page = parseInt(req.query.page)
   limit = parseInt(req.query.limit)
   skip = (page) * limit;
   lastPage = page * limit;
-  counts = await Post.countDocuments()
-
+  
   const paginate = {}
 
-  if (skip > 0) {
-    paginate.prev = {
-      page: page - 1,
-      limit: limit
-    }
-  }
+  // The below returns all post regardless of user suburb
+  if (req.query.id === undefined) {  
 
-  //For next page
-  if (lastPage < counts) {
-    paginate.next = {
-      page: page + 1,
-      limit: limit
+    counts = await Post.countDocuments()
+
+    if (skip > 0) {
+      paginate.prev = {
+        page: page - 1,
+        limit: limit
+      }
     }
-  }
-  try {
-    const posts = await Post.find()
-      .sort({createdAt: (-1)})
-      .skip(skip).limit(limit)
-      .then(posts => res.json(posts));
-  } catch (err) {
-    res.json({  
-      message: err
-    })
-  }
-}
+
+    //For next page
+    if (lastPage < counts) {
+      paginate.next = {
+        page: page + 1,
+        limit: limit
+      }
+    }
+    
+    try {
+      const posts = await Post.find()
+        .sort({ createdAt: (-1) })
+        .skip(skip).limit(limit)
+        .then(posts => res.json(posts));
+    } catch (err) {
+      res.json({
+        message: err
+      })
+    }
+    // The below filters based on the users suburb
+  } else if (req.query.id) {
+
+    userId = req.query.id;
+
+    const user = await User.findOne({ _id: userId });    
+    counts = await Post.find({ "Suburb": user.Suburb }).countDocuments();
+
+    if (skip > 0) {
+      paginate.prev = {
+        page: page - 1,
+        limit: limit
+      }
+    }
+
+    //For next page
+    if (lastPage < counts) {
+      paginate.next = {
+        page: page + 1,
+        limit: limit
+      }
+    }
+    
+    try {
+      const posts = await Post.find({ "Suburb": user.Suburb }).sort({ createdAt: -1 }).skip(skip).limit(limit).then(posts => res.json(posts))
+    } catch (err) {
+      console.log(err)
+      res.json({
+        message: err
+      })
+    }
+  } 
+};
 
 // Below function creates a new post
 async function createNewPost(req, res) {

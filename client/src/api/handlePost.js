@@ -13,12 +13,15 @@ export const getAllPosts = () => {
   return axiosAPI.get('/post')
 };
 
-export const getLimitedPosts = (pageNumber) => {
+export const getLimitedPosts = (page, userId) => {
 
   let limit = 15;
-  let page = pageNumber;
-
-  return axiosAPI.get(`/post/limit?limit=${limit}&page=${page}`)
+  
+  if (userId) {
+    return axiosAPI.get(`/post/limit?limit=${limit}&page=${page}&id=${userId}`)
+  } else {
+    return axiosAPI.get(`/post/limit?limit=${limit}&page=${page}`)
+  }
 };
 
 
