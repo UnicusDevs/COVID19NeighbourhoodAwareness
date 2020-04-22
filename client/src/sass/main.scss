@@ -45,18 +45,22 @@ html {
 
   @include xl-desk {
     font-size: 68.75%;
+    overflow-y: scroll;
   }
 
   @include tab-land {
     font-size: 56.25%;
+    overflow-y: scroll;
   }
 
   @include tab-port {
     font-size: 50%;
+    overflow-y: scroll;
   }
 
   @include phone {
     font-size: 50%;
+    overflow-y: scroll;
   }
 }
 

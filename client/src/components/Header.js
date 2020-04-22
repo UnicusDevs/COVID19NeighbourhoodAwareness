@@ -41,7 +41,6 @@ const Header = (props) => {
       props.saveLatestPostDataToStore(latestPosts.data)
       props.saveFilteredPostsToStore(userSuburbPosts.data)
     })).catch((err) => {
-      console.log(err)
       props.saveLatestPostDataToStore(null)
       props.setCurrentUser(null);
     });

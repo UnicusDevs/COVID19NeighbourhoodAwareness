@@ -18,7 +18,7 @@ import styles from './../sass/components/SignupForm.module.scss';
 
 export let SignUpForm = props => {
 
-  const [profileImage, setProfileImage] = useState("");
+  const [profileImage, setProfileImage] = useState(ProfileImageDefault);
   const [address, setAddress] = useState("");
 
   // The below is a axios post to create new user then log them in. 
@@ -56,10 +56,12 @@ export let SignUpForm = props => {
           <h1>Sign up</h1>
         </div> 
         <div className={styles.profileImageContainer}>
-          <img src={profileImage} alt="profile" className={styles.profileImage}/>
+
           <div>
             <label> Profile Image </label>
           </div>
+          
+          <img src={profileImage} alt="profile" className={styles.profileImage}/>
 
           <input
             name="profileImage"
