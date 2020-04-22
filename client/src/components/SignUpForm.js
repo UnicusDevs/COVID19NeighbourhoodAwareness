@@ -16,6 +16,9 @@ import { saveFormData, saveFormErrorMessages } from "./../redux/actions/signupFo
 // CSS
 import styles from './../sass/components/SignupForm.module.scss';
 
+//Other
+import ProfileImageDefault from './../assets/icons8-login-as-user-96.png';
+
 export let SignUpForm = props => {
 
   const [profileImage, setProfileImage] = useState(ProfileImageDefault);
