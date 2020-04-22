@@ -1,0 +1,194 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render SignUpForm correctly 1`] = `
+<form
+  className="form"
+  onSubmit={[Function]}
+>
+  <div
+    className="signUpFormContainer"
+  >
+    <div
+      className="signUpFormHeader"
+    >
+      <h1>
+        Sign up
+      </h1>
+    </div>
+    <div
+      className="profileImageContainer"
+    >
+      <img
+        alt="profile"
+        className="profileImage"
+        src=""
+      />
+      <div>
+        <label>
+           Profile Image 
+        </label>
+      </div>
+      <input
+        label="Profile Image"
+        name="profileImage"
+        onChange={[Function]}
+        type="file"
+      />
+    </div>
+    <div
+      className="row"
+    >
+      <div
+        className="left"
+      >
+        <div
+          className="inputContainer"
+        >
+          <div>
+            <label>
+               First Name 
+            </label>
+          </div>
+          <input
+            name="firstName"
+            placeholder="Josephine"
+            type="text"
+          />
+        </div>
+        <div
+          className="inputContainer"
+        >
+          <div>
+            <label>
+               Last Name 
+            </label>
+          </div>
+          <input
+            name="lastName"
+            placeholder="Smith"
+            type="text"
+          />
+        </div>
+        <div
+          className="inputContainer"
+        >
+          <div>
+            <label>
+               Age 
+            </label>
+          </div>
+          <input
+            name="age"
+            placeholder="24"
+            type="number"
+          />
+        </div>
+        <div
+          className="inputContainer"
+        >
+          <div>
+            <label>
+               Suburb 
+            </label>
+          </div>
+          <GooglePlacesAutocomplete
+            apiKey=""
+            autocompletionRequest={
+              Object {
+                "componentRestrictions": Object {
+                  "country": Array [
+                    "au",
+                  ],
+                },
+              }
+            }
+            debounce={300}
+            disabled={false}
+            idPrefix=""
+            initialValue=""
+            inputClassName=""
+            inputStyle={Object {}}
+            loader={null}
+            onSelect={[Function]}
+            placeholder="Address..."
+            renderInput={[Function]}
+            renderSuggestions={[Function]}
+            required={false}
+            suggestionsClassNames={
+              Object {
+                "container": "",
+                "suggestion": "",
+                "suggestionActive": "",
+              }
+            }
+            suggestionsStyles={
+              Object {
+                "container": Object {},
+                "suggestion": Object {},
+              }
+            }
+            withSessionToken={false}
+          />
+        </div>
+      </div>
+      <div
+        className="right"
+      >
+        <div
+          className="inputContainer"
+        >
+          <div>
+            <label>
+               Email Address 
+            </label>
+          </div>
+          <input
+            name="emailAddress"
+            placeholder="me@example.com"
+            type="email"
+          />
+        </div>
+        <div
+          className="inputContainer"
+        >
+          <div>
+            <label>
+               Password 
+            </label>
+          </div>
+          <input
+            name="password"
+            placeholder="******"
+            type="password"
+          />
+        </div>
+        <div
+          className="inputContainer"
+        >
+          <div>
+            <label>
+               Confirm Password 
+            </label>
+          </div>
+          <input
+            name="confirmPassword"
+            placeholder="******"
+            type="password"
+          />
+        </div>
+        <div
+          className="buttons"
+        >
+          <button
+            type="submit"
+          >
+             Submit 
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+`;
+
+exports[`Should render SignupForm correctly with user data 1`] = `ShallowWrapper {}`;

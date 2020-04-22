@@ -16,9 +16,9 @@ import { saveFormData, saveFormErrorMessages } from "./../redux/actions/signupFo
 // CSS
 import styles from './../sass/components/SignupForm.module.scss';
 
-let SignUpForm = props => {
+export let SignUpForm = props => {
 
-  const [profileImage, setProfileImage] = useState("");
+  const [profileImage, setProfileImage] = useState(ProfileImageDefault);
   const [address, setAddress] = useState("");
 
   // The below is a axios post to create new user then log them in. 
@@ -39,7 +39,6 @@ let SignUpForm = props => {
     sendUserToDatabase(formData);
   };
 
-
   const handleFileChosen = (event) => {
     const file = event.target.files[0]
     // The below creates an object so we can view the image
@@ -48,7 +47,7 @@ let SignUpForm = props => {
 
   const handleChange = (event) => {
     setAddress(event.target.value)
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form} >
@@ -57,10 +56,12 @@ let SignUpForm = props => {
           <h1>Sign up</h1>
         </div> 
         <div className={styles.profileImageContainer}>
-          <img src={profileImage} alt="profile" className={styles.profileImage}/>
+
           <div>
             <label> Profile Image </label>
           </div>
+          
+          <img src={profileImage} alt="profile" className={styles.profileImage}/>
 
           <input
             name="profileImage"

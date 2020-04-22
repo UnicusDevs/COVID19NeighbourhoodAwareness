@@ -30,6 +30,7 @@ const Header = (props) => {
     let userId = "";
 
     await getCurrentUser().then((response) => {
+      console.log(response)
       userId = response.data.id
       jwt.decode(response.config.headers.Authorization)
       props.setCurrentUser(response.data);
@@ -40,7 +41,6 @@ const Header = (props) => {
       props.saveLatestPostDataToStore(latestPosts.data)
       props.saveFilteredPostsToStore(userSuburbPosts.data)
     })).catch((err) => {
-      console.log(err)
       props.saveLatestPostDataToStore(null)
       props.setCurrentUser(null);
     });
