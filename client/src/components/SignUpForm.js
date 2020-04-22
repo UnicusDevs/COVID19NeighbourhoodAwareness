@@ -16,10 +16,7 @@ import { saveFormData, saveFormErrorMessages } from "./../redux/actions/signupFo
 // CSS
 import styles from './../sass/components/SignupForm.module.scss';
 
-// Other 
-import ProfileImageDefault from './../assets/icons8-login-as-user-96.png';
-
-let SignUpForm = props => {
+export let SignUpForm = props => {
 
   const [profileImage, setProfileImage] = useState(ProfileImageDefault);
   const [address, setAddress] = useState("");
@@ -42,7 +39,6 @@ let SignUpForm = props => {
     sendUserToDatabase(formData);
   };
 
-
   const handleFileChosen = (event) => {
     const file = event.target.files[0]
     // The below creates an object so we can view the image
@@ -51,7 +47,7 @@ let SignUpForm = props => {
 
   const handleChange = (event) => {
     setAddress(event.target.value)
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form} >
