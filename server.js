@@ -52,7 +52,6 @@ app.use('/uploads',express.static('uploads'));
 
 //Region Start - Routing for Homepage
 const home = require('./routes/api/home');
-app.use('/home', home);
 app.use('/', home);
 // Region End - Routing for Homepage
 

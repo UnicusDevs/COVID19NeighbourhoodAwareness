@@ -5,7 +5,7 @@ const { getPostBasedOnSuburb } = require("./../../controllers/post_controller");
 
 const Post = require('./../../models/Post');
 
-router.get('/', getCurrentUser);
+router.get('/');
 
 module.exports = router;
 
