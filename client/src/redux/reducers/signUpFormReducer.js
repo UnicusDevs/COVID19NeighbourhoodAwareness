@@ -7,7 +7,7 @@ const signUpFormDefaultState = {
   age: undefined,
   suburb: "",
   profileImage: {},
-  errorMessage: ""
+  errorMessage: []
 };
 
 const signUpFormReducer = (state = signUpFormDefaultState, action) => {
