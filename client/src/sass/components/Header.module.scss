@@ -3,6 +3,7 @@
 header {
   height: 80px;
   width: 100%;
+  overflow: hidden;
 
   @include phone {
     display: flex;
@@ -12,7 +13,9 @@ header {
     width: 100%;
     background: $color-dark-yellow;
     height: 6rem;
+    opacity: .9;
   }
+
   .innercontainer {
     display: flex;
     align-items: center;
@@ -24,6 +27,7 @@ header {
       justify-content: center;
     }
     .logo {
+      
       a {
         font-size: 2.8rem;
         font-weight: 700;
@@ -34,37 +38,72 @@ header {
       }
     }
     .navigation {
+      
       nav {
         display: flex;
         align-items: center;
-
-        button {
-          font-size: 1.8rem;
-          text-decoration: none;
-          font-weight: 500;
-          margin: 0 .8rem;
-          border: solid 2px $color-dark-navyBlue;
-          background: none;
-          border-radius: 5px;
-          padding: .4rem 2.4rem;
-          cursor: pointer;
-
-          &:nth-child(1) {
-            color: $color-dark-yellow;
-            background: $color-dark-navyBlue;
+          a {
+            text-decoration: none;
+            font-size: 1.6rem;
+            border: solid 1px $color-dark-navyBlue;
             border-radius: 5px;
-            padding: .4rem 2.4rem;
-            border: solid 2px $color-dark-navyBlue;
+            padding: .8rem 2rem;
+            color: $color-dark-navyBlue;
+            margin: .5rem;
+            &:hover {
+              background-color: $color-light-yellow;
+              color: $color-dark-navyBlue;
+              transition: .1s ease-in-out;
+              box-shadow: $shadow-lg;
+              }    
+            &:active {
+              background: none;
+              box-shadow: none;
+              background-color: $color-dark-yellow-100;
+              border: none;
+            }
+            &:nth-child(2) {
+              margin-right: 0;
+              background-color: $color-dark-navyBlue;
+              color: $color-dark-yellow;
+              &:hover{
+                color: $color-dark-yellow; 
+                background-color: $color-dark-navyBlue-200;
+                transition: .1s ease-in-out;
+                box-shadow: $shadow-lg;
+              }
+            }
           }
-          
-          &:nth-child(2) {
-            border: solid 2px $color-dark-navyBlue;
+          button {
+            background: none;
+            text-decoration: none;
+            font-size: 1.6rem;
+            border: solid 1px $color-dark-navyBlue;
             border-radius: 5px;
-            padding: .4rem 2.4rem;
-            margin-right: 0;
+            padding: .8rem 2rem;
+            color: $color-dark-navyBlue;
+            margin: .5rem;
+            &:focus {
+              outline: none;
+            }
+            &:hover {
+              background-color: $color-light-yellow;
+              color: $color-dark-navyBlue;
+              transition: .1s ease-in-out;
+              box-shadow: $shadow-lg;
+              }    
+            &:active {
+              background: none;
+              box-shadow: none;
+              background-color: $color-dark-yellow-100;
+              border: none;
+            }
           }
-        }
       }
     }
   }
 };
+
+.navBarHidden {
+  display: none;
+}

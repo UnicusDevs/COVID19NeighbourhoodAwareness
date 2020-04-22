@@ -5,28 +5,52 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { togglePopUpOnSignUp, togglePopUpOnLogin, togglePopUpOffLogin, togglePopUpOffSignUp } from "./../redux/actions/popUpActions";
 import { setCurrentUser } from './../redux/actions/userActions';
+import { saveLatestPostDataToStore, saveAllPostsDataToStore, saveFilteredPostsToStore } from './../redux/actions/postActions';
 
 //Styles
 import styles from '../sass/components/Header.module.scss';
 
 // API Calls
-import axiosAPI from './../api/baseURL';
+import { getUserPosts, getAllPosts } from './../api/handlePost';
+import { getCurrentUser } from './../api/getUserData';
 import jwt from 'jsonwebtoken'
+import axios from 'axios';
+
 
 const Header = (props) => {
 
   useEffect(() => {
-    async function fetchAPI() {
-      await axiosAPI.get('/user/current').then(async (response) => {
-        let token = jwt.decode(response.config.headers.Authorization)
-        props.setCurrentUser(response.data);
-      }).catch((err) => {
-        props.setCurrentUser(null);
-      })
-    };
-
-    fetchAPI()
+    onLoad();
   }, []);
+
+  // The below gets the following data: 1. current user 2. currentUsers latest post 3. All posts
+  // All data is saved to the redux store.
+  async function onLoad() {
+
+    let userId = "";
+
+    await getCurrentUser().then((response) => {
+      userId = response.data.id
+      jwt.decode(response.config.headers.Authorization)
+      props.setCurrentUser(response.data);
+
+      // The below makes a get to retrieve all latest posts.
+      return getUserPosts(userId)
+    }).then(axios.spread((latestPosts, userSuburbPosts) => {
+      props.saveLatestPostDataToStore(latestPosts.data)
+      props.saveFilteredPostsToStore(userSuburbPosts.data)
+    })).catch((err) => {
+      props.saveLatestPostDataToStore(null)
+      props.setCurrentUser(null);
+    });
+
+    getAllPosts().then(async (response) => {
+      const posts = response.data;
+      await props.saveAllPostsDataToStore(posts);
+    }).catch((err) => {
+      props.saveAllPostsDataToStore([]);
+    })
+  };
 
   const handleSignOut = () => {
     const now = new Date()
@@ -55,12 +79,12 @@ const Header = (props) => {
           <div className={styles.container}>
             <div className={styles.innercontainer}>
               <div className={styles.logo}>
-                <Link to="/">Home2Home</Link>
+                <Link to="/">NeighboursBook</Link>
               </div>
               <div className={styles.navigation}>
                 <nav>
-                  <button onClick={handleTogglePopUpOnLogin}>Log in</button>
-                  <button onClick={handleTogglePopUpOnSignUp}>Sign up</button>
+                  <Link to={"/login"}>Log in</Link>
+                  <Link to={"/signup"}>Sign up</Link>
                 </nav>
               </div>
             </div>
@@ -77,7 +101,7 @@ const Header = (props) => {
               </div>
               <div className={styles.navigation}>
                 <nav>
-                  <button onClick={handleSignOut}>Sign out</button>
+                  <button className={styles.signOutButton} onClick={handleSignOut}>Log out</button>
                 </nav>
               </div>
             </div>
@@ -101,7 +125,10 @@ const mapDispatchToProps = (dispatch) => {
     togglePopUpOffSignUp: () => dispatch(togglePopUpOffSignUp()),
     togglePopUpOnLogin: () => dispatch(togglePopUpOnLogin()),
     togglePopUpOffLogin: () => dispatch(togglePopUpOffLogin()),
-    setCurrentUser: (userData) => dispatch(setCurrentUser(userData))
+    setCurrentUser: (userData) => dispatch(setCurrentUser(userData)),
+    saveLatestPostDataToStore: (latestPostData) => dispatch(saveLatestPostDataToStore(latestPostData)),
+    saveAllPostsDataToStore: (allPostsData) => dispatch(saveAllPostsDataToStore(allPostsData)),
+    saveFilteredPostsToStore: (filteredPosts) => dispatch(saveFilteredPostsToStore(filteredPosts))
   }
 };
 
