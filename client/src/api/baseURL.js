@@ -7,7 +7,6 @@ const token = cookies.get("covid19Project");
 
 let config; 
 
-console.log(process.env.NODE_ENV);
 const prod = (
   axios.create ({
     baseURL: 'https://home2home-covid.herokuapp.com/',
@@ -22,4 +21,4 @@ const local = (
   })
 );
 
-export default config = process.env.NODE_ENV === 'local' ? local : prod;
+export default config = process.env.NODE_ENV === 'development' ? local : prod;

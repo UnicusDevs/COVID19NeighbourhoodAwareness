@@ -54,7 +54,6 @@ const home = require('./routes/api/home');
 app.use('/', home);
 // Region End - Routing for Homepage
 
-
 // Connecting to MongoDB
 // Handles local database and live database.
 if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'development') {
@@ -69,9 +68,4 @@ if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'developme
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
-}
-
-// Anything that doesn't match the above, send back index.html
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname + '/client/build/index.html'))
-// })
+};
