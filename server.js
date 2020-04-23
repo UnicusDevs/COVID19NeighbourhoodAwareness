@@ -11,7 +11,6 @@ const port = process.env.PORT || 8080;
 
 require('dotenv/config');
 
-
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -56,21 +55,23 @@ app.use('/', home);
 // Region End - Routing for Homepage
 
 
-//Connecting to MongoDB
-mongoose.connect(process.env.DB_CONNECTION, 
-                { useNewUrlParser: true },
-                ()=>console.log("Connected to DB"))
-
-// // create a GET route
-// app.get('/express_backend', (req, res) => {
-//   res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
-// });
+// Connecting to MongoDB
+// Handles local database and live database.
+if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'development') {
+  mongoose.connect(process.env.DB_CONNECTION_LIVE,
+    { useNewUrlParser: true },
+    () => console.log("Connected to DB"))
+} else if (process.env.NODE_ENV === 'local') {
+  mongoose.connect(process.env.DB_CONNECTION_TEST,
+    { useNewUrlParser: true },
+    () => console.log("Connected to DB"))
+};
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
 
 // Anything that doesn't match the above, send back index.html
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/client/build/index.html'))
-})
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname + '/client/build/index.html'))
+// })
