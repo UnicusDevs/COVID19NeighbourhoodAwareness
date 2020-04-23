@@ -21,4 +21,4 @@ const local = (
   })
 );
 
-export default config = process.env.NODE_ENV === 'local' ? local : prod;
+export default config = process.env.NODE_ENV === 'development' ? local : prod;
