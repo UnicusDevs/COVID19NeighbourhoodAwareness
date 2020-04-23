@@ -10,7 +10,7 @@ let config;
 console.log(process.env.NODE_ENV);
 const prod = (
   axios.create ({
-    baseURL: 'https://home2home-covid.herokuapp.com/',
+    baseURL: 'https:/neighboursbook.com/',
     headers: { Authorization: token }
   })
 );
