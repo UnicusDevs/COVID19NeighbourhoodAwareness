@@ -7,10 +7,9 @@ const token = cookies.get("covid19Project");
 
 let config; 
 
-console.log(process.env.NODE_ENV);
 const prod = (
   axios.create ({
-    baseURL: 'https:/neighboursbook.com/',
+    baseURL: 'https://neighboursbook.com/',
     headers: { Authorization: token }
   })
 );
