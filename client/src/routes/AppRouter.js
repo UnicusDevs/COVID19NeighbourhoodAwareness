@@ -17,7 +17,7 @@ class AppRouter extends React.Component {
             <Route path="/" component={HomePage} exact={true} />
             <Route path="/login" component={LoginPage} />
             <Route path="/signup" component={SignUpPage} />
-            <Route component={NotFoundPage} />
+            <Route component={HomePage} />
           </Switch>
         </div>
       </Router>
