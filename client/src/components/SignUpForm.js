@@ -7,7 +7,7 @@ import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 import { useForm } from 'react-hook-form';
 
 // API
-import { signup, awsUpload } from "./../api/registration";
+import { signup } from "./../api/registration";
 import axiosAPI from './../api/baseURL';
 
 // Redux

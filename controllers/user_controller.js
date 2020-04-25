@@ -35,8 +35,6 @@ async function login(req, res) {
 // SignUp
 async function signUp(req, res) {
 
-  console.log(req.body)
-  
   //Validating SignUp Body:
   // validation is causing issue with await and file upload. Commented out till figured out. 
   // const { error } = signUpValidation(req.body)
@@ -46,7 +44,6 @@ async function signUp(req, res) {
   const emailExist = await User.findOne({ EmailAddress: req.body.EmailAddress });
   if (emailExist != null) return res.status(400).send({ error: 'Email already exists' });
 
-  console.log("HELLO THERE")
   //Hash Passwords:
   const salt = await bcrypt.genSalt(10);
   const hashPassword = await bcrypt.hash(req.body.Password, salt);
@@ -62,10 +59,7 @@ async function signUp(req, res) {
       ImageURL: req.body.ImageURL
     });
 
-  
-    console.log("HELLO")
     const savedUser = await post.save();
-    console.log(savedUser)
     res.json(savedUser)
   } catch (err) {
     console.log(err)
