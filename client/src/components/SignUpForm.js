@@ -8,6 +8,7 @@ import { useForm } from 'react-hook-form';
 
 // API
 import { signup } from "./../api/registration";
+import axiosAPI from './../api/baseURL';
 
 // Redux
 import { connect } from 'react-redux';
@@ -17,16 +18,28 @@ import { saveFormData, saveFormErrorMessages } from "./../redux/actions/signupFo
 import styles from './../sass/components/SignupForm.module.scss';
 
 //Other
-import ProfileImageDefault from './../assets/icons8-login-as-user-96.png';
+import ProfileImageDefault from './../assets/icons8-name-96.png';
 
 export let SignUpForm = props => {
 
   const [profileImage, setProfileImage] = useState(ProfileImageDefault);
   const [address, setAddress] = useState("");
+  const [file, setFile] = useState({});
+  const [fileUrl, setFileUrl] = useState("");
 
   // The below is a axios post to create new user then log them in. 
-  let sendUserToDatabase = (values) => {
-    signup(values)
+  let sendUserToDatabase = async (values) => {
+
+    // The below uploads file to s3 Bucket.
+    let fileUrl; 
+    const formData = new FormData();
+    formData.append('file', file)
+
+    await axiosAPI.post('/signup/upload', formData).then((response) => {
+      fileUrl = response.data
+    });
+
+    signup(values, fileUrl)
   };
 
   const {register, handleSubmit, errors} = useForm({
@@ -35,21 +48,19 @@ export let SignUpForm = props => {
   });
 
   // The below sends the data off to the store, and calls axios function
-  const onSubmit = formData => {
+  const onSubmit = async (formData, file) => {
+
     // Below saves formData to redux
     props.saveFormData(formData)
     // Below calls axios function
-    sendUserToDatabase(formData);
+    sendUserToDatabase(formData) ;
   };
 
   const handleFileChosen = (event) => {
     const file = event.target.files[0]
+    setFile(event.target.files[0])
     // The below creates an object so we can view the image
     setProfileImage(URL.createObjectURL(file));
-  };
-
-  const handleChange = (event) => {
-    setAddress(event.target.value)
   };
 
   return (

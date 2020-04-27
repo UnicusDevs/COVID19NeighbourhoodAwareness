@@ -30,7 +30,6 @@ const Header = (props) => {
     let userId = "";
 
     await getCurrentUser().then((response) => {
-      console.log(response)
       userId = response.data.id
       jwt.decode(response.config.headers.Authorization)
       props.setCurrentUser(response.data);
@@ -60,18 +59,6 @@ const Header = (props) => {
     props.setCurrentUser(null);
     return window.location.reload();
   }
-
-  // The below handles the pop up for signup. More can be found in the signup Form.
-  const handleTogglePopUpOnSignUp = () => {
-    props.togglePopUpOffLogin()
-    props.togglePopUpOnSignUp()
-  };
-
-  // The below handles the pop up for the login. More can be found in the login form.
-  const handleTogglePopUpOnLogin = () => {
-    props.togglePopUpOffSignUp()
-    props.togglePopUpOnLogin()
-  };
 
   const handleHeaderDisplay = (currentUser) => {
     if (!props.currentUser) {
