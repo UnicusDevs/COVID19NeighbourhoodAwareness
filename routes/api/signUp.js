@@ -10,8 +10,11 @@ const { signUp } = require('./../../controllers/user_controller.js')
 
 router.post('/', signUp);
 router.post('/upload', imgUpload.single('file'), async (req,res) => {
-  req.file.location
-  await res.send(req.file.location)
+  if (req.file) {
+    await res.send(req.file.location)
+  } else {
+    res.send("https://neighbours-book.s3-ap-southeast-2.amazonaws.com/userDefaultImage.png")
+  }
 });
 
 module.exports = router;
