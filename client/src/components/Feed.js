@@ -107,7 +107,7 @@ const Feed = (props) => {
     } else {
       return (
         <div className={styles.noPostsContainer}>
-          <h1> Oops... something went wrong <span role="img">😟</span></h1>
+          <h1> Loading... </h1>
         </div>
       )
     }
