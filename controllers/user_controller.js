@@ -5,14 +5,8 @@ const jwt = require('jsonwebtoken');
 // Models
 const User = require("../models/User");
 
-// File Upload 
-const multer = require('multer');
-
 // Validation
 const { signUpValidation, loginValidation } = require('../validation');
-// Defining image specifics - Start:
-
-
 
 // Login
 async function login(req, res) {
@@ -84,7 +78,6 @@ async function getUserProfileStuff(user, currentUser = false) {
   }
 };
 
-
 // Get current user
 async function getCurrentUser(req, res) {
 
@@ -132,7 +125,6 @@ async function getUser(req, res) {
   }
 
 }
-
 
 // Get all users
 async function getAllUsers(req, res) {
