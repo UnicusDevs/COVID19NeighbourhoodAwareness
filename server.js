@@ -26,7 +26,7 @@ app.use(bodyParser.json() );
 
 //Region Start - Routing for Sign Up
 const signUp = require('./routes/api/signUp');
-app.use('/signUp', signUp);
+app.use('/signup', signUp);
 //Region End - Routing for Sign Up
 
 //Region Start - Routing for Sign Up
