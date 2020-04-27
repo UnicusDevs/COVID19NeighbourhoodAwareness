@@ -60,18 +60,6 @@ const Header = (props) => {
     return window.location.reload();
   }
 
-  // The below handles the pop up for signup. More can be found in the signup Form.
-  const handleTogglePopUpOnSignUp = () => {
-    props.togglePopUpOffLogin()
-    props.togglePopUpOnSignUp()
-  };
-
-  // The below handles the pop up for the login. More can be found in the login form.
-  const handleTogglePopUpOnLogin = () => {
-    props.togglePopUpOffSignUp()
-    props.togglePopUpOnLogin()
-  };
-
   const handleHeaderDisplay = (currentUser) => {
     if (!props.currentUser) {
       return (
