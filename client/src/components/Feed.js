@@ -24,7 +24,6 @@ const Feed = (props) => {
       setPageNumber(pageNumber + 1)
       await getLimitedPosts(pageNumber).then(async (response) => {
         const newPosts = response.data;
-        console.log(response)
         props.addNewPostToAllPostStore(newPosts)
       }).catch((err) => {
         console.log(err)
