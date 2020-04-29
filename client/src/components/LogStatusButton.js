@@ -40,6 +40,7 @@ const LogStatusButton = (props) => {
       props.savePostDataToStore(newPost);
       props.addNewPostToAllPostStore(newPost)
     })
+    window.location.reload()
   };
 
   const handleStatusButtonWhenUserHasLoggedIn = (currentUser) => {  
