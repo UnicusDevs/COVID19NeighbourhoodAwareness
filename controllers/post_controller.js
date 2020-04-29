@@ -17,12 +17,13 @@ async function getPaginatedPosts(req, res) {
   skip = (page) * limit;
   lastPage = page * limit;
   
-  const paginate = {}
-
+  
   // The below returns all post regardless of user suburb
   if (req.query.id === undefined) {  
 
-    counts = await Post.countDocuments()
+    const paginate = {}
+
+    let counts = await Post.countDocuments()
 
     if (skip > 0) {
       paginate.prev = {
@@ -38,12 +39,16 @@ async function getPaginatedPosts(req, res) {
         limit: limit
       }
     }
-    
+
     try {
+      console.log(await Post.find()
+        .sort({ createdAt: (-1) })
+        .skip(skip));
       const posts = await Post.find()
         .sort({ createdAt: (-1) })
         .skip(skip).limit(limit)
         .then(posts => res.json(posts));
+      // console.log(posts)
     } catch (err) {
       res.json({
         message: err
@@ -55,7 +60,7 @@ async function getPaginatedPosts(req, res) {
     userId = req.query.id;
 
     const user = await User.findOne({ _id: userId });    
-    counts = await Post.find({ "Suburb": user.Suburb }).countDocuments();
+    let counts = await Post.find({ "Suburb": user.Suburb }).countDocuments();
 
     if (skip > 0) {
       paginate.prev = {
