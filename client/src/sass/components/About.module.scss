@@ -58,6 +58,10 @@
 			color: $color-bright-pink;
 			padding: 3rem;
 			line-height: 2.4rem;
+			@include phone {
+				padding: 1.8rem;
+				line-height: 2.8rem;
+			}
 			a {
 				text-decoration: none;
 				color: $color-bright-pink;
@@ -68,6 +72,10 @@
 		}
 		@include tab-port {
 			margin-left: 3rem;
+		}
+		@include phone {
+			margin-left: 0rem;
+
 		}
 	}
 
