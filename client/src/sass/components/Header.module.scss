@@ -4,6 +4,7 @@ header {
   height: 80px;
   width: 100%;
   overflow: hidden;
+  z-index: 9;
 
   @include phone {
     display: flex;
