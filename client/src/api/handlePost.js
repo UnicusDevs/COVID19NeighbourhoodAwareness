@@ -24,7 +24,7 @@ export const getLimitedPosts = (page, userId) => {
 };
 
 export const getAllPostsMadeByUser = (page, userId) => {
-  let limit = 5;
+  let limit = 0;
   return axiosAPI.get(`/post/userposts?limit=${limit}&page=${page}&id=${userId}`)
 } ;
 

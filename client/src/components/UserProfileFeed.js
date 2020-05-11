@@ -10,7 +10,6 @@ import { addNewPostToAllPostStore } from './../redux/actions/postActions';
 
 // Components
 import LogStatus from './LogStatus';
-import LogStatusButton from './LogStatusButton';
 
 // Styles
 import styles from './../sass/components/Feed.module.scss';
@@ -29,7 +28,6 @@ const UserProfileFeed = (props) => {
   async function onLoad() {
     await getAllPostsMadeByUser(pageNumber, paramsId.id).then(async (response) => {
       const newPosts = response.data;
-      console.log(newPosts)
       setUserPosts(newPosts);
     })
   };
@@ -54,8 +52,6 @@ const UserProfileFeed = (props) => {
     if (userPosts) {
 
       let posts = userPosts;
-
-      console.log(userPosts)
       posts.sort(function (a, b) {
         // Turn your strings into dates, and then subtract them
         // to get a value that is either negative, positive, or zero.
@@ -78,11 +74,17 @@ const UserProfileFeed = (props) => {
       });
 
       return posts
-      // If the use is logged in it will only display the posts in their suburb.
-    } else {
+
+    } else if (!userPosts) {
       return (
         <div className={styles.noPostsContainer}>
           <h1> Loading... </h1>
+        </div>
+      )
+    } else {
+      return (
+        <div className={styles.noPostsContainer}>       
+          <h1> You haven't made any posts yet! </h1>
         </div>
       )
     }

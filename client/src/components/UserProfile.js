@@ -43,7 +43,7 @@ const UserProfile = props => {
       <div>
         <div>
           <div>
-            <img src={imageURL} />
+            <img src={imageURL} alt="userPost" />
           </div>
           <h1> {userName} </h1>
           <h3> {age} </h3>

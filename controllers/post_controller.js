@@ -37,8 +37,7 @@ async function getUserPostsPaginated(req, res) {
   }
 
   try {
-    const posts = await Post.find({ "User": user._id }).sort({ createdAt: -1 }).limit(limit).then(posts => res.json(posts))
-    // const posts = await Post.find({ "User": user._id }).sort({ createdAt: -1 }).skip(skip).limit(limit).then(posts => res.json(posts))
+    const posts = await Post.find({ "User": user._id }).sort({ createdAt: -1 }).skip(skip).limit(limit).then(posts => res.json(posts))
   } catch (err) {
     console.log(err)
     res.json({
