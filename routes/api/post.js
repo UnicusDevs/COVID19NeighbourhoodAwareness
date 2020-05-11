@@ -5,7 +5,7 @@ const router = express.Router();
 const Post = require('../../models/Post');
 
 // Controller 
-const { getAllPosts, getPaginatedPosts, getPostBasedOnSuburb, getLatestPost, createNewPost, increaseClap } = require('./../../controllers/post_controller');
+const { getAllPosts, getPaginatedPosts, getUserPostsPaginated, getPostBasedOnSuburb, getLatestPost, createNewPost, increaseClap } = require('./../../controllers/post_controller');
 const { checkToken } = require("./../../controllers/authentication_controller");
 
 // @route   POST api/post
@@ -16,6 +16,7 @@ router.get('/', getAllPosts);
 router.get('/suburb/:user_id', checkToken, getPostBasedOnSuburb);
 router.get('/latest/:user_id', checkToken, getLatestPost);
 router.get('/limit', getPaginatedPosts);
+router.get('/userposts', getUserPostsPaginated);
 
 // Posts
 router.post('/create', createNewPost);

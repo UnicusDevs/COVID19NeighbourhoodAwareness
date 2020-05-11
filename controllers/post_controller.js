@@ -7,6 +7,46 @@ async function getAllPosts(req, res) {
   Post.find().sort({ createdAt: -1 }).limit(6).then(posts => res.json(posts))
 };
 
+async function getUserPostsPaginated(req, res) {
+  let page, limit, userId, skip, lastPage, query;
+
+  page = parseInt(req.query.page)
+  limit = parseInt(req.query.limit)
+  skip = (page) * limit;
+  lastPage = page * limit;
+
+  const paginate = {};
+
+  userId = req.query.id;
+  const user = await User.findOne({ _id: userId });
+  let counts = await Post.find({ "User": user._id }).countDocuments();
+
+  if (skip > 0) {
+    paginate.prev = {
+      page: page - 1,
+      limit: limit
+    }
+  }
+
+  //For next page
+  if (lastPage < counts) {
+    paginate.next = {
+      page: page + 1,
+      limit: limit
+    }
+  }
+
+  try {
+    const posts = await Post.find({ "User": user._id }).sort({ createdAt: -1 }).limit(limit).then(posts => res.json(posts))
+    // const posts = await Post.find({ "User": user._id }).sort({ createdAt: -1 }).skip(skip).limit(limit).then(posts => res.json(posts))
+  } catch (err) {
+    console.log(err)
+    res.json({
+      message: err
+    })
+  }
+}
+
 // Below function gets a specified number of posts
 async function getPaginatedPosts(req, res) {
 
@@ -17,11 +57,9 @@ async function getPaginatedPosts(req, res) {
   skip = (page) * limit;
   lastPage = page * limit;
   
-  
+  const paginate = {};
   // The below returns all post regardless of user suburb
   if (req.query.id === undefined) {  
-
-    const paginate = {}
 
     let counts = await Post.countDocuments()
 
@@ -137,4 +175,4 @@ async function increaseClap(req, res) {
   }
 };
 
-module.exports = { getAllPosts, getPaginatedPosts, createNewPost, getPostBasedOnSuburb, increaseClap, getLatestPost };
+module.exports = { getAllPosts, getPaginatedPosts, getUserPostsPaginated, createNewPost, getPostBasedOnSuburb, increaseClap, getLatestPost };

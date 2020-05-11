@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 // API Calls
 import { getUserData } from './../api/getUserData';
 
-const UserProfileForm = props => {
+const UserProfile = props => {
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -30,7 +30,7 @@ const UserProfileForm = props => {
       userId = response.data.id;
       const data = response.data;
       jwt.decode(response.config.headers.Authorization);
-      console.log(response.data)
+
       setFirstName(data.FirstName);
       setLastName(data.LastName);
       setAge(data.Age);
@@ -60,4 +60,4 @@ function mapStateToProps(state) {
   }
 };
 
-export default connect(mapStateToProps)(UserProfileForm);
+export default connect(mapStateToProps)(UserProfile);
