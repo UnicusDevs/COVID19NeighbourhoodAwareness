@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 // Redux 
 import {connect} from 'react-redux';
@@ -19,6 +20,7 @@ const LogStatus = (props) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [age, setAge] = useState(0);
+  const [userId, setUserId] = useState("");
   const [createdAt, setCreatedAt] = useState("");
   const [count, setCount] = useState(0);
   const [image, setImage] = useState(null);
@@ -33,6 +35,7 @@ const LogStatus = (props) => {
         setAge(Age);
         setCount(props.claps);
         setImage(ImageURL);
+        setUserId(id)
       }).catch((err) => {
         console.log(err)
       })
@@ -49,9 +52,9 @@ const LogStatus = (props) => {
 
   const handleProfileImage = () => {
     if (!image) {
-      return <img src={ProfileImageDefault} className={styles.image} alt="Avatar" /> 
+      return  <img src={ProfileImageDefault} className={styles.image} alt="Avatar" /> 
     } else if (image) {
-      return <img src={image} className={styles.image} alt="Avatar" />
+      return <Link to={`/user/${userId}`}><img src={image} className={styles.image} alt="Avatar" /></Link>
     }
   };
 

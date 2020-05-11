@@ -1,4 +1,6 @@
 import React, { useEffect } from "react"
+import jwt from 'jsonwebtoken'
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 // Redux 
@@ -13,9 +15,6 @@ import styles from '../sass/components/Header.module.scss';
 // API Calls
 import { getUserPosts, getAllPosts } from './../api/handlePost';
 import { getCurrentUser } from './../api/getUserData';
-import jwt from 'jsonwebtoken'
-import axios from 'axios';
-
 
 const Header = (props) => {
 
@@ -61,7 +60,7 @@ const Header = (props) => {
   }
 
   const handleHeaderDisplay = (currentUser) => {
-    if (!props.currentUser) {
+    if (!currentUser) {
       return (
         <header>
           <div className={styles.container}>
@@ -89,6 +88,7 @@ const Header = (props) => {
               </div>
               <div className={styles.navigation}>
                 <nav>
+                  <Link to={`/user/${currentUser.id}`}> Profile </Link>
                   <button className={styles.signOutButton} onClick={handleSignOut}>Log out</button>
                 </nav>
               </div>

@@ -8,6 +8,8 @@ const { signUp } = require('./../../controllers/user_controller.js')
 // @route   POST api/signUp
 // @desc    Create User
 
+router.get('/'); 
+
 router.post('/', signUp);
 router.post('/upload', imgUpload.single('file'), async (req,res) => {
   if (req.file) {
