@@ -41,9 +41,6 @@ async function getPaginatedPosts(req, res) {
     }
 
     try {
-      console.log(await Post.find()
-        .sort({ createdAt: (-1) })
-        .skip(skip));
       const posts = await Post.find()
         .sort({ createdAt: (-1) })
         .skip(skip).limit(limit)
@@ -87,6 +84,7 @@ async function getPaginatedPosts(req, res) {
     }
   } 
 };
+
 
 // Below function creates a new post
 async function createNewPost(req, res) {

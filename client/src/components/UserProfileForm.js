@@ -3,13 +3,18 @@ import {useParams} from 'react-router';
 import jwt from 'jsonwebtoken'
 
 // Redux
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 // API Calls
 import { getUserData } from './../api/getUserData';
 
-
 const UserProfileForm = props => {
+
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [age, setAge] = useState(null);
+  const [imageURL, setImageURL] = useState('');
+  const userName = firstName + ' ' + lastName;
 
   let paramsId = useParams();
 
@@ -17,51 +22,34 @@ const UserProfileForm = props => {
     onLoad();
   }, []);
   
-  
   async function onLoad() {
-    
+
     let userId = '';
   
     await getUserData(paramsId.id).then((response) => {
       userId = response.data.id;
+      const data = response.data;
       jwt.decode(response.config.headers.Authorization);
       console.log(response.data)
-      setFirstName(response.data.FirstName);
-      setLastName(response.data.LastName);
+      setFirstName(data.FirstName);
+      setLastName(data.LastName);
+      setAge(data.Age);
+      setImageURL(data.ImageURL);
     })
   };
 
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-
-  const userName = firstName + ' ' + lastName;
-
-  const handleOnChangeFirstName = (event) => {
-    const value = event.target.value;
-    setFirstName(value);
-  };
-
   return (
-    <form>
+    <div>
       <div>
         <div>
-          <h1> {userName} </h1>
-        </div>
-
-        <div>
           <div>
-            <label> First Name </label>
+            <img src={imageURL} />
           </div>
-
-          <input 
-            name="firstName"
-            value={firstName}
-            type="text"
-            onChange={handleOnChangeFirstName}
-          />
+          <h1> {userName} </h1>
+          <h3> {age} </h3>
         </div>
       </div>
-    </form>
+    </div>
   )
 };
 

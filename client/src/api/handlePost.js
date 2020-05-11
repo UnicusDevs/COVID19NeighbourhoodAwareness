@@ -14,7 +14,6 @@ export const getAllPosts = () => {
 };
 
 export const getLimitedPosts = (page, userId) => {
-
   let limit = 2;
   
   if (userId) {
@@ -23,7 +22,6 @@ export const getLimitedPosts = (page, userId) => {
     return axiosAPI.get(`/post/limit?limit=${limit}&page=${page}`)
   }
 };
-
 
 export const getUserPosts = (props) => {
   return axios.all([
@@ -34,8 +32,4 @@ export const getUserPosts = (props) => {
 
 export const addClapsToPost = (postId) => {
   axiosAPI.post(`/post/addClap/${postId}`)
-};
-
-export const filterPostsBasedOffUserSuburb = (userSuburb) => {
-  axiosAPI.get(`/post/suburb/${userSuburb}`)
 };

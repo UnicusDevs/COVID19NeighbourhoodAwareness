@@ -4,17 +4,22 @@ import {connect} from 'react-redux';
 // Components
 import UserProfileForm from './../components/UserProfileForm';
 import Header from './../components/Header';
+import BackButton from './../components/BackButton';
+import Feed from './../components/Feed';
 
-// CSS
-
+// Styles
+import styles from './../sass/components/About.module.scss';
 
 const ProfilePage = (props) => {
   return (
     <>
       <div>
-        <button> Back </button>
+        <BackButton />
         <h1> Profile Page </h1>
         <UserProfileForm />
+        <div className={styles.right}>
+          <Feed />
+        </div>
       </div>
     </>
   )
